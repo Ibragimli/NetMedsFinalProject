@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #0b1219;
+
+    span {
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+    }
+
+    p {
+        font-family: 'Lato', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Lato', sans-serif;
+    }
+
+    label {
+        font-family: 'Lato', sans-serif;
+    }
+
+    a {
+        text-decoration: none;
+        list-style: none;
+        font-family: 'Lato', sans-serif;
+    }
+    .row {
+        --bs-gutter-x: 0 !important;
+    }
+    li{
+        list-style: none;
+    }
+}

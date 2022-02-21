@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="loginImage">
+                    <img src="~/Images/logins/1588773798_sign-in-banner-new.png"
+                         alt="1588773798_sign-in-banner-new.png">
+                </div>
+            </div>
+
+            <div class="col-lg-6 loginInput">
+                <h2>Sign In / Sign Up</h2>
+                <p>
+                    Sign up or Sign in to access your orders, special offers, health tips and more!
+                </p>
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Username</label>
+                        <input class="form-control" id="exampleInputEmail1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        <div class="col-lg-4 text-center">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                        <div class="col-lg-4">
+                            <a  asp-controller="account" asp-action="register">
+                                Create new account?
+                            </a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a asp-controller="account" asp-action="forgotpassword">
+                                Forgot Password?...
+                            </a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

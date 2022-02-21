@@ -1,0 +1,88 @@
+#orderBeauty {
+    background-color: #F3F7FB;
+    padding: 20px 0px;
+
+    .container {
+        .row {
+            .OrderB {
+                border-right: 1px solid rgba(11, 18, 25, .2);
+                .leftOrder {
+                   
+                    h1 {
+                        font-size: 24px;
+                        line-height: 32px;
+                        color: #0b1219;
+                    }
+
+                    p {
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: rgba(11, 18, 25, .7);
+                    }
+
+                    a {
+                        display: flex;
+                        align-items: center;
+                        margin-top: 30px;
+                        height: 36px;
+                        font-size: 14px;
+                        line-height: 36px;
+                        color: #24aeb1;
+                        letter-spacing: 1px;
+
+                        span {
+                            font-weight: 700;
+                        }
+
+                        img {
+                            height: 100%;
+                        }
+
+
+                    }
+                }
+
+                .orderRight {
+                    display: flex;
+                    justify-content: end;
+                }
+            }
+
+            .Beauty {
+                padding-left: 20px;
+                .leftBeauty {
+                    h1 {
+                        font-size: 24px;
+                        line-height: 32px;
+                        color: #0b1219;
+                    }
+
+                    p {
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #5ba41c;
+                        margin-bottom: 32px;
+                    }
+
+                    a {
+                        padding: 8px 25px;
+                        font-size: 14px;
+                        line-height: 32px;
+                        color: #fff;
+                        background: #24aeb1;
+                        border-radius: 4px;
+                        text-align: center;
+                        letter-spacing: 1px;
+                        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                    }
+                }
+
+                .beautyRight {
+                    display: flex;
+                    justify-content: end;
+                }
+            }
+
+        }
+    }
+}

@@ -1,0 +1,57 @@
+#trendingToday {
+    padding: 20px 0px;
+    width: 100%;
+    background-color: #F3F7FB;
+    .container-fluid {
+        .trendUp{
+           h1{
+            font-size: 24px;
+            line-height: 32px;
+            margin: 12px 12px 24px;
+            color: #0b1219;
+            font-weight: 700;
+           }
+        }
+        .trendDown {
+            .owl-carousel-trending {
+                position: relative;
+
+                .owl-nav {
+                    .owl-prev{
+                        position: absolute;
+                        top: 38%;
+                        left: 0;
+                    }
+                    .owl-next{
+                        position: absolute;
+                        top:38%;
+                        right: 0;
+                    }
+                    button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        font-size: 40px;
+                        background-color: white;
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 100%;
+                    }
+
+                    button:hover {
+                        color: gray;
+                    }
+                }
+
+                .item {
+                    cursor: pointer;
+
+                    img {
+                        border-radius: 8px;
+                    }
+                }
+            }
+        }
+    }
+}

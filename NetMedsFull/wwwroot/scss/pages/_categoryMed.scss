@@ -1,0 +1,23 @@
+#categoryMed {
+    width: 100%;
+    background-color: #F3F7FB;
+    padding: 10px 0px;
+
+    .container {
+        .row {
+            .cateMed {
+                display: flex;
+                justify-content: space-between;
+
+                a {
+                    color: #151b39;
+                    line-height: 42px;
+                    transition: all 0.5s;
+                }
+                a:hover{
+                    color: #31B3B6;
+                }
+            }
+        }
+    }
+}

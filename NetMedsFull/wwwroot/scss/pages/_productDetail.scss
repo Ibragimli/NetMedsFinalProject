@@ -1,0 +1,759 @@
+body {
+    background-color: #F3F3F3;
+
+    #pDetail {
+        margin-bottom: 20px;
+
+        .container {
+            background-color: white;
+            padding: 20px 20px;
+            border-radius: 7px;
+
+            .row {
+                .productLeft {
+                    .flexslider {
+                        margin: 0px;
+                    }
+
+                    #slider {
+                        padding: 0px;
+
+                        ul {
+                            li {
+                                cursor: pointer;
+
+                                img {
+                                    height: 405px;
+                                }
+                            }
+
+                            .flex-nav-prev {
+                                .flex-prev {
+                                    font-size: 14px !important;
+                                }
+                            }
+                        }
+                    }
+
+                    #carousel {
+                        text-align: center;
+
+                        .slides {
+                            width: 100%;
+
+                            li {
+                                cursor: pointer;
+
+                            }
+                        }
+                    }
+                }
+
+                .productRight {
+                    padding-top: 130px;
+
+                    h1 {
+                        font-size: 20px;
+                        color: #151b39;
+                        letter-spacing: .25px;
+                        font-weight: 500;
+                        line-height: 1.2;
+                    }
+
+                    .pCategory {
+                        display: flex;
+                        padding: 15px 0px;
+
+                        li {
+                            a {
+                                padding: 4px;
+                                background: #f6f6f7;
+                                height: 20px;
+                                line-height: 20px;
+                                border-radius: 2px;
+                                font-size: 12px;
+                                color: #6f7284;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+
+                    .starReviews {
+                        display: flex;
+                        align-items: center;
+
+                        li {
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+
+                            span {
+                                color: #73c330;
+                                font-size: 15px;
+                                font-weight: 600;
+                                margin-right: 5px;
+                            }
+
+                            ul {
+                                padding-left: 5px;
+                                padding-right: 15px;
+                                display: flex;
+                                align-items: center;
+
+                                li {
+                                    a {
+                                        i {
+                                            margin: 0px;
+                                            margin-right: 2px;
+                                            font-size: 16px;
+                                            transition: all 0.5s;
+                                            color: #C7C8D0;
+                                        }
+                                    }
+                                }
+
+                                li:hover {
+                                    i {
+                                        color: #73c330;
+                                    }
+
+                                }
+                            }
+
+                            a {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                i {
+                                    margin-right: 15px;
+                                    color: #C7C8D0;
+                                }
+                            }
+
+                            p {
+                                font-size: 14px;
+                            }
+                        }
+
+                    }
+
+                    .productPrice {
+                        padding-bottom: 20px;
+
+                        .bestPrice {
+                            display: flex;
+                            align-items: center;
+
+                            h3 {
+                                font-weight: 600;
+                                line-height: 1.5;
+                                font-size: 16px;
+                                color: #6f7284;
+                            }
+
+                            p {
+                                font-weight: 600;
+                                line-height: 1.5;
+                                color: #ef4281;
+                                font-size: 20px;
+                            }
+                        }
+
+                        .discountProduct {
+                            span {
+                                color: #6f7284;
+                                line-height: 1.5;
+                                font-size: 12px;
+                            }
+
+                            del {
+                                color: #6f7284;
+                                line-height: 1.5;
+                                font-size: 12px;
+                            }
+
+                            p {
+                                font-weight: 700;
+                                color: #378f30;
+                                display: inline-block !important;
+                                font-size: 11px;
+                                margin-right: 0;
+                                margin-top: 0;
+                                padding: 2px 6px 0 0;
+                                text-align: center;
+
+                                span {
+                                    font-weight: 700;
+                                    color: #378f30;
+                                    font-size: 11px;
+                                    margin-right: 0;
+                                }
+                            }
+
+
+                        }
+
+                        p {
+                            color: #6f7284;
+                            font-size: 12px;
+                            padding: 4px 0px;
+                        }
+
+                        .MKT {
+                            padding: 4px 0px;
+
+                            span {
+                                color: #6f7284;
+                                font-style: italic;
+                                height: 18px;
+                                line-height: 16px;
+                                font-size: 12px;
+                                font-weight: 400;
+                            }
+
+                            a {
+                                font-weight: 400;
+                                color: #6f7284;
+                                font-size: 12px;
+                            }
+                        }
+
+                        .productCountry {
+                            color: #6f7284;
+                            font-style: italic;
+                            height: 18px;
+                            line-height: 16px;
+                            font-size: 12px;
+                            font-weight: 400;
+
+                            a {
+                                color: #6f7284;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+
+                    .addBtn {
+                        font-weight: 700;
+                        background: #24aeb1;
+                        border-radius: 4px;
+                        border: 0;
+                        color: #fff;
+                        font-size: 14px;
+                        line-height: 33px;
+                        padding: 13px 25px;
+                        transition: all 0.4s;
+                    }
+
+                    .addBtn:hover {
+                        background: #24afb1c5;
+                    }
+                }
+            }
+        }
+    }
+
+    #pDescription {
+        padding: 20px 0px;
+
+        .container {
+            padding: 20px 20px;
+            border-radius: 7px;
+
+            .row {
+                .nav {
+                    .nav-item {
+                        button {
+                            font-weight: 500;
+                            color: #151b39;
+                            font-size: 14px;
+                            padding: 20px 20px;
+                            border-radius: 5px 5px 0 0;
+                            background: rgba(21, 27, 57, .04);
+                            margin: 0 5px 0 0;
+                        }
+
+                        .active {
+                            background-color: #fff;
+                            color: #24aeb1;
+                        }
+                    }
+                }
+
+                .tab-content {
+                    .tab-pane {
+                        background-color: transparent;
+
+                        h1 {
+                            background: #fff;
+                            border-radius: 0 0 8px 8px;
+                            padding: 16px 24px 24px;
+                            font-size: 14px;
+                            color: #58595b;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #detailSlider {
+        padding: 30px 0px;
+
+        .container {
+            .row {
+                .owl-carousel-detail {
+                    position: relative;
+                    background-color: white;
+
+                    .owl-nav {
+                        .owl-prev {
+                            position: absolute;
+                            top: 38%;
+                            left: 0;
+                        }
+
+                        .owl-next {
+                            position: absolute;
+                            top: 38%;
+                            right: 0;
+                        }
+
+                        button {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+                            font-size: 40px;
+                            background-color: white;
+                            width: 44px;
+                            height: 44px;
+                            border-radius: 100%;
+                        }
+
+                        button:hover {
+                            color: gray;
+                        }
+                    }
+
+                    .owl-item {
+                        display: flex;
+                        justify-content: center;
+
+                        .item {
+                            display: flex;
+                            flex-direction: column;
+                            border-radius: 10px;
+                            background-color: white;
+                            width: 231px;
+
+                            .disTitle {
+                                a {
+                                    h2 {
+                                        width: 130px;
+                                        color: #151b39;
+                                        font-size: 14px;
+                                        letter-spacing: .15px;
+                                        line-height: 20px;
+                                        text-align: left;
+                                    }
+                                }
+                            }
+
+                            .itemDown {
+                                padding: 15px 30px;
+
+                                .disImage {
+                                    text-align: center;
+
+                                    a {
+
+                                        img {
+                                            border-radius: 10px;
+                                            width: 100%;
+                                            height: 150px;
+                                        }
+                                    }
+                                }
+
+                                .disPrice {
+                                    display: flex;
+                                    flex-direction: column;
+                                    padding-bottom: 10px;
+
+                                    p {
+                                        font-weight: 700;
+                                        color: #ef4281;
+                                        font-size: 18px;
+                                        line-height: 24px;
+                                    }
+
+                                    del {
+                                        color: rgba(21, 27, 57, .4);
+                                        font-size: 16px;
+                                    }
+
+                                }
+
+                                .disBtn {
+                                    cursor: pointer;
+                                    width: 100%;
+                                    background-color: #24aeb1;
+                                    text-align: center;
+                                    padding: 12px 0px;
+                                    border-radius: 5px;
+
+                                    a {
+                                        font-weight: 700;
+                                        font-size: 14px;
+                                        border-radius: 4px;
+                                        border: 0;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #productComments {
+        padding: 40px 0px;
+
+        .container {
+            .commentWrite {
+                background-color: white;
+                margin-bottom: 10px;
+                padding: 20px;
+                border-radius: 6px;
+
+                .commentRating {
+                    h1 {
+                        font-weight: 700;
+                        font-size: 14px;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: 1.33;
+                        letter-spacing: 1px;
+                        color: #6f7284;
+                    }
+
+                    .starRatings {
+                        display: flex;
+                        align-items: flex-end;
+                        padding: 15px 0px;
+
+                        span {
+                            font-size: 42px;
+                            font-stretch: normal;
+                            font-style: normal;
+                            line-height: normal;
+                            letter-spacing: normal;
+                            margin-right: 2px;
+                            font-weight: 700;
+                            color: #73c330;
+                        }
+
+                        i {
+                            font-size: 42px;
+                            font-stretch: normal;
+                            font-style: normal;
+                            line-height: normal;
+                            letter-spacing: normal;
+                            font-weight: 700;
+                            color: #73c330;
+                            margin-right: 5px;
+
+                        }
+
+                        p {
+                            font-size: 12px;
+                            font-weight: 400;
+                            font-stretch: normal;
+                            font-style: normal;
+                            line-height: normal;
+                            letter-spacing: normal;
+                            color: #737688;
+                        }
+                    }
+
+                    .ratings {
+                        margin-right: 22px;
+
+                        .rating {
+                            display: flex;
+                            align-items: center;
+                            margin-bottom: 8px;
+
+                            span {
+                                font-weight: 700;
+                                font-size: 18px;
+                                margin-right: 2px;
+                                font-stretch: normal;
+                                font-style: normal;
+                                color: #737688;
+                                height: 15px;
+                                line-height: 17px;
+                            }
+
+                            i {
+                                font-size: 19px;
+                                color: #73c330;
+                                margin-left: 2px;
+                                margin-right: 9px;
+                            }
+
+                            .star-2 {
+                                color: #feba21 !important;
+                            }
+
+                            .star-1 {
+                                color: #ef4281 !important;
+                            }
+
+                            .progress {
+                                width: 100%;
+                                height: 5px;
+
+                                .progress-2 {
+                                    background-color: #feba21 !important;
+
+                                }
+
+                                .progress-1 {
+                                    background-color: #ef4281 !important;
+
+                                }
+
+                                .progress-bar {
+                                    background-color: #73c330;
+                                }
+
+
+                            }
+
+                            p {
+                                width: 32px;
+                                line-height: 20px;
+                                height: 14px;
+                                padding: 0;
+                                color: #737688;
+                                font-size: 18px;
+                                margin-left: 8px;
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                }
+
+                .commentReview {
+                    .imageRate {
+
+                        .commentImage {
+                            display: flex;
+                            margin-right: 25px;
+
+                            img {
+                                width: 74px;
+                                height: 64px;
+                                margin-right: 10px;
+                            }
+
+                            h1 {
+                                font-weight: 700;
+                                line-height: 64px;
+                                font-size: 12px;
+                                font-stretch: normal;
+                                font-style: normal;
+                                letter-spacing: normal;
+                                color: #151b39;
+                            }
+                        }
+                    }
+
+                    .form-floating {
+                        padding: 20px 0px;
+
+                        form {
+                            .commentRate {
+                                display: flex;
+                                position: relative;
+
+                                .row {
+                                    width: 100%;
+
+                                    input {
+                                        padding: 5px 2px;
+                                        width: 100%;
+                                    }
+
+                                    .starCenter {
+
+                                        padding-right: 80px;
+
+                                        .stars {
+                                            cursor: pointer;
+
+                                            input {
+                                                display: none;
+                                            }
+
+                                            input:checked~label {
+                                                color: gold;
+                                            }
+
+                                            input:checked>label:hover,
+                                            input:checked>label:hover~label {
+                                                color: gold;
+                                                text-shadow: 1px 1px rgba(218, 165, 32, 0.685);
+                                            }
+
+                                            label {
+                                                font-size: 30px;
+                                                color: lightgray;
+                                                margin: 0px 5px;
+                                                text-shadow: 1px 1px #c60;
+                                                float: right;
+                                            }
+
+                                            label::before {
+                                                cursor: pointer;
+                                                content: '★';
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .commentArea {
+                                textarea {
+                                    height: 130px;
+                                    max-height: 150px;
+                                }
+
+                                textarea:focus {
+                                    box-shadow: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .commentView {
+                .comments {
+                    background-color: white;
+                    padding: 25px;
+                    border-radius: 6px;
+
+                    .comment {
+                        border-bottom: 2px solid rgba(21, 27, 57, .04);
+                        margin-bottom: 20px;
+                        margin-top: 20px;
+
+                        .commentUp {
+                            display: flex;
+                            justify-content: space-between;
+
+                            .commentUpLeft {
+                                display: flex;
+
+                                span {
+                                    font-weight: 700;
+                                    background-color: #73c330;
+                                    padding: 2px 7px;
+                                    color: #fff;
+                                    border-radius: 5px;
+                                    padding-right: 8px;
+
+                                    i {
+                                        font-size: 14px;
+                                    }
+                                }
+
+                                h1 {
+                                    margin-left: 5px;
+                                    width: 32px;
+                                    height: 14px;
+                                    padding: 0;
+                                    color: #737688;
+                                    font-size: 18px;
+                                    margin-left: 8px;
+                                }
+                            }
+                        }
+
+                        .commentUpRight {
+                            padding: 0 5px;
+                            border-radius: 4px;
+                            font-size: 13px;
+                            line-height: 1.33;
+                            letter-spacing: .5;
+                            background-color: #f2f2f2;
+
+                            i {
+                                font-size: 15px;
+                                padding: 5px;
+                                color: #01b7c3;
+                            }
+
+                            span {
+                                color: #aaa9acd1;
+                                font-weight: 500;
+                            }
+                        }
+
+                        .commentMiddle {
+                            padding-right: 10px;
+
+                            h3 {
+                                font-size: 14px;
+                                font-style: normal;
+                                line-height: 1.43;
+                                letter-spacing: normal;
+                                color: #151b39;
+                                margin: 12px 0;
+                                font-weight: 700;
+                            }
+
+                            p {
+                                font-size: 14px;
+                                font-weight: 400;
+                                font-stretch: normal;
+                                font-style: normal;
+                                line-height: 1.43;
+                                letter-spacing: normal;
+                                color: #6f7284;
+                                padding-bottom: 20px;
+                            }
+                        }
+
+                        .commentDown {
+                            display: flex;
+                            margin-bottom: 10px;
+
+                            span {
+                                font-size: 13px;
+                                font-weight: 400;
+                                line-height: 1.33;
+                                color: #6f7284;
+                                margin-right: 5px;
+                            }
+
+                            p {
+                                font-size: 13px;
+                                font-weight: 400;
+                                line-height: 1.33;
+                                color: #6f7284;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

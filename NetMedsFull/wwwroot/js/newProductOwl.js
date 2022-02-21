@@ -1,0 +1,17 @@
+$('.owl-carousel-newproduct').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:false,
+    dots:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1250:{
+            items:5
+        }
+    }
+})

@@ -1,0 +1,165 @@
+#labtests {
+    background-color: #F6F6F7;
+    padding-top:40px;
+    .container {
+        .labTest {
+            display: flex;
+            align-items: center;
+            background-color: #E0F8FF;
+            padding: 40px 40px;
+
+            .labImage {
+                margin-right: 10px;
+                margin-bottom: 10px;
+
+                img {
+                    border-radius: 4px;
+
+                    width: 100%;
+                }
+            }
+
+            .labForm {
+                border-radius: 7px;
+                background-color: white;
+                padding: 10px;
+
+                p {
+                    color: #151b39;
+                    font-size: 14px;
+                    line-height: 24px;
+                    margin-bottom: 20px;
+                    font-weight: 400;
+                }
+
+                form {
+                    width: 100%;
+                    background-color: white;
+
+                    label {
+                        font-family: 'Lato', sans-serif;
+                        font-size: 16px;
+                        line-height: 16px;
+                        color: #02b7c2;
+                        display: block;
+                        font-weight: 700;
+                    }
+
+                    input {
+                        border: none;
+                        border-bottom: 2px solid rgba(21, 27, 57, .04);
+                        width: 100%;
+                        font-size: 17px;
+                        color: #151b39;
+                        outline: 0;
+                        line-height: 23px;
+                    }
+
+                    input:focus {
+                        box-shadow: none;
+                    }
+
+                    select {
+                        border: none;
+                        appearance: none;
+                        border-bottom: 1px solid #d1d1d1;
+                        height: 32px;
+                        padding-right: 25px;
+                        text-indent: 0.01em;
+                        width: 100%;
+
+                        option {
+                            a {
+                                border-bottom: 1px solid #ccc;
+                                margin: 5px 13px;
+                            }
+                        }
+                    }
+
+                    select:focus {
+                        box-shadow: none;
+                    }
+
+                    button {
+                        padding: 8px 80px;
+                        border: none;
+                        background-color: #02b7c2;
+                    }
+
+                    #dateTime_wrapper {
+                        width: 100% !important;
+                        height: 40px !important;
+                    }
+
+                    .e-datetime-wrap {
+                        display: inline-block;
+                    }
+
+                }
+            }
+        }
+
+
+    }
+}
+
+#labPartner {
+    background-color: #F6F6F7;
+
+    .container {
+        .row {
+            display: flex;
+            align-items: center;
+            padding: 40px 0px;
+            border-radius: 7px;
+
+            .labBox {
+                background-color: #fff;
+                padding: 15px 25px;
+
+                h1 {
+                    color: #151b39;
+                    font-size: 28px;
+                    letter-spacing: 0.25px;
+                    padding: 4px 0px;
+                    margin-bottom: 0.5rem;
+                    font-weight: 700;
+                    line-height: 1.2;
+                }
+
+                p {
+                    font-size: 16px;
+                    color: rgba(21, 27, 57, .6);
+                    margin-bottom: 12px !important;
+                }
+
+                ul {
+                    display: flex;
+                    justify-content: center;
+
+                    li {
+                        img {
+                            padding-right: 50px;
+                        }
+                    }
+                }
+
+                .partnerImages {
+                    .row{
+                        justify-content: center;
+                        align-items: center;
+                        .partnerImage{
+                            text-align: center;
+                            img {
+                                padding-right: 50px;
+                                padding-bottom: 7px;
+                            }
+                        }
+                        
+                    }
+                   
+                }
+            }
+        }
+    }
+}

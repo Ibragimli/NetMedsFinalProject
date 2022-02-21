@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewData["Title"] = "LabTest";
+}
+
+<section id="labtests">
+    <div class="container">
+        <div class="row labTest">
+            <div class="col-lg-9">
+                <div class="labImage">
+                    <img src="~/Images/labtests/1635266868_WhatsApp_Image_2021-10-26_at_21.56.07.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-3 labForm">
+                <p>Please fill in your details</p>
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">NAME</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">MOBILE NUMBER</label>
+                        <input type="tel" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">CHOOSE PACKAGE</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option value="1">
+                                <a href="#">
+                                    Others
+                                </a>
+                            </option>
+                            <option value="2">
+                                <a href="#">
+                                    Fever Profile
+                                </a>
+                            </option>
+                            <option value="3">
+                                <a href="#">
+                                    Netmeds Cough-Fever Cold Package
+                                </a>
+                            </option>
+                            <option value="4">
+                                <a href="#">
+                                    Anaemia Profile
+                                </a>
+                            </option>
+                            <option value="5">
+                                <a href="#">
+                                    Thyroid Tests
+                                </a>
+                            </option>
+                            <option value="6">
+                                <a href="#">
+                                    Basic Allergy Package
+                                </a>
+                            </option>
+                            <option value="7">
+                                <a href="#">
+                                    Netmeds Healthy Heart
+                                </a>
+                            </option>
+                            <option value="8">
+                                <a href="#">
+                                    Advanced Heart Care
+                                </a>
+                            </option>
+                            <option value="9">
+                                <a href="#">
+                                    Netmeds Diabetic Checkup
+                                </a>
+                            </option>
+                            <option value="10">
+                                <a href="#">
+                                    Vitamin Tests
+                                </a>
+                            </option>
+                            <option value="11">
+                                <a href="#">
+                                    Netmeds Advanced Care
+                                </a>
+                            </option>
+                            <option value="12">
+                                <a href="#">
+                                    Covid Antibody GT Profile
+                                </a>
+                            </option>
+                            <option value="13">
+                                <a href="#">
+                                    Netmeds Swasthya
+                                </a>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Price</label>
+                        <input class="form-control" placeholder="Price: 25" type="number" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Rendezvous</label>
+                        <input id="datefield" type='date' min='02/21/2022' >
+                    </div>
+
+                    <div class="mb-3 text-center">
+                        <button class="btn btn-primary">
+                            Book Now
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="labPartner">
+    <div class="container">
+        <div class="row">
+            <div class="labBox">
+                <h1>
+                    Lab Partner
+                </h1>
+                <p>
+                    We provide lab tests and health packages from well-reputed, certified diagnostic labs across
+                    the
+                    country.
+                </p>
+                <div class="partnerImages">
+                    <div class="row">
+                        <div class="col-lg-2 partnerImage">
+                            <img src="~/Images/labtests/Apllo_clinic.jpg" alt="">
+                        </div>
+                        <div class="col-lg-2 partnerImage">
+                            <img src="~/Images/labtests/Healthians.jpg" alt="">
+                        </div>
+                        <div class="col-lg-2  partnerImage">
+                            <img src="~/Images/labtests/thyrocare_logo.jpg" alt="">
+                        </div>
+                        <div class="col-lg-2 partnerImage">
+                            <img src="~/Images/labtests/SRL_Diagnostics.jpg" alt="">
+                        </div>
+                        <div class="col-lg-2 partnerImage ">
+                            <img src="~/Images/labtests/Niramaya.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="partnerImages">
+                    <div class="row">
+                        <div class="col-lg-2 partnerImage">
+                            <img src="~/Images/labtests/Neuberg.jpg" alt="">
+                        </div>
+                        <div class="col-lg-2 partnerImage">
+                            <img src="~/Images/labtests/Mahajan-Imaging.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/labTests.js"></script>
+}

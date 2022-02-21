@@ -1,0 +1,64 @@
+.headNavbar {
+    width: 100%;
+    background-color: #32AEB1;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        display: flex;
+        justify-content: center;
+
+        .row {
+            .navBox {
+                display: flex;
+                position: relative;
+                img {
+                    cursor:pointer;
+                    padding-right: 4px;
+                }
+
+                a {
+                    font-size: 14px;
+                    color: rgba(255, 255, 255, .8);
+                }
+                
+                ul {
+                    padding: 0;
+                    background-color: #f7f7f7;
+                    position: absolute;
+                    top: 55px;
+                    display: block;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.5s;
+
+                    li {
+
+                        a {
+                            color: #151b39;
+                            font-size: 13px;
+                            display: block;
+                            width: 100%;
+                            padding: 10px 14px;
+                            transition: all 0.4s;
+                        }
+
+                        a:hover {
+                            color: #02b7c2;
+                            background-color: white;
+                        }
+                    }
+                }
+            }
+
+            .navMed:hover {
+                ul {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}

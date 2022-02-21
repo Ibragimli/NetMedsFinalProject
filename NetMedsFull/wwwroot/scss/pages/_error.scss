@@ -1,0 +1,48 @@
+#error {
+    background-color: #F3F3F3;
+    padding: 110px 0px;
+
+    .container {
+        padding: 0;
+
+        .row {
+            justify-content: center;
+            align-items: center;
+
+            .errorLeft {
+                .errorImage {
+                    text-align: center;
+                    padding: 0;
+                }
+            }
+
+            .errorRight {
+                text-align: center;
+
+                h4 {
+                    color: #151b39;
+                    font-size: 16px;
+                    padding-bottom: 4px;
+                }
+
+                p {
+                    color: #6f7284;
+                    font-size: 12px;
+                    padding: 10px 0px;
+                }
+
+                a {
+                    background: #24aeb1;
+                    width: 209px;
+                    line-height: 34px;
+
+                    padding: 10px 40px;
+                    border-radius: 3px;
+                    color: #fff;
+                    font-size: 14px;
+                }
+            }
+
+        }
+    }
+}

@@ -1,0 +1,563 @@
+@media only screen and (max-width: 1095px) {
+    header {
+        height: 145px !important;
+
+        .container-fluid {
+            .row {
+                display: flex !important;
+                justify-content: center !important;
+
+                .headLogo {
+                    .headerLogoImage {
+                        img {
+                            padding-right: 15px !important;
+                            width: 100% !important;
+                            height: 50px !important;
+                        }
+                    }
+                }
+
+                .headUser {
+                    padding-top: 20px;
+                    padding-bottom: 15px;
+                    width: 100% !important;
+                    display: flex;
+                    justify-content: center !important;
+
+                    ul {
+                        display: flex;
+                        align-items: center;
+
+                        li {
+                            margin-left: 10px;
+
+                            a {
+                                i {
+                                    color: white;
+                                    padding-right: 5px;
+                                }
+
+                                display: flex;
+                                align-items: center;
+
+                                img {
+                                    margin-right: 8px;
+                                    margin-left: 15px;
+                                }
+
+                                span {
+                                    transition: all 0.4s;
+                                    padding-top: 3px;
+                                    letter-spacing: 1px;
+                                    color: white;
+                                    font-size: 14px;
+                                    font-stretch: normal;
+                                }
+
+                                span:hover {
+                                    color: #CED0D1;
+                                }
+
+                                .basketImage {
+                                    position: relative;
+
+                                    sub {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        position: absolute;
+                                        top: 0;
+                                        right: 6px;
+                                        background-color: #EE4380;
+                                        border-radius: 6.5px;
+                                        font-size: 12px;
+                                        color: white;
+                                        width: 17px;
+                                        height: 13px;
+                                        font-weight: 700;
+                                        font-family: 'Lato', sans-serif;
+
+                                    }
+                                }
+
+                                .basketCart {
+                                    font-size: 13px;
+                                    font-weight: 700;
+                                }
+                            }
+                        }
+
+                        .basketA {
+                            position: relative;
+
+                            .basketHover {
+                                opacity: 0;
+                                visibility: hidden;
+                                transition: all 0.4s;
+
+                                .basketTriangle {
+                                    position: absolute;
+                                    top: 28px;
+                                    left: 20px;
+                                    width: 0;
+                                    height: 0;
+                                    border-left: 8px solid transparent;
+                                    border-right: 8px solid transparent;
+                                    border-bottom: 14px solid white;
+                                }
+
+                                .basketAHover {
+                                    border-radius: 5px;
+                                    transition: all 0.5s;
+                                    padding: 20px;
+                                    padding: 20px 15px 25px 20px;
+                                    background-color: white;
+                                    position: absolute;
+                                    top: 42px;
+                                    left: -320px;
+
+                                    .basketHoverUp {
+                                        display: flex;
+                                        justify-content: space-between;
+                                        padding: 2px 0px 12px 0px;
+
+                                        h2 {
+                                            font-weight: 700;
+                                            font-size: 14px;
+                                            font-stretch: normal;
+                                            font-style: normal;
+                                            letter-spacing: 1px;
+                                            color: #6f7284;
+                                            line-height: 18px;
+                                            height: 16px;
+                                        }
+
+                                        span {
+                                            font-weight: 700;
+                                            font-size: 14px;
+                                            font-stretch: normal;
+                                            font-style: normal;
+                                            line-height: 16px;
+                                            letter-spacing: normal;
+                                            color: #151b39;
+                                        }
+                                    }
+
+                                    .basketHoverMiddle {
+                                        display: flex;
+                                        justify-content: space-between;
+                                        padding: 2px 0px 7px 0px;
+
+                                        .row {
+                                            padding: 0px;
+
+                                            .itemBasket {
+                                                display: flex;
+                                                margin-bottom: 11px;
+
+                                                .basketName {
+                                                    margin-right: 20px;
+                                                    width: 65%;
+                                                    white-space: nowrap;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;
+                                                    font-size: 14px;
+                                                    color: #151b39;
+                                                    font-weight: 700;
+                                                }
+
+                                                .basketPriceCount {
+                                                    font-weight: 500;
+                                                    text-align: right;
+                                                    font-size: 15px;
+                                                    color: #151b39;
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+
+                                    .basketHoverDown {
+                                        display: flex;
+                                        justify-content: space-between;
+                                        padding: 10px 0px;
+
+                                        .DownLeft {
+                                            display: flex;
+                                            flex-direction: column;
+
+                                            h3 {
+                                                font-size: 18px;
+                                                letter-spacing: .15px;
+                                                color: #ef4281;
+                                                margin-bottom: 2px;
+                                                font-weight: 700;
+                                            }
+
+                                            p {
+                                                font-weight: 700;
+                                                letter-spacing: .15px;
+                                                font-size: 15px;
+                                                color: #378f30;
+                                            }
+                                        }
+
+                                        .DownRight {
+                                            a {
+                                                padding: 3px 40px;
+                                                background-color: #24aeb1;
+                                                border-radius: 5px;
+                                                color: #fff;
+                                                line-height: 36px;
+                                                text-align: center;
+                                                font-size: 14px;
+                                                font-style: normal;
+                                                border: 0;
+                                                font-weight: 700;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+
+                        .basketA:hover {
+                            .basketHover {
+                                opacity: 1;
+                                visibility: visible;
+                            }
+                        }
+
+                        .signInUp {
+                            display: flex;
+                            padding-top: 2px;
+
+                            img {
+                                padding-left: 5px;
+                                cursor: pointer;
+                            }
+
+                            ul {
+                                li {
+                                    width: 60px;
+
+                                    a {
+                                        span {
+                                            padding-top: 3px;
+                                            color: white;
+                                            font-size: 14px;
+                                            font-stretch: normal;
+                                            transition: all 0.5s;
+                                        }
+
+                                        .signIn::after {
+                                            content: '/';
+                                            padding-left: 5px;
+                                            color: white !important;
+                                        }
+
+                                        span:hover {
+                                            color: #CED0D1;
+                                        }
+                                    }
+
+                                }
+
+
+                            }
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    header {
+        .headUser {
+            ul {
+                .basketA {
+                    .basketHover {
+                        .basketAHover {
+                            left: -120px !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        .searchBox {
+            top: 46px;
+            right: 0;
+            width: 81% !important;
+        }
+    }
+
+    #basket {
+        .container {
+            h1 {
+                text-align: center !important;
+            }
+
+            .products {
+                justify-content: center !important;
+
+                .payment {
+                    width: 400px !important;
+                    margin-left: 0px !important;
+                }
+            }
+        }
+    }
+
+    #profile {
+        background-color: #F3F7FB;
+
+        .container {
+            .row {
+                .profileBox {
+                    flex-direction: column;
+                    justify-content: center !important;
+                    align-items: center !important;
+
+                    .tab-content {
+                        .tab-pane {
+                            table {
+                                thead {
+                                    tr {
+                                        th {
+                                            padding: 10px 25px !important;
+                                        }
+                                    }
+
+                                    .labTests {
+                                        th {
+                                            padding: 10px 15px !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #orderBeauty {
+        .container {
+            .row {
+                .OrderB {
+                    border-right: 0px !important;
+                    border-bottom: 1px solid rgba(11, 18, 25, .2);
+                    margin-bottom: 20px;
+
+                    .row {
+
+                        .leftOrder {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                        }
+
+                        .orderRight {
+                            display: flex;
+                            justify-content: center;
+                        }
+                    }
+                }
+
+                .Beauty {
+                    .leftBeauty {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+
+                    }
+
+                    .beautyRight {
+                        display: flex;
+                        justify-content: center !important;
+                    }
+                }
+
+            }
+        }
+    }
+
+    footer {
+        .container-fluid {
+
+            .footUp {
+
+                .footImage {
+                    text-align: center;
+
+                }
+            }
+
+            .footMiddle {
+                .footCompany {
+                    ul {
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                }
+
+                .footShopping {
+                    ul {
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                }
+            }
+
+
+
+            .footSocial {
+                ul {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+
+            .footSubscribe {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+
+                p {
+                    padding: 0px 20px !important;
+                }
+            }
+
+            .copyRight {
+                .copyBox {
+                    display: flex;
+                    justify-content: center !important;
+
+                }
+            }
+        }
+    }
+
+    #pDetail {
+        .container {
+            .row {
+                .productRight {
+                    padding-top: 10px !important;
+                }
+            }
+        }
+    }
+
+    #shopFilter {
+        padding: 20px 0px;
+
+        .container {
+            .shopLeft {
+
+                .shopFilter {
+                    .filterBrands {
+                        .noneAccordion {
+                            display: none;
+                        }
+                    }
+
+                    .filterBrands {
+                        .accordion {
+                            display: inline-block !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #productComments {
+        .container {
+            .commentWrite {
+                .commentReview {
+                    .form-floating {
+                        form {
+                            .commentRate {
+                                .row {
+                                    input {
+                                        width: 100% !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+}
+
+
+@media only screen and (max-width: 776px) {
+    header {
+        .searchBox {
+            top: 46px;
+            right: 0;
+            width: 78% !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 685px) {
+    header {
+        .searchBox {
+            top: 46px;
+            right: 0;
+            width: 72% !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    header {
+        .searchBox {
+            top: 46px;
+            right: 0;
+            width: 66% !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    header {
+        .searchBox {
+            top: 46px;
+            right: 0;
+            width: 61% !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    header {
+        .searchBox {
+            top: 46px;
+            right: 0;
+            width: 55% !important;
+        }
+    }
+}

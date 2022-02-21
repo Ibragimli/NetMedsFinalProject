@@ -1,0 +1,53 @@
+#categorySbilab {
+    padding: 30px 0px;
+    width: 100%;
+    background-color: #F3F7FB;
+    .container-fluid {
+        .row {
+            justify-content: center;
+            .sbiLabBox {
+                ul {
+                    display: flex;
+                    justify-content: center;
+                    .sbliLabLi {
+                        cursor: pointer;
+                        width: 425.41px;
+                        margin-bottom: 10px;
+                        background: #fff;
+                        border-radius: 8px;
+                        padding: 0px 100px;
+                        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                        ul {
+                            li {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                .sbiLabImage {
+                                    img {
+                                        width: 84px;
+                                        height: 87px;
+                                        padding-right: 20px;
+                                    }
+                                }
+                                h1 {
+                                    font-weight: 700;
+                                    font-size: 20px;
+                                    line-height: 26px;
+                                    color: #0b1219;
+                                }
+
+                                p {
+                                    color: #5ba41c;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+}

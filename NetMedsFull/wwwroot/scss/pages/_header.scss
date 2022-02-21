@@ -1,0 +1,490 @@
+header {
+    background-color: #32AEB1;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    height: 90px;
+    display: flex !important;
+    align-items: center;
+    z-index: 999;
+
+    .container-fluid {
+        .row {
+            padding: 0px 12px;
+            display: flex;
+
+            .headLogo {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .headSearch {
+                form {
+                    display: flex;
+
+                    .input-group {
+                        display: flex;
+                        position: relative;
+
+                        button {
+                            background-color: white;
+                            border: none;
+                            color: #0b121980;
+                            display: flex;
+                            align-items: center;
+
+                            span {
+                                font-size: 13px;
+
+                                span {
+                                    font-size: 14px;
+                                    color: #32AEB1;
+                                }
+                            }
+
+                            i {
+                                font-size: 12px;
+                            }
+                        }
+
+                        button:focus {
+                            box-shadow: none;
+                        }
+
+                        button::after {
+                            content: '│';
+                            border: none;
+                            color: #CED0D1;
+                            margin-left: 10px;
+                        }
+
+                        .dropdown-menu {
+                            border-radius: 5px;
+
+                            .menuBox {
+                                padding: 18px 21px;
+
+                                h1 {
+                                    padding: 0 0 12px;
+                                    font-size: 16px;
+                                    font-family: 'Lato', sans-serif;
+                                    line-height: 16px;
+                                    color: #000;
+                                    float: left;
+                                    width: 100%;
+                                    display: block;
+                                    font-weight: 700;
+                                }
+
+                                p {
+                                    font-size: 14px;
+                                    color: rgba(11, 18, 25, .5);
+                                    line-height: 16px;
+                                    padding: 0 0 1px;
+                                }
+
+                                a {
+                                    font-size: 14px;
+                                    line-height: 16px;
+                                    letter-spacing: 1px;
+                                    font-weight: 700;
+                                    background: #24aeb1;
+                                    color: #fff;
+                                    border-radius: 4px;
+                                    width: 100%;
+                                    border: 0;
+                                    margin-top: 16px;
+                                    text-align: center;
+                                    padding: 12px 0;
+                                }
+
+                                h2 {
+                                    padding: 0 0 8px;
+                                    font-weight: bold;
+                                    font-size: 16px;
+                                    line-height: 20px;
+                                    color: #151b39;
+                                    font-family: 'Lato', sans-serif;
+                                }
+
+                                .menuInput {
+                                    padding-top: 10px;
+                                    padding-bottom: 10px;
+
+                                    border-radius: 10px;
+
+                                    img {
+                                        padding: 0px 10px;
+                                        background-color: #F3F7FB;
+                                    }
+
+                                    input {
+                                        height: 40px;
+                                        background-color: #F3F7FB;
+                                        width: 100%;
+                                    }
+                                }
+
+                                .menuLocation {
+                                    display: flex;
+                                    align-items: center;
+
+                                    img {
+                                        width: 16px;
+                                    }
+
+                                    span {
+                                        padding-left: 7px;
+                                        font-weight: 700;
+                                        color: #ef4281;
+                                        font-size: 12px;
+                                        letter-spacing: 1px;
+                                        line-height: 16px;
+                                        background-size: 16px;
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+                        }
+
+                        .closeSearch {
+                            i {
+                                display: none;
+                                cursor: pointer;
+                                position: absolute;
+                                top: 14px;
+                                right: 8px;
+                                font-size: 22px;
+                                color: #24aeb1;
+                                z-index: 4;
+                            }
+                        }
+
+                        input {
+                            height: 48px;
+                            border: none;
+                            padding: 0;
+                            padding-left: 5px;
+
+                        }
+
+                        input:focus {
+                            box-shadow: none;
+
+                        }
+
+                        ::placeholder {
+                            font-family: 'Lato', sans-serif;
+                            font-size: 14px;
+                        }
+
+                        .searchBox {
+                            display: none;
+                            z-index: 2;
+                            position: absolute;
+                            top: 46px;
+                            right: 0;
+                            width: 77%;
+                            padding: 15px 0px 20px 0px;
+                            background-color: white;
+                            border-bottom-right-radius: 3px;
+                            border-bottom-left-radius: 3px;
+
+                            ul {
+                                li {
+                                    margin-bottom: 10px;
+                                    margin-left: 10px;
+                                    margin-top: 8px;
+                                    margin-right: 10px;
+                                    padding-bottom: 10px;
+                                    border-bottom: 1px solid gray;
+                                    transition: all 0.4s;
+
+                                    i {
+                                        cursor: pointer;
+                                        padding: 10px;
+                                        font-size: 22px;
+                                        color: #6f7284;
+                                        transition: all 0.4s;
+                                    }
+
+                                    a {
+                                        transition: all 0.4s;
+                                        color: black;
+                                    }
+                                }
+
+                                li:hover {
+                                    border-bottom: 1px solid #32AEB1;
+
+                                    i{
+                                        color: #24aeb1;
+                                    }
+                                    a {
+                                        color: #24aeb1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .headUser {
+                display: flex;
+                align-items: center;
+
+                ul {
+                    display: flex;
+                    align-items: center;
+
+                    li {
+                        margin-left: 10px;
+
+                        a {
+                            i {
+                                color: white;
+                                padding-right: 5px;
+                            }
+
+                            display: flex;
+                            align-items: center;
+
+                            img {
+                                margin-right: 8px;
+                                margin-left: 15px;
+                            }
+
+                            span {
+                                transition: all 0.4s;
+                                padding-top: 3px;
+                                letter-spacing: 1px;
+                                color: white;
+                                font-size: 14px;
+                                font-stretch: normal;
+                            }
+
+                            span:hover {
+                                color: #CED0D1;
+                            }
+
+                            .basketImage {
+                                position: relative;
+
+                                sub {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    position: absolute;
+                                    top: 0;
+                                    right: 6px;
+                                    background-color: #EE4380;
+                                    border-radius: 6.5px;
+                                    font-size: 12px;
+                                    color: white;
+                                    width: 17px;
+                                    height: 13px;
+                                    font-weight: 700;
+                                    font-family: 'Lato', sans-serif;
+
+                                }
+                            }
+
+                            .basketCart {
+                                font-size: 13px;
+                                font-weight: 700;
+                            }
+                        }
+                    }
+
+                    .basketA {
+                        position: relative;
+
+                        .basketHover {
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: all 0.4s;
+
+                            .basketTriangle {
+                                position: absolute;
+                                top: 28px;
+                                left: 20px;
+                                width: 0;
+                                height: 0;
+                                border-left: 8px solid transparent;
+                                border-right: 8px solid transparent;
+                                border-bottom: 14px solid white;
+                            }
+
+                            .basketAHover {
+                                border-radius: 5px;
+                                transition: all 0.5s;
+                                padding: 20px;
+                                padding: 20px 15px 25px 20px;
+                                background-color: white;
+                                position: absolute;
+                                top: 42px;
+                                left: -320px;
+
+                                .basketHoverUp {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    padding: 2px 0px 12px 0px;
+
+                                    h2 {
+                                        font-weight: 700;
+                                        font-size: 14px;
+                                        font-stretch: normal;
+                                        font-style: normal;
+                                        letter-spacing: 1px;
+                                        color: #6f7284;
+                                        line-height: 18px;
+                                        height: 16px;
+                                    }
+
+                                    span {
+                                        font-weight: 700;
+                                        font-size: 14px;
+                                        font-stretch: normal;
+                                        font-style: normal;
+                                        line-height: 16px;
+                                        letter-spacing: normal;
+                                        color: #151b39;
+                                    }
+                                }
+
+                                .basketHoverMiddle {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    padding: 2px 0px 7px 0px;
+
+                                    .row {
+                                        padding: 0px;
+
+                                        .itemBasket {
+                                            display: flex;
+                                            margin-bottom: 11px;
+
+                                            .basketName {
+                                                margin-right: 20px;
+                                                width: 65%;
+                                                white-space: nowrap;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                font-size: 14px;
+                                                color: #151b39;
+                                                font-weight: 700;
+                                            }
+
+                                            .basketPriceCount {
+                                                font-weight: 500;
+                                                text-align: right;
+                                                font-size: 15px;
+                                                color: #151b39;
+                                            }
+                                        }
+
+                                    }
+
+                                }
+
+                                .basketHoverDown {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    padding: 10px 0px;
+
+                                    .DownLeft {
+                                        display: flex;
+                                        flex-direction: column;
+
+                                        h3 {
+                                            font-size: 18px;
+                                            letter-spacing: .15px;
+                                            color: #ef4281;
+                                            margin-bottom: 2px;
+                                            font-weight: 700;
+                                        }
+
+                                        p {
+                                            font-weight: 700;
+                                            letter-spacing: .15px;
+                                            font-size: 15px;
+                                            color: #378f30;
+                                        }
+                                    }
+
+                                    .DownRight {
+                                        a {
+                                            padding: 3px 40px;
+                                            background-color: #24aeb1;
+                                            border-radius: 5px;
+                                            color: #fff;
+                                            line-height: 36px;
+                                            text-align: center;
+                                            font-size: 14px;
+                                            font-style: normal;
+                                            border: 0;
+                                            font-weight: 700;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                    .basketA:hover {
+                        .basketHover {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+
+                    .signInUp {
+                        display: flex;
+                        padding-top: 2px;
+
+                        img {
+                            padding-left: 5px;
+                            cursor: pointer;
+                        }
+
+                        ul {
+                            li {
+                                width: 60px;
+
+                                a {
+                                    span {
+                                        padding-top: 3px;
+                                        color: white;
+                                        font-size: 14px;
+                                        font-stretch: normal;
+                                        transition: all 0.5s;
+                                    }
+
+                                    .signIn::after {
+                                        content: '/';
+                                        padding-left: 5px;
+                                        color: white !important;
+                                    }
+
+                                    span:hover {
+                                        color: #CED0D1;
+                                    }
+                                }
+
+                            }
+
+
+                        }
+                    }
+
+
+                }
+
+
+            }
+        }
+    }
+}

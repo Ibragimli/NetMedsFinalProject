@@ -1,0 +1,186 @@
+footer {
+    background-color: white;
+    border-radius: 2px;
+    .container-fluid {
+        padding: 30px 25px;
+
+        .footUp {
+            background-color: white;
+
+            img {
+                width: 180px;
+                height: 39.99px;
+            }
+
+            p {
+                padding: 0px;
+                font-size: 15px;
+                line-height: 20px;
+                color: rgba(11, 18, 25, .5);
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                margin-left: 35px;
+            }
+        }
+
+        .footMiddle {
+            .footCompany {
+                ul {
+                    li {
+                        h2 {
+                            font-size: 14px;
+                            line-height: 22px;
+                            padding: 0;
+                            text-transform: uppercase;
+                            font-weight: 700;
+                            letter-spacing: 0.25px;
+                        }
+
+                        a {
+                            line-height: 32px;
+                            font-size: 14px;
+                            color: #0b1219;
+                            transition: all 0.5s;
+                        }
+
+                        a:hover {
+                            color: #31B3B6;
+                        }
+                    }
+                }
+            }
+
+            .footShopping {
+                ul {
+                    li {
+                        h2 {
+                            font-size: 14px;
+                            line-height: 22px;
+                            padding: 0;
+                            text-transform: uppercase;
+                            font-weight: 700;
+                            letter-spacing: 0.25px;
+                        }
+
+                        a {
+                            line-height: 32px;
+                            font-size: 14px;
+                            color: #0b1219;
+                            transition: all 0.5s;
+                        }
+
+                        a:hover {
+                            color: #31B3B6;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        .footSocial {
+            ul {
+                li {
+                    h2 {
+                        font-size: 14px;
+                        line-height: 22px;
+                        padding: 0;
+                        text-transform: uppercase;
+                        font-weight: 700;
+                        letter-spacing: 0.25px;
+                    }
+
+                    a {
+                        line-height: 32px;
+                        font-size: 14px;
+                        color: #0b1219;
+                        transition: all 0.5s;
+
+                    }
+
+                    a:hover {
+                        color: #31B3B6;
+                    }
+                }
+            }
+        }
+
+        .footSubscribe {
+            h2 {
+                font-size: 14px;
+                line-height: 22px;
+                text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.25px;
+            }
+
+            p {
+                font-size: 14px;
+                padding: 13px 0px;
+                color: #0b1219;
+                line-height: 1.5;
+            }
+
+            form {
+                position: relative;
+                border-bottom: 1px solid rgba(11, 18, 25, .2);
+                display: flex;
+
+                input {
+                    border: none;
+                    height: 40px;
+                    border-radius: 4px;
+                    padding: 0 12px;
+                }
+
+                input:focus {
+                    box-shadow: none;
+                }
+
+                i {
+                    position: absolute;
+                    top: 10px;
+                    right: 4%;
+                    color: #31B3B6;
+                }
+            }
+
+            ul {
+                padding: 20px 0px;
+                display: flex;
+
+                li {
+                    padding-right: 15px;
+
+                    img {
+                        width: 115.91px;
+                        height: 33.84px;
+                    }
+                }
+            }
+        }
+
+        .copyRight {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(11, 18, 25, .5);
+
+            .copyBox {
+
+                a {
+                    color: rgba(11, 18, 25, .5);
+                    line-height: 65px;
+                    transition: all 0.5s;
+                }
+
+                a:hover {
+                    color: #31B3B6;
+                }
+            }
+        }
+    }
+}

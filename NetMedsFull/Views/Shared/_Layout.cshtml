@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/flexslider.css">
+    <title>Netmeds.com: Indian Online Pharmacy | Buy Medicines Online, Fast Delivery</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 p-0 headLogo" style=" display: flex; align-items: center; ">
+                    <a asp-controller="home" asp-action="index">
+                        <div class="headerLogoImage">
+                            <img class="img-fluid" src="~/Images/headers/home-logo-netmeds-new.svg"
+                                 alt="home-logo-netmeds-new">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 p-0 headSearch">
+                    <form action="#">
+                        <div class="input-group">
+                            <button class="btn   dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <span>
+                                    Deliver to
+                                    <span>110002</span>
+                                </span>
+                                <i class="ms-2 fa-solid fa-angle-down"></i>
+                            </button>
+                            <div class="closeSearch">
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+                            <div class="dropdown-menu">
+                                <div class="menuBox">
+                                    <h1>Where do you want the delivery?</h1>
+                                    <p>
+                                        Get access to your Addresses, Orders, and Wishlist
+                                    </p>
+                                    <a class="btn btn-primary">Sign in to see your location</a>
+                                    <hr>
+                                    <h2>Or Enter Pincode</h2>
+                                    <p>
+                                        Select pincode to see product availability.
+                                    </p>
+
+                                    <div class="menuInput d-flex">
+                                        <img src="~/Images/headers/location-on.svg" alt="">
+                                        <input type="tel" name="rel_pincode" id="rel_pincode"
+                                               placeholder="Enter Pincode" autocomplete="off" maxlength="6">
+                                    </div>
+                                    <div class="menuLocation">
+                                        <img src="~/Images/headers/location-detect.svg" alt="location">
+                                        <span>Detect my location</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input autocomplete="off" id="searchBoxInput" type="text" class="form-control"
+                                   placeholder="Search for medicine & wellness products…"
+                                   style="border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+
+                            <div class="col-lg-12">
+                                <div class="searchBox">
+                                    <ul>
+                                        <li>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            <a href="#">
+                                                Search1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            <a href="#">
+                                                Search1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            <a href="#">
+                                                Search1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            <a href="#">
+                                                Search1
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12 headUser">
+                    <ul>
+                        <li>
+                            <a asp-controller="wish" asp-action="wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                                <span>WishList</span>
+                            </a>
+                        </li>
+                        <li class="basketA">
+                            <a asp-controller="order" asp-action="cart">
+
+                                <div class="basketImage">
+                                    <img src="~/Images/headers/cart_icon.svg" alt="cart_icon">
+                                    <sub>0</sub>
+                                </div>
+                                <span class="basketCart">Cart</span>
+
+                            </a>
+                            <div class="basketHover">
+                                <div class="basketTriangle"></div>
+
+                                <div class="basketAHover">
+                                    <div class="basketHoverUp">
+                                        <h2>
+                                            Order Summary
+                                        </h2>
+                                        <span>
+                                            3 item(s)
+                                        </span>
+                                    </div>
+
+                                    <div class="basketHoverMiddle">
+                                        <div class="row">
+                                            <div class="itemBasket">
+                                                <div class="basketName">
+                                                    Scalpe Plus Anti Dandruff Shampoo 75 ml
+                                                </div>
+                                                <div class="basketPriceCount">Rs.208.00x1</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="basketHoverDown">
+                                        <div class="DownLeft">
+                                            <h3>
+                                                ₼802.64
+                                            </h3>
+                                            <p>
+                                                You save ₼185.36
+                                            </p>
+                                        </div>
+                                        <div class="DownRight">
+                                            <a asp-controller="order" asp-action="cart">PROCEED TO CART</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="signInUp">
+
+                            <img src="~/Images/headers/profile_icon.svg" alt="profile_icon">
+
+                            <ul>
+                                <li> 
+                                    <a asp-controller="account" asp-action="login">
+                                        <span class="signIn">Sign in</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="account" asp-action="register">
+                                        <span>Sign up</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+
+
+                        </li>
+
+                        <li class="d-none">
+                            <a asp-controller="account" asp-action="profile">
+                                <i class="fa-solid fa-user-tie"></i>
+                                <span>Account</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="headNavbar">
+        <div class="container">
+            <div class="row">
+                <div class="col    navBox navMed">
+                    <img src="~/Images/navbars/medicine.svg" alt="medicine">
+                    <a class="me-5 nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       aria-expanded="false">
+                        Medicine
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">All Medicines</a></li>
+                        <li><a class="dropdown-item" href="#">Previously Ordered Products </a></li>
+                    </ul>
+                </div>
+                <div class="col  navBox">
+                    <img src="~/Images/navbars/diagnostics.svg" alt="diagnostics">
+                    <a class=" nav-link" asp-controller="lab" asp-action="labtest">Lab Tests</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="container-fluid">
+            <div class="row footUp">
+                <div class="col-lg-2 footImage">
+                    <img src="~/Images/footers/netmeds-footer-logo.svg" alt="footer-logo">
+                </div>
+                <div class="col-lg-7">
+                    <p>
+                        Netmeds.com, India Ki Pharmacy, is brought to you by the Dadha & Company – one of India’s most
+                        trusted pharmacies, with over 100 years’ experience in dispensing quality medicines.
+                    </p>
+                </div>
+
+            </div>
+            <hr>
+            <div class="row footMiddle">
+                <div class="col-lg-4 footCompany">
+                    <ul>
+                        <li>
+                            <h2>Company</h2>
+                        </li>
+                        <li><a href="#">About Netmeds</a></li>
+                        <li><a href="#">Customers Speak</a></li>
+                        <li><a href="#">In the News</a></li>
+                        <li>
+                            <a href="#">Career</a>
+                        </li>
+                        <li><a href="#">Terms and Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Fees and Payments Policy</a></li>
+                        <li>
+                            <a href="#">
+                                Shipping and Delivery
+                                Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Return, Refund and
+                                Cancellation Policy
+                            </a>
+                        </li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 footShopping">
+                    <ul>
+                        <li>
+                            <h2>Shopping</h2>
+                        </li>
+                        <li><a href="#">Browse by A-Z</a></li>
+                        <li><a href="#">Browse by Manufacturers</a></li>
+                        <li><a href="#">Health Articles</a></li>
+                        <li><a href="#">Offers / Coupons</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 footSocial">
+                    <ul>
+                        <li>
+                            <h2>Social</h2>
+                        </li>
+                        <li><a target="_blank" href="https://www.netmeds.com/patientsalike/">Patients Alike</a></li>
+                        <li><a target="_blank" href="https://www.facebook.com/NetMeds/">Facebook</a></li>
+                        <li><a target="_blank" href="https://twitter.com/NetMeds">Twitter</a></li>
+                        <li>
+                            <a target="_blank"
+                               href="https://in.linkedin.com/company/netmeds-marketplace-limited">LinkedIn</a>
+                        </li>
+                        <li>
+                            <a target="_blank"
+                               href="https://www.youtube.com/channel/UCNuPx810akEPrbwAUpdNPyw">Youtube</a>
+                        </li>
+                        <li><a target="_blank" href="#">Refer &amp; Earn</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 footSubscribe">
+                    <h2>
+                        SUBSCRIBE TO OUR NEWSLETTER
+                    </h2>
+                    <p>
+                        Get a free subscription to our health and fitness tip and stay tuned to our latest offers
+                    </p>
+                    <form action="#">
+                        <input type="text" class="form-control" placeholder="Enter your email address">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </form>
+                    <ul>
+                        <li>
+                            <a href="https://play.google.com/store/apps/details?id=com.NetmedsMarketplace.Netmeds&hl=en"
+                               target="_blank">
+                                <img src="~/Images/footers/play_store.png" alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://apps.apple.com/in/app/netmeds-india-ki-pharmacy/id1011070011"
+                               target="_blank">
+                                <img src="~/Images/footers/app_store.png" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row copyRight">
+                <div class="col-lg-4 copyBox ">
+                    <a href="#">Medicine</a>
+
+                </div>
+                <div class="col-lg-4 copyBox">
+                    <a asp-controller="lab" asp-action="labtest">Lab Tests</a>
+
+
+                </div>
+                <div class="col-lg-4 copyBox">
+                    <p>Copyright© 2022. All Rights Reserved.</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.10.2/dist/umd/popper.min.js"
+            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    <script src="~/js/trendingCarousel.js"></script>
+    <script src="~/js/_discountOwl.js"></script>
+    <script src="~/js/newProductOwl.js"></script>
+    <script src="~/js/favproduct.js"></script>
+    <script src="~/js/slider.js"></script>
+    <script src="~/js/search.js"></script>
+
+
+</body>
+
+</html>
+
