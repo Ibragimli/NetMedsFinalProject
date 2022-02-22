@@ -81,7 +81,7 @@ body {
                         background-color: #fff;
                         border: 1px solid #24AEB1;
                         border-radius: 5px;
-                        padding: 30px;
+                        padding: 20px;
 
                         .tab-pane {
                             h3 {
@@ -99,8 +99,6 @@ body {
                                 .account-details-form {
                                     form {
                                         .row {
-
-
                                             input:focus {
                                                 box-shadow: none;
                                                 border-color: #24AEB1;
@@ -123,9 +121,7 @@ body {
 
                                             button:hover {
                                                 background-color: #24afb1a8;
-
                                             }
-
                                         }
                                     }
                                 }
@@ -150,7 +146,7 @@ body {
                                     .labTests {
                                         th {
                                             text-align: center;
-                                            padding: 10px 30px;
+                                            padding: 10px 27px;
                                             color: #fff;
                                             border-right: 2px solid #C7DBD2;
                                         }
@@ -168,7 +164,7 @@ body {
 
                                         td {
                                             text-align: center;
-                                            padding: 15px 0px;
+                                            padding: 12px 0px;
                                             border-right: 2px solid #C7DBD2;
                                         }
                                     }

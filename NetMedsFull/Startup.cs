@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static NetMedsFull.Services.EmailServices;
 
 namespace NetMedsFull
 {
@@ -39,6 +40,8 @@ namespace NetMedsFull
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.User.RequireUniqueEmail = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
+            services.AddScoped<IEmailService, EmailService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +61,6 @@ namespace NetMedsFull
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 

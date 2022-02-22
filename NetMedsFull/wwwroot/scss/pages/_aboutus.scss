@@ -1,0 +1,181 @@
+#aboutUs {
+    padding: 40px 0px;
+
+    .container {
+        .aboutImage {
+
+            .AboutImgBox {
+                text-align: center;
+                padding: 20px 0px;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+        }
+
+        .aboutUp {
+            text-align: center;
+
+            h1 {
+                color: #24aeb1;
+                font-size: 24px;
+                margin: 0 0 10px;
+                letter-spacing: .25px;
+                padding: 4px 0;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+        }
+
+        .aboutDown {
+            .aboutDownLeft {
+                padding-right: 15px;
+                padding-bottom: 10px;
+
+                h1 {
+                    font-size: 30px;
+                    color: #151b39;
+                    text-transform: uppercase;
+                    letter-spacing: .25px;
+                    padding-left: 60px;
+                    margin-bottom: 0.5rem;
+                    font-weight: 700;
+                    line-height: 1.2;
+                    text-align: right;
+                }
+
+                h2 {
+                    text-align: right;
+                    padding-left: 80px;
+                    font-size: 24px;
+                    color: #151b39;
+                    text-transform: uppercase;
+                    letter-spacing: .25px;
+                    font-weight: 500;
+                    line-height: 1.2;
+                }
+            }
+
+            .aboutDownMiddle {
+                padding-left: 10px;
+                border-right: 2px dotted #000000;
+                padding-right: 10px;
+
+                .aboutUpText {
+                    margin-bottom: 15px;
+                    p {
+                        padding-left: 10px !important;
+                        border-left: 2px dotted black;
+                        font-size: 14px;
+                        color: #151b39;
+                        padding: 0 0 10px;
+                        line-height: 1.5;
+                    }
+                }
+
+                .aboutConvenience {
+                    position: relative;
+
+                    .aboutConvenienceImage {
+                        img {
+                            position: absolute;
+                            top: 0;
+                            left: -80px;
+                        }
+                    }
+
+                    h2 {
+                        color: #02b7c2;
+                        font-size: 18px;
+                        margin: 29px 0 10px;
+                        letter-spacing: .25px;
+                        font-weight: 700;
+                        line-height: 1.2;
+                    }
+
+                    p {
+                        margin-bottom: 12px;
+                        color: #151b39;
+                        font-size: 13px;
+                        line-height: 1.42857143;
+                    }
+                }
+
+                .aboutOneShop {
+                    position: relative;
+
+                    .aboutOneShopImage {
+                        img {
+                            position: absolute;
+                            top: 0;
+                            left: -80px;
+                        }
+                    }
+
+                    h2 {
+                        color: #02b7c2;
+                        font-size: 18px;
+                        margin: 29px 0 10px;
+                        letter-spacing: .25px;
+                        font-weight: 700;
+                        line-height: 1.2;
+                    }
+
+                    p {
+                        margin-bottom: 12px;
+                        color: #151b39;
+                        font-size: 13px;
+                        line-height: 1.42857143;
+                    }
+                }
+
+                .aboutTrust {
+                    position: relative;
+
+                    .aboutTrustImage {
+                        img {
+                            position: absolute;
+                            top: 0;
+                            left: -80px;
+                        }
+                    }
+
+                    h2 {
+                        color: #02b7c2;
+                        font-size: 18px;
+                        margin: 29px 0 10px;
+                        letter-spacing: .25px;
+                        font-weight: 700;
+                        line-height: 1.2;
+                    }
+
+                    p {
+                        margin-bottom: 12px;
+                        color: #151b39;
+                        font-size: 13px;
+                        line-height: 1.42857143;
+                    }
+                }
+            }
+
+            .aboutDownRight {
+                padding-left: 15px;
+
+                i {
+                    color: #02b7c2;
+                    font-size: 2em;
+                    margin-bottom: 14px;
+                }
+
+                p {
+                    font-size: 14px;
+                    color: #58595b;
+                    padding: 20px 28px;
+                    line-height: 1.42857143;
+                }
+            }
+        }
+    }
+}

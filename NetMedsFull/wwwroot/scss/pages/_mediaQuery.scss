@@ -1,12 +1,10 @@
 @media only screen and (max-width: 1095px) {
     header {
         height: 145px !important;
-
         .container-fluid {
             .row {
                 display: flex !important;
                 justify-content: center !important;
-
                 .headLogo {
                     .headerLogoImage {
                         img {
@@ -16,261 +14,9 @@
                         }
                     }
                 }
-
                 .headUser {
-                    padding-top: 20px;
-                    padding-bottom: 15px;
                     width: 100% !important;
-                    display: flex;
                     justify-content: center !important;
-
-                    ul {
-                        display: flex;
-                        align-items: center;
-
-                        li {
-                            margin-left: 10px;
-
-                            a {
-                                i {
-                                    color: white;
-                                    padding-right: 5px;
-                                }
-
-                                display: flex;
-                                align-items: center;
-
-                                img {
-                                    margin-right: 8px;
-                                    margin-left: 15px;
-                                }
-
-                                span {
-                                    transition: all 0.4s;
-                                    padding-top: 3px;
-                                    letter-spacing: 1px;
-                                    color: white;
-                                    font-size: 14px;
-                                    font-stretch: normal;
-                                }
-
-                                span:hover {
-                                    color: #CED0D1;
-                                }
-
-                                .basketImage {
-                                    position: relative;
-
-                                    sub {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        position: absolute;
-                                        top: 0;
-                                        right: 6px;
-                                        background-color: #EE4380;
-                                        border-radius: 6.5px;
-                                        font-size: 12px;
-                                        color: white;
-                                        width: 17px;
-                                        height: 13px;
-                                        font-weight: 700;
-                                        font-family: 'Lato', sans-serif;
-
-                                    }
-                                }
-
-                                .basketCart {
-                                    font-size: 13px;
-                                    font-weight: 700;
-                                }
-                            }
-                        }
-
-                        .basketA {
-                            position: relative;
-
-                            .basketHover {
-                                opacity: 0;
-                                visibility: hidden;
-                                transition: all 0.4s;
-
-                                .basketTriangle {
-                                    position: absolute;
-                                    top: 28px;
-                                    left: 20px;
-                                    width: 0;
-                                    height: 0;
-                                    border-left: 8px solid transparent;
-                                    border-right: 8px solid transparent;
-                                    border-bottom: 14px solid white;
-                                }
-
-                                .basketAHover {
-                                    border-radius: 5px;
-                                    transition: all 0.5s;
-                                    padding: 20px;
-                                    padding: 20px 15px 25px 20px;
-                                    background-color: white;
-                                    position: absolute;
-                                    top: 42px;
-                                    left: -320px;
-
-                                    .basketHoverUp {
-                                        display: flex;
-                                        justify-content: space-between;
-                                        padding: 2px 0px 12px 0px;
-
-                                        h2 {
-                                            font-weight: 700;
-                                            font-size: 14px;
-                                            font-stretch: normal;
-                                            font-style: normal;
-                                            letter-spacing: 1px;
-                                            color: #6f7284;
-                                            line-height: 18px;
-                                            height: 16px;
-                                        }
-
-                                        span {
-                                            font-weight: 700;
-                                            font-size: 14px;
-                                            font-stretch: normal;
-                                            font-style: normal;
-                                            line-height: 16px;
-                                            letter-spacing: normal;
-                                            color: #151b39;
-                                        }
-                                    }
-
-                                    .basketHoverMiddle {
-                                        display: flex;
-                                        justify-content: space-between;
-                                        padding: 2px 0px 7px 0px;
-
-                                        .row {
-                                            padding: 0px;
-
-                                            .itemBasket {
-                                                display: flex;
-                                                margin-bottom: 11px;
-
-                                                .basketName {
-                                                    margin-right: 20px;
-                                                    width: 65%;
-                                                    white-space: nowrap;
-                                                    overflow: hidden;
-                                                    text-overflow: ellipsis;
-                                                    font-size: 14px;
-                                                    color: #151b39;
-                                                    font-weight: 700;
-                                                }
-
-                                                .basketPriceCount {
-                                                    font-weight: 500;
-                                                    text-align: right;
-                                                    font-size: 15px;
-                                                    color: #151b39;
-                                                }
-                                            }
-
-                                        }
-
-                                    }
-
-                                    .basketHoverDown {
-                                        display: flex;
-                                        justify-content: space-between;
-                                        padding: 10px 0px;
-
-                                        .DownLeft {
-                                            display: flex;
-                                            flex-direction: column;
-
-                                            h3 {
-                                                font-size: 18px;
-                                                letter-spacing: .15px;
-                                                color: #ef4281;
-                                                margin-bottom: 2px;
-                                                font-weight: 700;
-                                            }
-
-                                            p {
-                                                font-weight: 700;
-                                                letter-spacing: .15px;
-                                                font-size: 15px;
-                                                color: #378f30;
-                                            }
-                                        }
-
-                                        .DownRight {
-                                            a {
-                                                padding: 3px 40px;
-                                                background-color: #24aeb1;
-                                                border-radius: 5px;
-                                                color: #fff;
-                                                line-height: 36px;
-                                                text-align: center;
-                                                font-size: 14px;
-                                                font-style: normal;
-                                                border: 0;
-                                                font-weight: 700;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-
-                        .basketA:hover {
-                            .basketHover {
-                                opacity: 1;
-                                visibility: visible;
-                            }
-                        }
-
-                        .signInUp {
-                            display: flex;
-                            padding-top: 2px;
-
-                            img {
-                                padding-left: 5px;
-                                cursor: pointer;
-                            }
-
-                            ul {
-                                li {
-                                    width: 60px;
-
-                                    a {
-                                        span {
-                                            padding-top: 3px;
-                                            color: white;
-                                            font-size: 14px;
-                                            font-stretch: normal;
-                                            transition: all 0.5s;
-                                        }
-
-                                        .signIn::after {
-                                            content: '/';
-                                            padding-left: 5px;
-                                            color: white !important;
-                                        }
-
-                                        span:hover {
-                                            color: #CED0D1;
-                                        }
-                                    }
-
-                                }
-
-
-                            }
-                        }
-
-
-                    }
                 }
             }
         }
@@ -509,6 +255,99 @@
         }
     }
 
+    #aboutUs {
+        padding: 40px 0px;
+
+        .container {
+            .aboutUp {
+                h1 {
+                    font-size: 28px !important;
+                }
+            }
+
+            .aboutDown {
+                .aboutDownLeft {
+                    border-bottom: 2px dotted black;
+                    border-right: 0px dotted black !important;
+                    margin-bottom: 10px;
+
+                    h1 {
+                        padding-left: 0px !important;
+                        text-align: center !important;
+                    }
+
+                    h2 {
+                        padding-left: 0px !important;
+                        text-align: center !important;
+                    }
+                }
+
+                .aboutDownMiddle {
+                    border-bottom: 2px dotted black;
+                    border-right: 0px dotted black !important;
+                    margin-bottom: 10px;
+
+                    .aboutUpText {
+                        margin-bottom: 15px;
+
+                        p {
+                            border-left: 0px !important;
+                        }
+                    }
+
+                    .aboutConvenience {
+                        position: relative;
+
+                        h2 {
+                            padding-top: 60px;
+                        }
+
+                        .aboutConvenienceImage {
+                            img {
+                                position: absolute;
+                                top: 0;
+                                left: 0px !important;
+                            }
+                        }
+
+
+                    }
+
+                    .aboutOneShop {
+                        position: relative;
+                        h2 {
+                            padding-top: 60px;
+                        }
+
+                        .aboutOneShopImage {
+                            img {
+                                position: absolute;
+                                top: 0;
+                                left: 0px !important;
+                            }
+                        }
+
+
+                    }
+
+                    .aboutTrust {
+                        position: relative;
+                        h2 {
+                            padding-top: 60px;
+                        }
+
+                        .aboutTrustImage {
+                            img {
+                                position: absolute;
+                                top: 0;
+                                left: 0px !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 

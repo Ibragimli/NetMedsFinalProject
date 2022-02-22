@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace NetMedsFull.Controllers
 {
-    public class ProductController : Controller
+    public class AboutController : Controller
     {
-        
-        public IActionResult Detail()
-        {
-            return View();
-        }
-        public IActionResult Shop()
+        public IActionResult AboutUs()
         {
             return View();
         }
