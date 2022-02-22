@@ -32,11 +32,13 @@ namespace NetMedsFull
                 opt.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
 
-            //services.AddIdentity<AppUser, IdentityUser>(opt =>
-            //{
-            //    opt.Password.RequireNonAlphanumeric = false;
-            //    opt.User.RequireUniqueEmail = false;
-            //}).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
+            services.AddIdentity<AppUser, IdentityRole>(opt =>
+            {
+                opt.Password.RequiredLength = 8;
+                opt.Password.RequiredUniqueChars = 0;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.User.RequireUniqueEmail = false;
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

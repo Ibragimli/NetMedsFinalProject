@@ -167,33 +167,41 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="signInUp">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="signInUp">
 
-                            <img src="~/Images/headers/profile_icon.svg" alt="profile_icon">
+                                <img src="~/Images/headers/profile_icon.svg" alt="profile_icon">
 
-                            <ul>
-                                <li> 
-                                    <a asp-controller="account" asp-action="login">
-                                        <span class="signIn">Sign in</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a asp-controller="account" asp-action="register">
-                                        <span>Sign up</span>
-                                    </a>
-                                </li>
-                            </ul>
+                                <ul>
+                                    <li>
+                                        <a asp-controller="account" asp-action="login">
+                                            <span class="signIn">Sign in</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="account" asp-action="register">
+                                            <span>Sign up</span>
+                                        </a>
+                                    </li>
+                                </ul>
 
 
 
-                        </li>
+                            </li>
 
-                        <li class="d-none">
-                            <a asp-controller="account" asp-action="profile">
-                                <i class="fa-solid fa-user-tie"></i>
-                                <span>Account</span>
-                            </a>
-                        </li>
+                        }
+                        else
+                        {
+                            <li class="ms-4">
+                                <a asp-controller="account" asp-action="profile">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    <span>@User.Identity.Name</span>
+                                </a>
+                            </li>
+                        }
+
+
                     </ul>
                 </div>
 

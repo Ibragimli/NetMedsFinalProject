@@ -1,7 +1,7 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Register";
 }
+@model MemberRegisterViewModel
 
 <section id="register">
     <div class="container">
@@ -20,38 +20,43 @@
                 <form method="post">
                     <div class="row">
                         <div class="col-lg-6 regInput">
-                            <label for="Username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp">
+                            <label asp-for="Username" class="form-label">Username</label>
+                            <input type="text" class="form-control" asp-for="Username">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+
                         </div>
                         <div class="col-lg-6 regInput">
-                            <label for="exampleInputEmail1" class="form-label">Fullname</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp">
+                            <label asp-for="Fullname" class="form-label">Fullname</label>
+                            <input type="text" asp-for="Fullname" class="form-control">
+                            <span asp-validation-for="Fullname" class="text-danger"></span>
                         </div>
 
                         <div class="col-lg-6 regInput">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input type="email" asp-for="Email" class="form-control">
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                         <div class="col-lg-6 regInput">
-                            <label for="exampleInputEmail1" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp">
+                            <label asp-for="Phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" asp-for="Phone">
+                            <span asp-validation-for="Phone" class="text-danger"></span>
                         </div>
                         <div class="col-lg-6 regInput">
-                            <label for="Password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label asp-for="Password" class="form-label">Password</label>
+                            <input type="password" class="form-control" asp-for="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+
                         </div>
                         <div class="col-lg-6 regInput">
-                            <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" asp-for="ConfirmPassword">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
                         </div>
+                        <div class="text-danger" asp-validation-summary="ModelOnly" ></div>
                         <div class=" mb-3 form-check">
-
                             <button type="submit" class=" ms-5 btn btn-primary">Register</button>
-                            <a class="ms-5" href="login.html">
+                            <a class="ms-5" asp-controller="account" asp-action="login">
                                 Have already account?
                             </a>
                         </div>

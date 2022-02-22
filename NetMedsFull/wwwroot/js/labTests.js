@@ -13,4 +13,3 @@ if (mm < 10) {
 today = yyyy + '-' + mm + '-' + dd;
 document.getElementById("datefield").setAttribute("min", today);
 
-
