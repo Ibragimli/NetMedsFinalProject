@@ -10,6 +10,7 @@ namespace NetMedsFull.Models
     {
         [StringLength(maximumLength: 25)]
         public string Name { get; set; }
+        public bool IsNav { get; set; }
         public List<SubCategory> SubCategories { get; set; }
         public List<ProductCategory> ProductCategories { get; set; }
     }
