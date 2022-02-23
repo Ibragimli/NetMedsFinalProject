@@ -37,6 +37,7 @@ namespace NetMedsFull
             {
                 opt.Password.RequiredLength = 8;
                 opt.Password.RequiredUniqueChars = 0;
+                opt.Password.RequireUppercase = true;
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.User.RequireUniqueEmail = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();

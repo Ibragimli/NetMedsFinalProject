@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NetMedsFull.Models;
 using NetMedsFull.ViewModels;
 using System;
@@ -28,7 +30,12 @@ namespace NetMedsFull.Controllers
         }
         public IActionResult Login()
         {
-            return View();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            return RedirectToAction("index", "home");
+
         }
 
         [HttpPost]
@@ -58,7 +65,13 @@ namespace NetMedsFull.Controllers
         }
         public IActionResult Register()
         {
-            return View();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View();
+
+            }
+            return RedirectToAction("index", "home");
+
         }
 
         [HttpPost]
@@ -166,10 +179,78 @@ namespace NetMedsFull.Controllers
             return RedirectToAction("login", "account");
         }
 
-        public IActionResult Profile()
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Profile()
         {
-            return View();
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (user == null)
+            {
+                return RedirectToAction("Error", "error");
+            }
+            MemberProfileViewModel memberProfile = new MemberProfileViewModel
+            {
+                ProfileUpdateViewModel = new ProfileUpdateViewModel
+                {
+                    Fullname = user.FullName,
+                    Username = user.UserName,
+                    PhoneNumber = user.PhoneNumber,
+                    Email = user.Email,
+                },
+            };
+            return View(memberProfile);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Profile(ProfileUpdateViewModel profileUpdateVM)
+        {
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            MemberProfileViewModel memberProfile = new MemberProfileViewModel
+            {
+                ProfileUpdateViewModel = profileUpdateVM,
+            };
+            if (user == null)
+            {
+                return View(memberProfile);
+            }
+
+            if (user.Email != profileUpdateVM.Email && _userManager.Users.Any(x => x.NormalizedEmail == profileUpdateVM.Email.ToUpper()))
+            {
+                ModelState.AddModelError("email", "Email is already");
+                return View(memberProfile);
+            }
+            if (user.UserName != profileUpdateVM.Username && await _userManager.Users.AnyAsync(x => x.NormalizedUserName == profileUpdateVM.Username.ToUpper()))
+            {
+                ModelState.AddModelError("Username", "Username is already");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(memberProfile);
+            }
+
+            if (!string.IsNullOrWhiteSpace(profileUpdateVM.ConfirmPassword) && !string.IsNullOrWhiteSpace(profileUpdateVM.NewPassword))
+            {
+                var resultPassword = await _userManager.ChangePasswordAsync(user, profileUpdateVM.CurrentPassword, profileUpdateVM.NewPassword);
+                if (!resultPassword.Succeeded)
+                {
+                    foreach (var error in resultPassword.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                    return View();
+                }
+            }
+            user.Email = profileUpdateVM.Email;
+            user.FullName = profileUpdateVM.Fullname;
+            user.UserName = profileUpdateVM.Username;
+            user.PhoneNumber = profileUpdateVM.PhoneNumber;
+
+            await _userManager.UpdateAsync(user);
+            await _signInManager.SignInAsync(user, true);
+            return RedirectToAction("profile", "account");
+        }
+
+
 
         public async Task<IActionResult> Logout()
         {
