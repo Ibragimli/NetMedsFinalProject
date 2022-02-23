@@ -19,7 +19,7 @@ namespace NetMedsFull.ViewModels
         public string Fullname { get; set; }
         [StringLength(maximumLength: 20)]
         [Required]
-        public string Phone { get; set; }
+        public int Phone { get; set; }
         [StringLength(maximumLength: 25, MinimumLength = 8)]
         [Required]
         [DataType(DataType.Password)]

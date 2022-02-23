@@ -35,7 +35,6 @@ namespace NetMedsFull.Controllers
                 return View();
             }
             return RedirectToAction("index", "home");
-
         }
 
         [HttpPost]
@@ -43,14 +42,13 @@ namespace NetMedsFull.Controllers
         public async Task<IActionResult> Login(MemberLoginViewModel user)
         {
             var UserExists = await _userManager.FindByNameAsync(user.Username);
-
+            if (UserExists == null)
+            {
+                ModelState.AddModelError("", "Username or Password is incorrect!");
+                return View();
+            }
             if (!UserExists.IsAdmin)
             {
-                if (UserExists == null)
-                {
-                    ModelState.AddModelError("", "Username or Password is incorrect!");
-                    return View();
-                }
                 var result = await _signInManager.PasswordSignInAsync(UserExists, user.Password, false, false);
                 if (!result.Succeeded)
                 {
@@ -63,15 +61,15 @@ namespace NetMedsFull.Controllers
             ModelState.AddModelError("", "Username or Password is incorrect!");
             return View();
         }
+
+
         public IActionResult Register()
         {
             if (!User.Identity.IsAuthenticated)
             {
                 return View();
-
             }
             return RedirectToAction("index", "home");
-
         }
 
         [HttpPost]
@@ -99,7 +97,7 @@ namespace NetMedsFull.Controllers
             {
                 UserName = user.Username,
                 Email = user.Email,
-                PhoneNumber = user.Phone,
+                PhoneNumber = user.Phone.ToString(),
                 IsAdmin = false,
                 FullName = user.Fullname,
             };
@@ -145,7 +143,7 @@ namespace NetMedsFull.Controllers
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPasswordVM)
         {
             AppUser user = await _userManager.FindByEmailAsync(resetPasswordVM.Email);
-            if (user == null || !(await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "resetpassword", resetPasswordVM.Token)))
+            if (user == null || !(await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", resetPasswordVM.Token)))
             {
                 return RedirectToAction("login", "account");
             }
@@ -217,7 +215,6 @@ namespace NetMedsFull.Controllers
             if (user.Email != profileUpdateVM.Email && _userManager.Users.Any(x => x.NormalizedEmail == profileUpdateVM.Email.ToUpper()))
             {
                 ModelState.AddModelError("email", "Email is already");
-                return View(memberProfile);
             }
             if (user.UserName != profileUpdateVM.Username && await _userManager.Users.AnyAsync(x => x.NormalizedUserName == profileUpdateVM.Username.ToUpper()))
             {
@@ -237,7 +234,7 @@ namespace NetMedsFull.Controllers
                     {
                         ModelState.AddModelError("", error.Description);
                     }
-                    return View();
+                    return View(memberProfile);
                 }
             }
             user.Email = profileUpdateVM.Email;
