@@ -375,6 +375,9 @@ header {
                                                 font-size: 14px;
                                                 color: #151b39;
                                                 font-weight: 700;
+                                                a{
+                                                    color: #24aeb1;
+                                                }
                                             }
 
                                             .basketPriceCount {
@@ -393,6 +396,7 @@ header {
                                     display: flex;
                                     justify-content: space-between;
                                     padding: 10px 0px;
+                                    margin-right: 10px;
 
                                     .DownLeft {
                                         display: flex;

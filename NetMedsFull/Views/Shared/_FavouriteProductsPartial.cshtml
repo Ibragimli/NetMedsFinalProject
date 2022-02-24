@@ -14,10 +14,10 @@
                 @item.Name
             </h2>
         </a>
-        @if (item.DiscountPrice > 0)
+        @if (item.DiscountPercent > 0)
         {
             <div class="disPrice">
-                <p>₼@((item.SalePrice*(100-item.DiscountPrice)/100))</p>
+                <p>₼@((item.SalePrice*(100-item.DiscountPercent)/100))</p>
                 <del> ₼@item.SalePrice</del>
                 <span> @item.SalePrice%</span>
             </div>

@@ -144,21 +144,24 @@
 
                                     <div class="basketHoverMiddle">
                                         <div class="row">
-                                            <div class="itemBasket">
-                                                <div class="basketName">
-                                                    Scalpe Plus Anti Dandruff Shampoo 75 ml
-                                                </div>
-                                                <div class="basketPriceCount">Rs.208.00x1</div>
-                                            </div>
+                                            @*<div class="itemBasket">
+                                                    <div class="basketName">
+                                                        <a  asp-action="detail" asp-controller="product" asp-route-proId="">
+                                                            Scalpe Plus Anti Dandruff Shampoo 75 ml
+
+                                                        </a>
+                                                    </div>
+                                                    <div class="basketPriceCount">Rs.208.00x1</div>
+                                                </div>*@
 
                                         </div>
                                     </div>
                                     <div class="basketHoverDown">
-                                        <div class="DownLeft">
-                                            <h3>
+                                        <div class="me-2 DownLeft">
+                                            <h3 class="salePrice">
                                                 ₼802.64
                                             </h3>
-                                            <p>
+                                            <p class="savePrice">
                                                 You save ₼185.36
                                             </p>
                                         </div>
@@ -380,6 +383,7 @@
 
     <script src="~/js/slider.js"></script>
     <script src="~/js/search.js"></script>
+    <script src="~/js/basket.js"></script>
 
 
 </body>

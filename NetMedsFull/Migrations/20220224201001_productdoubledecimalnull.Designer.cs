@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetMedsFull.Models;
 
 namespace NetMedsFull.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220224201001_productdoubledecimalnull")]
+    partial class productdoubledecimalnull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -358,7 +360,7 @@ namespace NetMedsFull.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("CostPrice")
+                    b.Property<decimal?>("CostPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Country")
@@ -385,7 +387,7 @@ namespace NetMedsFull.Migrations
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal>("SalePrice")
+                    b.Property<decimal?>("SalePrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("StockStatus")

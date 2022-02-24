@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetMedsFull.Models;
 
 namespace NetMedsFull.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220224192626_BasketItemstring")]
+    partial class BasketItemstring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,7 +230,10 @@ namespace NetMedsFull.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppUserId")
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AppUserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Count")
@@ -237,14 +242,17 @@ namespace NetMedsFull.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ProductId")
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProductId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId1");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId1");
 
                     b.ToTable("BasketItems");
                 });
@@ -358,8 +366,8 @@ namespace NetMedsFull.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("CostPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("CostPrice")
+                        .HasColumnType("float");
 
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(30)")
@@ -369,8 +377,8 @@ namespace NetMedsFull.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<decimal?>("DiscountPercent")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("DiscountPrice")
+                        .HasColumnType("float");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
@@ -385,8 +393,8 @@ namespace NetMedsFull.Migrations
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal>("SalePrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("SalePrice")
+                        .HasColumnType("float");
 
                     b.Property<bool>("StockStatus")
                         .HasColumnType("bit");
@@ -545,13 +553,11 @@ namespace NetMedsFull.Migrations
                 {
                     b.HasOne("NetMedsFull.Models.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId1");
 
                     b.HasOne("NetMedsFull.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductId1");
                 });
 
             modelBuilder.Entity("NetMedsFull.Models.Brand", b =>

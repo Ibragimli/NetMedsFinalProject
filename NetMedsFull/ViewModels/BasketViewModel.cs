@@ -7,10 +7,16 @@ namespace NetMedsFull.ViewModels
 {
     public class BasketViewModel
     {
+        public decimal TotalAmount { get; set; }
+        public List<BasketItemViewModel> BasketItems { get; set; }
+
+    }
+    public class BasketItemViewModel
+    {
         public int Count { get; set; }
         public int ProductId { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string Name { get; set; }
-        public double TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

@@ -12,20 +12,18 @@
                 @newProduct.Name
             </h2>
         </a>
-        @if (newProduct.DiscountPrice > 0)
+        @if (newProduct.DiscountPercent > 0)
         {
             <div class="disPrice">
-                <p>₼@((newProduct.SalePrice*(100-newProduct.DiscountPrice)/100))</p>
+                <p>₼@((newProduct.SalePrice*(100-newProduct.DiscountPercent)/100))</p>
                 <del> ₼@newProduct.SalePrice</del>
                 <span> @newProduct.SalePrice%</span>
             </div>
-
         }
         else
         {
             <div class="disPrice">
                 <p>₼@newProduct.SalePrice</p>
-
             </div>
         }
 
@@ -43,8 +41,8 @@
         else
         {
             <div class="basketIcon">
-                <a href="#">
-                    <i class="fa-solid fa-basket-shopping"></i>
+                <a class="addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@newProduct.Id">
+                    <i class="fa-solid fa-basket-shopping "></i>
                 </a>
             </div>
             <div class="wishIcon">

@@ -681,6 +681,10 @@ header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .b
   font-weight: 700;
 }
 
+header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverMiddle .row .itemBasket .basketName a {
+  color: #24aeb1;
+}
+
 header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverMiddle .row .itemBasket .basketPriceCount {
   font-weight: 500;
   text-align: right;

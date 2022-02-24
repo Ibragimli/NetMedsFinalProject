@@ -13,9 +13,12 @@ namespace NetMedsFull.Models
     {
         [StringLength(maximumLength: 150)]
         public string Name { get; set; }
-        public double SalePrice { get; set; }
-        public double CostPrice { get; set; }
-        public double? DiscountPrice { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CostPrice { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal SalePrice { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal DiscountPercent { get; set; }
         [StringLength(maximumLength: 30)]
         public string Country { get; set; }
         [StringLength(maximumLength: 500)]
