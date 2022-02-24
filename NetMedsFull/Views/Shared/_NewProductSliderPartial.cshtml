@@ -1,0 +1,58 @@
+﻿@model List<Product>
+@foreach (var newProduct in Model)
+{
+    <div class="item">
+        <div class="disImage">
+            <a href="#">
+                <img class="img-fluid" src="~/Images/productImages/@newProduct.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
+            </a>
+        </div>
+        <a href="#">
+            <h2>
+                @newProduct.Name
+            </h2>
+        </a>
+        @if (newProduct.DiscountPrice > 0)
+        {
+            <div class="disPrice">
+                <p>₼@((newProduct.SalePrice*(100-newProduct.DiscountPrice)/100))</p>
+                <del> ₼@newProduct.SalePrice</del>
+                <span> @newProduct.SalePrice%</span>
+            </div>
+
+        }
+        else
+        {
+            <div class="disPrice">
+                <p>₼@newProduct.SalePrice</p>
+
+            </div>
+        }
+
+        @if (newProduct.StockStatus == false)
+        {
+            <div class="notStock ">
+                <h1>Not Stock</h1>
+            </div>
+            <div class="wishIcon">
+                <a href="#">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="basketIcon">
+                <a href="#">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </a>
+            </div>
+            <div class="wishIcon">
+                <a href="#">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+            </div>
+        }
+
+    </div>
+}

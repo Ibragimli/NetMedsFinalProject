@@ -15,11 +15,7 @@ namespace NetMedsFull.Models
         public DbSet<AppUser> Users { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Manufactory> Manufactories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductBrand> ProductBrands { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<ProductFactory> ProductFactories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Setting> Settings { get; set; }

@@ -31,15 +31,17 @@ body{
                 }
                 
                 .wishProduct {
+
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    padding: 15px;
+                    padding: 0px 0px 40px  0px;
                     border-radius: 20px;
                     background-color: #fff;
                     margin-bottom: 15px;
                     width: 95%;
-    
+                    height: 98%;
+                    max-height: 590px;
                     .cardImage {
                         a {
                             img {
@@ -49,10 +51,11 @@ body{
                     }
     
                     .cardInfo {
+                        padding: 10px  15px;
                         a {
                             h2 {
+                                font-weight: 700;
                                 color: #151b39;
-                                line-height: 42px;
                             }
                         }
                     }
@@ -60,6 +63,7 @@ body{
                     .wishPrice {
                         display: flex;
                         justify-content: center;
+                        padding-top: 10px;
                         padding-bottom: 15px;
     
                         p {
@@ -91,7 +95,10 @@ body{
                     .wishBtn {
                         display: flex;
                         justify-content: space-around;
-    
+                        a{
+                            width: 125px;
+                            margin-right: 10px;
+                        }
                         .addBasket {
                             background-color: #24aeb1;
                             border: none;

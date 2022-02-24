@@ -10,6 +10,9 @@ namespace NetMedsFull.Models
     {
         [StringLength(maximumLength: 25)]
         public string Name { get; set; }
-        public List<ProductBrand> ProductBrands { get; set; }
+        
+        public int SubCategoryId { get; set; }
+        public SubCategory SubCategory { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

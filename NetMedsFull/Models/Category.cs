@@ -12,6 +12,5 @@ namespace NetMedsFull.Models
         public string Name { get; set; }
         public bool IsNav { get; set; }
         public List<SubCategory> SubCategories { get; set; }
-        public List<ProductCategory> ProductCategories { get; set; }
     }
 }

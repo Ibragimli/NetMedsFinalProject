@@ -10,8 +10,8 @@ using NetMedsFull.Models;
 namespace NetMedsFull.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220223145658_CategoryIsNavAdd")]
-    partial class CategoryIsNavAdd
+    [Migration("20220223191817_ProductImageFixed")]
+    partial class ProductImageFixed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -237,7 +237,12 @@ namespace NetMedsFull.Migrations
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SubCategoryId");
 
                     b.ToTable("Brands");
                 });
@@ -317,31 +322,15 @@ namespace NetMedsFull.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("NetMedsFull.Models.Manufactory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Manufactories");
-                });
-
             modelBuilder.Entity("NetMedsFull.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
 
                     b.Property<double>("CostPrice")
                         .HasColumnType("float");
@@ -381,82 +370,9 @@ namespace NetMedsFull.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("NetMedsFull.Models.ProductBrand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductBrands");
-                });
-
-            modelBuilder.Entity("NetMedsFull.Models.ProductCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductCategories");
-                });
-
-            modelBuilder.Entity("NetMedsFull.Models.ProductFactory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ManufactoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ManufactoryId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductFactories");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("NetMedsFull.Models.ProductImage", b =>
@@ -599,6 +515,15 @@ namespace NetMedsFull.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("NetMedsFull.Models.Brand", b =>
+                {
+                    b.HasOne("NetMedsFull.Models.SubCategory", "SubCategory")
+                        .WithMany("Brands")
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("NetMedsFull.Models.Comment", b =>
                 {
                     b.HasOne("NetMedsFull.Models.AppUser", "AppUser")
@@ -612,54 +537,18 @@ namespace NetMedsFull.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NetMedsFull.Models.ProductBrand", b =>
+            modelBuilder.Entity("NetMedsFull.Models.Product", b =>
                 {
                     b.HasOne("NetMedsFull.Models.Brand", "Brand")
-                        .WithMany("ProductBrands")
+                        .WithMany("Products")
                         .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NetMedsFull.Models.Product", "Product")
-                        .WithMany("ProductBrands")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("NetMedsFull.Models.ProductCategory", b =>
-                {
-                    b.HasOne("NetMedsFull.Models.Category", "Category")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NetMedsFull.Models.Product", "Product")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("NetMedsFull.Models.ProductFactory", b =>
-                {
-                    b.HasOne("NetMedsFull.Models.Manufactory", "Manufactory")
-                        .WithMany("ProductFactories")
-                        .HasForeignKey("ManufactoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NetMedsFull.Models.Product", "Product")
-                        .WithMany("ProductFactories")
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("NetMedsFull.Models.ProductImage", b =>
                 {
-                    b.HasOne("NetMedsFull.Models.Product", "Product")
+                    b.HasOne("NetMedsFull.Models.Product", "Products")
                         .WithMany("ProductImages")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)

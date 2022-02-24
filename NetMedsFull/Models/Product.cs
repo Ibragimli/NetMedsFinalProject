@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace NetMedsFull.Models
 {
-    public class Product:BaseEntity
+    public class Product : BaseEntity
     {
         [StringLength(maximumLength: 150)]
         public string Name { get; set; }
         public double SalePrice { get; set; }
         public double CostPrice { get; set; }
-        public double DiscountPrice { get; set; }
+        public double? DiscountPrice { get; set; }
         [StringLength(maximumLength: 30)]
         public string Country { get; set; }
         [StringLength(maximumLength: 500)]
@@ -23,16 +23,14 @@ namespace NetMedsFull.Models
         public bool IsTrending { get; set; }
         public bool IsNew { get; set; }
         public bool StockStatus { get; set; }
+        public int BrandId { get; set; }
+        public Brand Brand { get; set; }
         public ProductType Type { get; set; }
         [NotMapped]
         public IFormFile ImageFiles { get; set; }
-
         [NotMapped]
         public IFormFile PosterImageFile { get; set; }
         public List<ProductImage> ProductImages { get; set; }
-        public List<ProductFactory> ProductFactories { get; set; }
-        public List<ProductCategory> ProductCategories { get; set; }
-        public List<ProductBrand> ProductBrands { get; set; }
         public List<Comment> Comments { get; set; }
     }
 }
