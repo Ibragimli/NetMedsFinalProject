@@ -42,6 +42,7 @@ namespace NetMedsFull
                 opt.User.RequireUniqueEmail = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddHttpContextAccessor();
 
         }
 

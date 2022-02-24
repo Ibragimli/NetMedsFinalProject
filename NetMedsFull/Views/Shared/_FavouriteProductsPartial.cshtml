@@ -6,33 +6,52 @@
     <div class="item">
         <div class="disImage">
             <a href="#">
-                <img class="img-fluid" src="./Images/discountsOwls/dr-vaidyas.jpg" alt="">
+                <img class="img-fluid" src="./Images/productImages/@item.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
             </a>
         </div>
         <a href="#">
             <h2>
-                Hashmi
+                @item.Name
             </h2>
         </a>
-        <div class="disPrice">
-            <p> ₼27,00</p>
-            <del> ₼30,00</del>
-            <span> 0,00%</span>
-        </div>
-        <div class="notStock ">
-            <h1>Not Stock</h1>
-        </div>
-        <div class="basketIcon">
-            <a href="#">
-                <i class="fa-solid fa-basket-shopping"></i>
-            </a>
-        </div>
-        <div class="wishIcon">
-            <a href="#">
-                <i class="fa-regular fa-heart"></i>
-            </a>
-        </div>
-
+        @if (item.DiscountPrice > 0)
+        {
+            <div class="disPrice">
+                <p>₼@((item.SalePrice*(100-item.DiscountPrice)/100))</p>
+                <del> ₼@item.SalePrice</del>
+                <span> @item.SalePrice%</span>
+            </div>
+        }
+        else
+        {
+            <div class="disPrice">
+                <p> ₼@item.SalePrice</p>
+            </div>
+        }
+        @if (item.StockStatus == false)
+        {
+            <div class="notStock ">
+                <h1>Not Stock</h1>
+            </div>
+            <div class="wishIcon">
+                <a href="#">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="basketIcon">
+                <a href="#">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </a>
+            </div>
+            <div class="wishIcon">
+                <a href="#">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+            </div>
+        }
     </div>
 }
 

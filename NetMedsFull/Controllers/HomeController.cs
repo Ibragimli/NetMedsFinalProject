@@ -24,6 +24,7 @@ namespace NetMedsFull.Controllers
             HomeViewModel homeVM = new HomeViewModel
             {
                 NewProducts = _context.Products.Include(x=>x.Brand).Include(x => x.ProductImages).Where(x => x.IsNew).ToList(),
+                FavouriteProducts = _context.Products.Include(x=>x.Brand).Include(x=>x.ProductImages).Where(x=>x.IsTrending).ToList(),
             };
             return View(homeVM);
         }
