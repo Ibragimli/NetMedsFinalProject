@@ -1,33 +1,33 @@
 ﻿@model List<Product>
-@foreach (var newProduct in Model)
+@foreach (var item in Model)
 {
     <div class="item">
         <div class="disImage">
-            <a asp-action="detail" asp-controller="product" asp-route-id="@newProduct.Id">
-                <img class="img-fluid" src="~/Images/productImages/@newProduct.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
+            <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
+                <img class="img-fluid" src="./Images/productImages/@item.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
             </a>
         </div>
-        <a asp-action="detail" asp-controller="product" asp-route-id="@newProduct.Id">
+        <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
             <h2>
-                @newProduct.Name
+                @item.Name
             </h2>
         </a>
-        @if (newProduct.DiscountPercent > 0)
+        @if (item.DiscountPercent > 0)
         {
             <div class="disPrice">
-                <p>₼@((newProduct.SalePrice*(100-newProduct.DiscountPercent)/100))</p>
-                <del> ₼@newProduct.SalePrice</del>
-                <span> @newProduct.SalePrice%</span>
+                <p>₼@((item.SalePrice*(100-item.DiscountPercent)/100))</p>
+                <del> ₼@item.SalePrice</del>
+                <span> @item.SalePrice%</span>
             </div>
         }
         else
         {
             <div class="disPrice">
-                <p>₼@newProduct.SalePrice</p>
+                <p>₼@item.SalePrice</p>
             </div>
         }
 
-        @if (newProduct.StockStatus == false)
+        @if (item.StockStatus == false)
         {
             <div class="notStock ">
                 <h1>Not Stock</h1>
@@ -41,7 +41,7 @@
         else
         {
             <div class="basketIcon">
-                <a class="addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@newProduct.Id">
+                <a class="addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@item.Id">
                     <i class="fa-solid fa-basket-shopping "></i>
                 </a>
             </div>
@@ -53,4 +53,5 @@
         }
 
     </div>
+
 }

@@ -35,5 +35,6 @@ namespace NetMedsFull.Models
         public IFormFile PosterImageFile { get; set; }
         public List<ProductImage> ProductImages { get; set; }
         public List<Comment> Comments { get; set; }
+        public List<TrendSlider> TrendSliders { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetMedsFull.Models;
+using NetMedsFull.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,7 @@ namespace NetMedsFull
                 opt.User.RequireUniqueEmail = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<LayoutService>();
             services.AddHttpContextAccessor();
 
         }

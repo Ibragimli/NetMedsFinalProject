@@ -23,8 +23,11 @@ namespace NetMedsFull.Controllers
         {
             HomeViewModel homeVM = new HomeViewModel
             {
-                NewProducts = _context.Products.Include(x=>x.Brand).Include(x => x.ProductImages).Where(x => x.IsNew).ToList(),
-                FavouriteProducts = _context.Products.Include(x=>x.Brand).Include(x=>x.ProductImages).Where(x=>x.IsTrending).ToList(),
+                NewProducts = _context.Products.Include(x => x.ProductImages).Where(x => x.IsNew).ToList(),
+                FavouriteProducts = _context.Products.Include(x=>x.ProductImages).Where(x=>x.IsTrending).ToList(),
+                DiscountProducts = _context.Products.Include(x=>x.ProductImages).Where(x=>x.DiscountPercent>0).ToList(),
+                TrendSliders = _context.TrendSliders.Include(x=>x.Product).ToList(),
+                Sliders = _context.Sliders.Include(x=>x.Product).ToList(),
             };
             return View(homeVM);
         }

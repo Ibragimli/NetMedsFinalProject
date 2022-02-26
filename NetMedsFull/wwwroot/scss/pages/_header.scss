@@ -218,9 +218,10 @@ header {
                                 li:hover {
                                     border-bottom: 1px solid #32AEB1;
 
-                                    i{
+                                    i {
                                         color: #24aeb1;
                                     }
+
                                     a {
                                         color: #24aeb1;
                                     }
@@ -325,7 +326,7 @@ header {
                                 background-color: white;
                                 position: absolute;
                                 top: 42px;
-                                left: -320px;
+                                left: -250px;
 
                                 .basketHoverUp {
                                     display: flex;
@@ -361,11 +362,14 @@ header {
 
                                     .row {
                                         padding: 0px;
+                                        flex-direction: column !important;
 
                                         .itemBasket {
                                             display: flex;
                                             margin-bottom: 11px;
-
+                                            flex-direction: column !important;
+                                            justify-content: center !important;
+                                            align-items: center !important;
                                             .basketName {
                                                 margin-right: 20px;
                                                 width: 65%;
@@ -375,7 +379,8 @@ header {
                                                 font-size: 14px;
                                                 color: #151b39;
                                                 font-weight: 700;
-                                                a{
+
+                                                a {
                                                     color: #24aeb1;
                                                 }
                                             }
@@ -401,7 +406,7 @@ header {
                                     .DownLeft {
                                         display: flex;
                                         flex-direction: column;
-
+                                        margin-right: 12px;
                                         h3 {
                                             font-size: 18px;
                                             letter-spacing: .15px;
@@ -410,17 +415,35 @@ header {
                                             font-weight: 700;
                                         }
 
-                                        p {
-                                            font-weight: 700;
-                                            letter-spacing: .15px;
-                                            font-size: 15px;
-                                            color: #378f30;
+                                        .savePrices {
+                                            display: flex;
+
+                                            .savePricesText {
+                                                margin-right: 4px;
+
+                                                span {
+                                                    font-weight: 700;
+                                                    letter-spacing: .15px;
+                                                    font-size: 15px;
+                                                    color: #378f30;
+                                                }
+
+                                            }
+
+                                            p {
+                                                font-weight: 700;
+                                                letter-spacing: .15px;
+                                                font-size: 15px;
+                                                color: #378f30;
+                                            }
                                         }
+
+
                                     }
 
                                     .DownRight {
                                         a {
-                                            padding: 3px 40px;
+                                            padding: 3px 20px;
                                             background-color: #24aeb1;
                                             border-radius: 5px;
                                             color: #fff;

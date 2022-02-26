@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetMedsFull.Models;
 using NetMedsFull.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,14 +50,46 @@ namespace NetMedsFull.Controllers
             }
             if (!UserExists.IsAdmin)
             {
+               
                 var result = await _signInManager.PasswordSignInAsync(UserExists, user.Password, false, false);
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError("", "Username or Password is incorrect!");
                     return View();
                 }
+
+
+                var CookiesDelete = HttpContext.Request.Cookies["basketItemList"];
+                if (CookiesDelete != null)
+                {
+                    var CookieDeleteJson = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(CookiesDelete);
+                    foreach (var cookieItem in CookieDeleteJson)
+                    {
+                        BasketItem basketItemAdd = new BasketItem
+                        {
+                            Count = cookieItem.Count,
+                            AppUserId = UserExists.Id,
+                            ProductId = cookieItem.ProductId
+                        };
+
+                        var productExist = _context.BasketItems.Any(x => x.ProductId == basketItemAdd.ProductId);
+                        var productCount = _context.BasketItems.FirstOrDefault(x => x.ProductId == basketItemAdd.ProductId);
+                        if (productExist)
+                        {
+                            productCount.Count++;
+                        }
+                        else
+                        {
+                            _context.BasketItems.Add(basketItemAdd);
+                        }
+
+                    }
+                    //Response.Cookies.;
+                    _context.SaveChanges();
+                }
                 return RedirectToAction("index", "home");
             }
+
 
             ModelState.AddModelError("", "Username or Password is incorrect!");
             return View();

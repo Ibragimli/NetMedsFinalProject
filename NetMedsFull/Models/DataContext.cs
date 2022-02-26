@@ -21,6 +21,8 @@ namespace NetMedsFull.Models
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<TrendSlider> TrendSliders { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
 
     }
 }

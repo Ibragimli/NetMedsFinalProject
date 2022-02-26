@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetMedsFull.Controllers
 {
-    public class OrderController : Controller
+    public class CheckoutController : Controller
     {
         public IActionResult Cart()
         {

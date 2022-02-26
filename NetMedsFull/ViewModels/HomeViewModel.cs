@@ -11,6 +11,9 @@ namespace NetMedsFull.ViewModels
         public List<Product> NewProducts { get; set; }
         public List<Product> DiscountProducts { get; set; }
         public List<Product> FavouriteProducts { get; set; }
+        public List<TrendSlider> TrendSliders { get; set; }
+        public List<Slider> Sliders { get; set; }
+
 
     }
 }

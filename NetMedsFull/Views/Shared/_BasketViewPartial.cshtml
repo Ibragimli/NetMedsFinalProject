@@ -1,0 +1,55 @@
+﻿@model BasketViewModel
+
+<div class="basketAHover">
+    <div class="basketHoverUp">
+        <h2>
+            Order Summary
+        </h2>
+        <span class="basketLentgh">
+            @(Model == null?(0):(Model.BasketItems.Count)) item(s)
+        </span>
+    </div>
+    <div class="basketHoverMiddle">
+        <div id="basketHoverMiddle" class="row">
+            @if (Model != null)
+            {
+                @foreach (var item in Model.BasketItems)
+                {
+                    <div class="itemBasket">
+                        <div class="basketName">
+                            <a asp-action="detail" asp-controller="product" asp-route-proId="@item.ProductId">
+                                @item.Name
+                            </a>
+                        </div>
+                        <div class="basketPriceCount">  ₼@(item.Price.ToString("#.00")) x @item.Count</div>
+                    </div>
+
+                }
+            }
+
+        </div>
+
+    </div>
+    <div class="basketHoverDown">
+        <div class="me-2 DownLeft">
+            <h3 class="salePrice">
+                ₼@(Model?.TotalAmount!=null?(Model.TotalAmount.ToString("#.00")):("0"))
+            </h3>
+            <div class="savePrices">
+                <div class="savePricesText">
+                    <span>
+                        You save
+                    </span>
+
+                </div>
+                <p id="savePrice">
+                    ₼@(Model?.TotalSave != null?(Model.TotalSave.ToString("#.00")):("0"))
+                </p>
+            </div>
+
+        </div>
+        <div class="DownRight">
+            <a asp-controller="order" asp-action="cart">PROCEED TO CART</a>
+        </div>
+    </div>
+</div>

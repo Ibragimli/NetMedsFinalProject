@@ -77,33 +77,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="owl-carousel owl-carousel-slider owl-theme slider p-0 m-0">
-                <div class="item">
-                    <img src="./Images/sliders/1629294429_web_same_day.jpg" alt="" width="100%" height="100%">
-                </div>
-                <div class="item">
-                    <img src="./Images/sliders/1640966085_Web_Home_title_1680X320.jpg" alt="" width="100%"
-                         height="100%">
-                </div>
-                <div class="item">
-                    <img src="./Images/sliders/1641292856_jioweb.jpg" alt="" width="100%" height="100%">
-                </div>
-                <div class="item">
-                    <img src="./Images/sliders/1641829832_Homebvbbbb.jpg" alt="" width="100%" height="100%">
-                </div>
-                <div class="item">
-                    <img src="./Images/sliders/1642404841_Web_Home522.jpg" alt="" width="100%" height="100%">
-                </div>
-                <div class="item">
-                    <img src="./Images/sliders/1643089019_Web_Banner_1680x320pxl.jpg" alt="" width="100%"
-                         height="100%">
-                </div>
-                <div class="item">
-                    <img src="./Images/sliders/1643645501_Home_Banner741.jpg" alt="" width="100%" height="100%">
-                </div>
-                <div class="item">
-                    <img src="./Images/sliders/1643645870_Home_Bannerzdfsf.jpg" alt="" width="100%"
-                         height="100%">
-                </div>
+                @foreach (var item in Model.Sliders)
+                {
+                    <div class="item">
+                        <a asp-action="detail" asp-controller="product" asp-route-id="@item.ProductId">
+                            <img src="~/Images/sliders/@item.Image " alt="" width="100%" height="100%">
+                        </a>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -165,27 +146,15 @@
         </div>
         <div class="row trendDown">
             <div class="owl-carousel owl-theme owl-carousel-trending">
-                <div class="item">
-                    <img src="./Images/trendingsTodays/1634972793_Netmeds-masks_Mini_Banner__Web.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="./Images/trendingsTodays/1642681975_Hapro_web.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="./Images/trendingsTodays/1644506475_Dr_Morepen_web.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="./Images/trendingsTodays/1644512252_Kairali_web.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="./Images/trendingsTodays/1644512746_Vadham_web.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="./Images/trendingsTodays/1644513254_Safent_web.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="./Images/trendingsTodays/1644517050_KOFOL-Home-Page-Mini-Banner-Web.jpg" alt="">
-                </div>
+                @foreach (var trend in Model.TrendSliders)
+                {
+                    <div class="item">
+                        <a asp-action="detail" asp-controller="product" asp-route-id="@trend.ProductId">
+                            <img src="~/Images/trendingsTodays/@trend.Name" alt="">
+                        </a>
+                    </div>
+                }
+
             </div>
         </div>
     </div>
@@ -198,37 +167,7 @@
         </div>
         <div class="row disDown">
             <div class="owl-carousel owl-theme owl-carousel-discount">
-                <div class="item">
-                    <div class="disImage">
-                        <a href="#">
-                            <img class="img-fluid" src="./Images/discountsOwls/dr-vaidyas.jpg" alt="">
-                        </a>
-                    </div>
-                    <a href="#">
-                        <h2>
-                            Hashmi
-                        </h2>
-                    </a>
-                    <div class="disPrice">
-                        <p> ₼27,00</p>
-                        <del> ₼30,00</del>
-                        <span> 0,00%</span>
-                    </div>
-                    <div class="notStock ">
-                        <h1>Not Stock</h1>
-                    </div>
-                    <div class="basketIcon">
-                        <a href="#">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                        </a>
-                    </div>
-                    <div class="wishIcon">
-                        <a href="#">
-                            <i class="fa-regular fa-heart"></i>
-                        </a>
-                    </div>
-
-                </div>
+                @await Html.PartialAsync("_DiscountProductsPartial", Model.DiscountProducts)
             </div>
         </div>
     </div>

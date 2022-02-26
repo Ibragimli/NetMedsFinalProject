@@ -46,7 +46,10 @@ namespace NetMedsFull.Controllers
 
             if (user != null && user.IsAdmin == false)
             {
+               
+
                 BasketItem basketItem = _context.BasketItems.FirstOrDefault(x => x.AppUserId == user.Id && x.ProductId == id);
+
                 if (basketItem == null)
                 {
                     basketItem = new BasketItem
@@ -62,7 +65,9 @@ namespace NetMedsFull.Controllers
                     basketItem.Count++;
                 }
                 _context.SaveChanges();
+
                 basketData = _getBasketItems(_context.BasketItems.Include(x => x.Product).Where(x => x.AppUserId == user.Id).ToList());
+
             }
             else
             {
@@ -119,11 +124,13 @@ namespace NetMedsFull.Controllers
                 {
                     Name = product.Name,
                     Price = (product.DiscountPercent > 0 ? (product.SalePrice * (1 - product.DiscountPercent / 100)) : product.SalePrice),
+                    SalePrice = product.SalePrice,
                     ProductId = product.Id,
                     Count = item.Count,
                 };
                 basketItem.TotalPrice = basketItem.Count * basketItem.Price;
                 basket.TotalAmount += basketItem.TotalPrice;
+                basket.TotalSave += (basketItem.Count * basketItem.SalePrice) - (basketItem.Count * basketItem.Price);
                 basket.BasketItems.Add(basketItem);
 
             }
@@ -151,6 +158,8 @@ namespace NetMedsFull.Controllers
                 basket.TotalAmount += basketItem.TotalPrice;
                 basket.BasketItems.Add(basketItem);
             }
+
+           
             return basket;
         }
     }

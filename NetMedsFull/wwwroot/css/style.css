@@ -615,7 +615,7 @@ header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover {
   background-color: white;
   position: absolute;
   top: 42px;
-  left: -320px;
+  left: -250px;
 }
 
 header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverUp {
@@ -661,6 +661,10 @@ header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .b
 
 header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverMiddle .row {
   padding: 0px;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
 }
 
 header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverMiddle .row .itemBasket {
@@ -668,6 +672,7 @@ header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .b
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 11px;
+  
 }
 
 header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverMiddle .row .itemBasket .basketName {
@@ -700,6 +705,7 @@ header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .b
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 10px 0px;
+  margin-right: 10px;
 }
 
 header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverDown .DownLeft {
@@ -710,6 +716,7 @@ header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .b
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-right: 12px;
 }
 
 header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverDown .DownLeft h3 {
@@ -720,7 +727,24 @@ header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .b
   font-weight: 700;
 }
 
-header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverDown .DownLeft p {
+header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverDown .DownLeft .savePrices {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverDown .DownLeft .savePrices .savePricesText {
+  margin-right: 4px;
+}
+
+header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverDown .DownLeft .savePrices .savePricesText span {
+  font-weight: 700;
+  letter-spacing: .15px;
+  font-size: 15px;
+  color: #378f30;
+}
+
+header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverDown .DownLeft .savePrices p {
   font-weight: 700;
   letter-spacing: .15px;
   font-size: 15px;
@@ -728,7 +752,7 @@ header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .b
 }
 
 header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverDown .DownRight a {
-  padding: 3px 40px;
+  padding: 3px 20px;
   background-color: #24aeb1;
   border-radius: 5px;
   color: #fff;
@@ -855,6 +879,9 @@ table {
 }
 
 @media only screen and (max-width: 992px) {
+  header .headUser {
+    margin-top: 10px;
+  }
   header .headUser ul .basketA .basketHover .basketAHover {
     left: -120px !important;
   }
