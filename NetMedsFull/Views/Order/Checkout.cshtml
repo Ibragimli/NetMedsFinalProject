@@ -1,6 +1,10 @@
-﻿
+﻿@model CheckoutViewModel
 @{
     ViewData["Title"] = "Cart";
+    decimal TotalPrice = 0;
+    decimal SalePrice = 0;
+    decimal TotalSave = 0;
+    decimal MRPTotal = 0;
 }
 
 
@@ -42,43 +46,52 @@
                 <p>
                     PRODUCTS
                 </p>
-                <div class="product">
-                    <div class="leftSide">
-                        <img src="~/Images/Baskets/kapiva_wheat_grass_juice_1_ltr_0_2.jpg" alt="">
-                    </div>
-                    <div class="rightSide">
-                        <h3>
-                            <a href="#">
-                                Kapiva Wheat Grass Juice 1 ltr
-                            </a>
-                        </h3>
-                        <p>
-                            Mfr: Adret Retail Pvt Ltd, (Kapiva)
-                        </p>
-                        <div class="priceCount">
-                            <div class="price">
-                                <p> ₼27,00</p>
-                                <del> ₼30,00</del>
+                @foreach (var item in Model.CheckoutItems)
+                {
+
+                    SalePrice = item.Product.DiscountPercent > 0 ? (item.Product.SalePrice * (1 - item.Product.DiscountPercent / 100)) : item.Product.SalePrice;
+                    TotalPrice = SalePrice * item.Count;
+                    MRPTotal = item.Product.SalePrice * item.Count;
+                    TotalSave += MRPTotal - TotalPrice;
+
+
+                    if (item.Product.StockStatus == true)
+                    {
+                        <div class="product">
+                            <div class="leftSide">
+                                <img src="~/Images/productImages/@item.Product.ProductImages.FirstOrDefault(x => x.PosterStatus == true)?.Image" alt="">
                             </div>
-                            <div class="count">
-                                <label for="count">Count</label>
-                                <select id="count">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
+                            <div class="rightSide">
+                                <h3>
+                                    <a href="#">
+                                        @item.Product.Name
+                                    </a>
+                                </h3>
+                                <p>
+                                    Mfr: @item.Product.Brand
+                                </p>
+                                <div class="priceCount">
+                                    <div class="price">
+                                        <p> ₼@TotalPrice.ToString("#.00")</p>
+                                        <del>₼@MRPTotal.ToString("#.00") </del>
+                                    </div>
+                                    <div class="count">
+                                        <label for="count">Count</label>
+                                        <p>@item.Count</p>
+
+                                    </div>
+                                </div>
+                                <div class="productBtn">
+                                    <a class="btn btn-primary" asp-action="deleteBasket" asp-controller="product">
+                                        Remove
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="productBtn">
-                            <a class="btn btn-primary" href="#">
-                                Remove
-                            </a>
-                        </div>
+                    }
 
-                    </div>
-
-                </div>
+                }
                 <hr>
-
             </div>
             <div class="col-lg-5 payment">
                 <div class="paymentBox">
@@ -90,7 +103,7 @@
                             MRP Total
                         </span>
                         <p>
-                            ₼27,00
+                            ₼@MRPTotal.ToString("#.00")
                         </p>
                     </div>
                     <div class="netmedsDiscount">
@@ -98,7 +111,7 @@
                             Netmeds Discount
                         </span>
                         <p>
-                            - ₼27,00
+                            - ₼@TotalSave.ToString("#.00")
                         </p>
                     </div>
                     <div class="totalAmount">
@@ -106,7 +119,7 @@
                             Total Amount *
                         </span>
                         <p>
-                            ₼27,00
+                            ₼@TotalPrice.ToString("#.00")
                         </p>
                     </div>
                     <div class="totalSaving">
@@ -114,7 +127,7 @@
                             TOTAL SAVINGS
                         </span>
                         <p>
-                            ₼27,00
+                            ₼@TotalSave.ToString("#.00")
                         </p>
                     </div>
 
@@ -124,13 +137,24 @@
                                 TOTAL AMOUNT
                             </span>
                             <p>
-                                ₼27,00
+                                ₼@TotalPrice.ToString("#.00")
                             </p>
                         </div>
                         <div class="proceedBtn">
-                            <a href="#" class="btn btn-primary">
-                                PROCEED
-                            </a>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a asp-action="login" asp-controller="account" class="btn btn-primary">
+                                    PROCEED
+                                </a>
+                            }
+                            else
+                            {
+                                <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
+                                    PROCEED
+                                </a>
+                            }
+                            @await Html.PartialAsync("_CheckoutModalPartial",Model.Order)
+
                         </div>
                     </div>
                 </div>

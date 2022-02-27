@@ -23,6 +23,8 @@ namespace NetMedsFull.Models
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<TrendSlider> TrendSliders { get; set; }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
     }
 }

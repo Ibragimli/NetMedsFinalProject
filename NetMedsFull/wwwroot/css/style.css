@@ -672,7 +672,13 @@ header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .b
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 11px;
-  
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
 }
 
 header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverMiddle .row .itemBasket .basketName {
@@ -2455,12 +2461,18 @@ table {
   text-decoration: line-through;
 }
 
+#basket .container .products .productsBox .product .priceCount .count {
+  text-align: center;
+}
+
 #basket .container .products .productsBox .product .priceCount .count label {
   font-family: 'Lato', sans-serif;
 }
 
-#basket .container .products .productsBox .product .priceCount .count select {
-  width: 35px;
+#basket .container .products .productsBox .product .priceCount .count p {
+  font-weight: 700;
+  color: #24aeb1;
+  font-size: 16px;
 }
 
 #basket .container .products .productsBox .product .productBtn {

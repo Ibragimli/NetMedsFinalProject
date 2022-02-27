@@ -15,14 +15,17 @@
             {
                 @foreach (var item in Model.BasketItems)
                 {
-                    <div class="itemBasket">
-                        <div class="basketName">
-                            <a asp-action="detail" asp-controller="product" asp-route-proId="@item.ProductId">
-                                @item.Name
-                            </a>
+                    //if (item.StockStatus == true)
+                    //{
+                        <div class="itemBasket">
+                            <div class="basketName">
+                                <a asp-action="detail" asp-controller="product" asp-route-proId="@item.ProductId">
+                                    @item.Name
+                                </a>
+                            </div>
+                            <div class="basketPriceCount">  ₼@(item.Price.ToString("#.00")) x @item.Count</div>
                         </div>
-                        <div class="basketPriceCount">  ₼@(item.Price.ToString("#.00")) x @item.Count</div>
-                    </div>
+                    //}
 
                 }
             }
@@ -43,13 +46,15 @@
 
                 </div>
                 <p id="savePrice">
-                    ₼@(Model?.TotalSave != null?(Model.TotalSave.ToString("#.00")):("0"))
+                    @*₼@(Model?.TotalSave != null?(Model.TotalSave.ToString("#.00")):("0"))*@
+                    ₼@(Model?.TotalSaveUser != null?(Model.TotalSaveUser.ToString("#.00")):("0"))
+
                 </p>
             </div>
 
         </div>
         <div class="DownRight">
-            <a asp-controller="checkout" asp-action="cart">PROCEED TO CART</a>
+            <a asp-controller="order" asp-action="checkout">PROCEED TO CART</a>
         </div>
     </div>
 </div>

@@ -84,7 +84,7 @@ namespace NetMedsFull.Controllers
                         }
 
                     }
-                    //Response.Cookies.;
+                    HttpContext.Response.Cookies.Delete("basketItemList");
                     _context.SaveChanges();
                 }
                 return RedirectToAction("index", "home");

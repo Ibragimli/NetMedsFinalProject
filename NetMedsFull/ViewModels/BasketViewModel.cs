@@ -8,6 +8,7 @@ namespace NetMedsFull.ViewModels
     public class BasketViewModel
     {
         public decimal TotalSave { get; set; }
+        public decimal TotalSaveUser { get; set; }
         public decimal TotalAmount { get; set; }
         public List<BasketItemViewModel> BasketItems { get; set; }
 
@@ -20,5 +21,6 @@ namespace NetMedsFull.ViewModels
         public decimal SalePrice { get; set; }
         public string Name { get; set; }
         public decimal TotalPrice { get; set; }
+        public bool StockStatus { get; set; }
     }
 }

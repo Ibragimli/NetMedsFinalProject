@@ -127,6 +127,7 @@ namespace NetMedsFull.Controllers
                     SalePrice = product.SalePrice,
                     ProductId = product.Id,
                     Count = item.Count,
+                    StockStatus = product.StockStatus,
                 };
                 basketItem.TotalPrice = basketItem.Count * basketItem.Price;
                 basket.TotalAmount += basketItem.TotalPrice;
@@ -152,10 +153,13 @@ namespace NetMedsFull.Controllers
                     Price = item.Product.DiscountPercent > 0 ? (item.Product.SalePrice * (1 - item.Product.DiscountPercent / 100)) : item.Product.SalePrice,
                     ProductId = item.Product.Id,
                     Count = item.Count,
+                    StockStatus = item.Product.StockStatus,
+                    
 
                 };
                 basketItem.TotalPrice = basketItem.Count * basketItem.Price;
                 basket.TotalAmount += basketItem.TotalPrice;
+                basket.TotalSaveUser += (basketItem.Count * basketItem.SalePrice) - (basketItem.Count * basketItem.Price);
                 basket.BasketItems.Add(basketItem);
             }
 
