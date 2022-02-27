@@ -22,10 +22,57 @@ namespace NetMedsFull.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Detail()
+        public IActionResult Detail(int id)
         {
-            return View();
+            Product product = _getProductContext(id);
+            if (product == null)
+            {
+                return RedirectToAction("error", "error");
+
+            }
+            ProductDetailViewModel productDetailVM = GetProductDetail(product, new Comment());
+            return View(productDetailVM);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Comment(Comment comment)
+        {
+            Product product = _getProductContext(comment.ProductId);
+            if (product == null)
+            {
+                return RedirectToAction("error", "error");
+            }
+            ProductDetailViewModel productDetailVM = GetProductDetail(product, comment);
+
+            if (!ModelState.IsValid)
+            {
+                return View("Detail", productDetailVM);
+            }
+            if (!_context.Products.Any(x => x.Id == comment.ProductId))
+            {
+                return View("Detail", productDetailVM);
+            }
+
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            comment.Email = user.Email;
+            comment.Fullname = user.FullName;
+            comment.AppUserId = user.Id;
+            comment.CommentStatus = false;
+            comment.Time = DateTime.UtcNow.AddHours(4);
+            _context.Comments.Add(comment);
+            _context.SaveChanges();
+            return RedirectToAction("detail", new { Id = comment.ProductId });
+        }
+
+
+        //[HttpPost]
+        //public IActionResult Comment(Comment comment)
+        //{
+        //    Comment comment1 = comment;
+
+        //    return Ok(comment1);
+        //}
+
         public IActionResult Shop()
         {
             return View();
@@ -46,7 +93,7 @@ namespace NetMedsFull.Controllers
 
             if (user != null && user.IsAdmin == false)
             {
-               
+
 
                 BasketItem basketItem = _context.BasketItems.FirstOrDefault(x => x.AppUserId == user.Id && x.ProductId == id);
 
@@ -154,7 +201,7 @@ namespace NetMedsFull.Controllers
                     ProductId = item.Product.Id,
                     Count = item.Count,
                     StockStatus = item.Product.StockStatus,
-                    
+
 
                 };
                 basketItem.TotalPrice = basketItem.Count * basketItem.Price;
@@ -163,8 +210,33 @@ namespace NetMedsFull.Controllers
                 basket.BasketItems.Add(basketItem);
             }
 
-           
+
             return basket;
+        }
+
+
+        private Product _getProductContext(int id)
+        {
+
+            Product product = _context.Products.Include(x => x.ProductImages)
+                .Include(x => x.Brand).ThenInclude(x => x.SubCategory)
+                .Include(x => x.Comments)
+                .FirstOrDefault(x => x.Id == id);
+            return product;
+        }
+
+        private ProductDetailViewModel GetProductDetail(Product product, Comment comment = null)
+        {
+
+            ProductDetailViewModel productDetailVM = new ProductDetailViewModel
+            {
+                Products = product,
+                Comments = comment,
+                RelatedProduct = _context.Products
+                .Include(x => x.ProductImages).Include(x => x.Brand)
+                .Where(x => x.Brand.Id == product.BrandId).OrderByDescending(x => x.Id).Take(5).ToList()
+            };
+            return productDetailVM;
         }
     }
 }

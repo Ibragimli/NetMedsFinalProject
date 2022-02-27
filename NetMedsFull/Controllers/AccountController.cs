@@ -227,6 +227,7 @@ namespace NetMedsFull.Controllers
                     PhoneNumber = user.PhoneNumber,
                     Email = user.Email,
                 },
+                Orders = _context.Orders.Include(x=>x.OrderItems).ThenInclude(x=>x.Product).Where(x => x.AppUserId == user.Id).ToList(),
             };
             return View(memberProfile);
         }

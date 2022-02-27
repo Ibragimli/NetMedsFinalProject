@@ -9,7 +9,7 @@ namespace NetMedsFull.Models
     public class Comment:BaseEntity
     {
         public int ProductId { get; set; }
-        public int AppUserId { get; set; }
+        public string AppUserId { get; set; }
         [StringLength(maximumLength: 50)]
         public string Title { get; set; }
         [StringLength(maximumLength: 25)]

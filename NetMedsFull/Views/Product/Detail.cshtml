@@ -1,4 +1,4 @@
-﻿
+﻿@model ProductDetailViewModel
 @{
     ViewData["Title"] = "Detail";
 }
@@ -9,63 +9,48 @@
             <div class="col-lg-6 productLeft">
                 <div id="slider" class="flexslider">
                     <ul class="slides">
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
+                        @foreach (var item in Model.Products.ProductImages)
+                        {
+                            <li>
+                                <img src="~/Images/productImages/@item.Image" />
+                            </li>
+                        }
+
                     </ul>
                 </div>
                 <div id="carousel" class="flexslider">
                     <ul class="slides">
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
-                        <li>
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg" />
-                        </li>
+                        @foreach (var item in Model.Products.ProductImages)
+                        {
+                            <li>
+                                <img src="~/Images/productImages/@item.Image" />
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
             <div class="col-lg-6 productRight">
                 <h1>
-                    Accu-Chek Active Test Strips 50's
+                    @Model.Products.Name
                 </h1>
                 <ul class="pCategory">
                     <li>
                         <a href="#">
-                            Devices
+                            @Model.Products.Brand.SubCategory.Name
+
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            Measurements
+                            @Model.Products.Brand.Name
+
                         </a>
                     </li>
                 </ul>
                 <ul class="starReviews">
 
                     <li class="ms-3">
-                        <span>5.0</span>
+                        <span>   @Model.Comments.Rate</span>
 
                         <ul>
                             <li>
@@ -96,10 +81,11 @@
 
                         </ul>
                         <p>
-                            5 Ratings & 5 Reviews
+                         
+                            Ratings & 5 Reviews
                         </p>
                     </li>
-                    <li>
+                    <li class="ms-2">
                         <a href="#">
                             <i class="fa-solid fa-heart"></i>
                         </a>
@@ -107,42 +93,52 @@
                 </ul>
                 <hr>
 
-                <div class="productPrice">
 
+
+            <div class="productPrice">
+                @if (Model.Products.DiscountPercent > 0)
+                {
                     <div class="bestPrice">
                         <h3>
                             Best Price*
                         </h3>
-                        <p> ₼27,00</p>
+                        <p>₼@((Model.Products.SalePrice*(100- Model.Products.DiscountPercent)/100).ToString("#.00"))</p>
                     </div>
 
                     <div class="discountProduct">
                         <span>MRP</span>
-                        <del> ₼30,00</del>
+                        <del> ₼@Model.Products.SalePrice.ToString("#.00")</del>
                         <p>
-                            GET<span>17</span>% OFF
+                            GET<span>@Model.Products.DiscountPercent</span>% OFF
                         </p>
+                    </div>
+                }
+                else
+                {
+                    <p>₼@Model.Products.SalePrice.ToString("#.00")</p>
 
-                    </div>
-                    <p>(Inclusive of all taxes)</p>
-                    <p>*This product cannot be returned for a refund or exchange.</p>
-                    <div class="MKT">
-                        <span>
-                            * Mkt:
-                        </span>
-                        <a href="#">
-                            Roche Diabetes Care Gmbh
-                        </a>
-                    </div>
-                    <div class="productCountry">
-                        * Country of Origin:
-                        <a href="#">
-                            Germany
-                        </a>
-                    </div>
-                    <p>* Delivery charges if applicable will be applied at checkout</p>
+                }
+
+                <p>(Inclusive of all taxes)</p>
+                <p>*This product cannot be returned for a refund or exchange.</p>
+                <div class="MKT">
+                    <span>
+                        * Mkt:
+                    </span>
+                    <a href="#">
+                        @Model.Products.Brand.Name
+                    </a>
                 </div>
-                <a class="addBtn" href="#">
+                <div class="productCountry">
+                    * Country of Origin:
+                    <a href="#">
+                        @Model.Products.Country
+
+                    </a>
+                </div>
+                <p>* Delivery charges if applicable will be applied at checkout</p>
+            </div>
+                <a class="addBtn addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@Model.Products.Id">
                     ADD TO CART
                 </a>
             </div>
@@ -180,10 +176,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h1>
-                            Accu-Chek Active strip is a hassle-free easy to use the product. Not require any
-                            kind of
-                            manual coding. Determination of glucose in fresh capillary blood by reflectance
-                            photometry technology.
+                            @Model.Products.Description
                         </h1>
                     </div>
                     <div class="tab-pane fade" id="benefits" role="tabpanel" aria-labelledby="benefits-tab">
@@ -263,7 +256,7 @@
                 </h1>
                 <div class="starRatings">
                     <span>
-                        5.0
+                        @Model.Comments.Rate
                     </span>
                     <i class="fa-solid fa-star"></i>
 
@@ -333,41 +326,8 @@
                         <img src="~/Images/comments/rate-icon.png" alt="">
                         <h1>Rate Product</h1>
                     </div>
-
                 </div>
-                <div class="form-floating">
-                    <form method="post">
-                        <div class="commentRate mb-3">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <input maxlength="50" type="text" class="form-control" placeholder="Title">
-
-                                </div>
-                                <div class="col-lg-6  col-md-6 starCenter">
-                                    <div class="stars">
-                                        <input type="radio" id="five" name="rate" value="5">
-                                        <label for="five"></label>
-                                        <input type="radio" id="four" name="rate" value="4">
-                                        <label for="four"></label>
-                                        <input type="radio" id="three" name="rate" value="3">
-                                        <label for="three"></label>
-                                        <input type="radio" id="two" name="rate" value="2">
-                                        <label for="two"></label>
-                                        <input type="radio" id="one" name="rate" value="1">
-                                        <label for="one"></label>
-                                        <span class="result"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="commentArea">
-                            <textarea maxlength="500" class="form-control" placeholder="Comment"
-                                      id="floatingTextarea"></textarea>
-                        </div>
-                    </form>
-                </div>
+                @await Html.PartialAsync("_CommentPartial",Model.Comments)
             </div>
         </div>
         <div class="row commentView">
@@ -436,6 +396,9 @@
         </div>
     </div>
 </section>
+
+
+
 @section Scripts{
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
