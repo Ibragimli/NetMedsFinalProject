@@ -81,7 +81,7 @@
 
                         </ul>
                         <p>
-                         
+
                             Ratings & 5 Reviews
                         </p>
                     </li>
@@ -95,49 +95,49 @@
 
 
 
-            <div class="productPrice">
-                @if (Model.Products.DiscountPercent > 0)
-                {
-                    <div class="bestPrice">
-                        <h3>
-                            Best Price*
-                        </h3>
-                        <p>₼@((Model.Products.SalePrice*(100- Model.Products.DiscountPercent)/100).ToString("#.00"))</p>
+                <div class="productPrice">
+                    @if (Model.Products.DiscountPercent > 0)
+                    {
+                        <div class="bestPrice">
+                            <h3>
+                                Best Price*
+                            </h3>
+                            <p>₼@((Model.Products.SalePrice*(100- Model.Products.DiscountPercent)/100).ToString("#.00"))</p>
+                        </div>
+
+                        <div class="discountProduct">
+                            <span>MRP</span>
+                            <del> ₼@Model.Products.SalePrice.ToString("#.00")</del>
+                            <p>
+                                GET<span>@Model.Products.DiscountPercent</span>% OFF
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>₼@Model.Products.SalePrice.ToString("#.00")</p>
+
+                    }
+
+                    <p>(Inclusive of all taxes)</p>
+                    <p>*This product cannot be returned for a refund or exchange.</p>
+                    <div class="MKT">
+                        <span>
+                            * Mkt:
+                        </span>
+                        <a href="#">
+                            @Model.Products.Brand.Name
+                        </a>
                     </div>
+                    <div class="productCountry">
+                        * Country of Origin:
+                        <a href="#">
+                            @Model.Products.Country
 
-                    <div class="discountProduct">
-                        <span>MRP</span>
-                        <del> ₼@Model.Products.SalePrice.ToString("#.00")</del>
-                        <p>
-                            GET<span>@Model.Products.DiscountPercent</span>% OFF
-                        </p>
+                        </a>
                     </div>
-                }
-                else
-                {
-                    <p>₼@Model.Products.SalePrice.ToString("#.00")</p>
-
-                }
-
-                <p>(Inclusive of all taxes)</p>
-                <p>*This product cannot be returned for a refund or exchange.</p>
-                <div class="MKT">
-                    <span>
-                        * Mkt:
-                    </span>
-                    <a href="#">
-                        @Model.Products.Brand.Name
-                    </a>
+                    <p>* Delivery charges if applicable will be applied at checkout</p>
                 </div>
-                <div class="productCountry">
-                    * Country of Origin:
-                    <a href="#">
-                        @Model.Products.Country
-
-                    </a>
-                </div>
-                <p>* Delivery charges if applicable will be applied at checkout</p>
-            </div>
                 <a class="addBtn addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@Model.Products.Id">
                     ADD TO CART
                 </a>
@@ -217,34 +217,13 @@
         </div>
         <div class="row detailSliderDown">
             <div class="owl-carousel owl-theme owl-carousel-detail">
-                <div class="item">
-                    <div class="disImage">
-                        <a href="#">
-                            <img class="img-fluid" src="~/Images/discountsOwls/dr-vaidyas.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="itemDown">
-                        <div class="disTitle">
-                            <a href="#">
-                                <h2>
-                                    Accu-Chek Active Test Strips 50's
-                                </h2>
-                            </a>
-                        </div>
-                        <div class="disPrice">
-                            <p> ₼27,00</p>
-                            <del> ₼30,00</del>
-                        </div>
-                        <div class="disBtn">
-                            <a href="#">
-                                ADD TO CART
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
+                @await Html.PartialAsync("_DetailRelatedSliderPartial", Model.RelatedProduct)
             </div>
         </div>
+    
     </div>
+
 </section>
 
 <section id="productComments">
@@ -327,7 +306,7 @@
                         <h1>Rate Product</h1>
                     </div>
                 </div>
-                @await Html.PartialAsync("_CommentPartial",Model.Comments)
+                @await Html.PartialAsync("_CommentPartial", Model.Comments)
             </div>
         </div>
         <div class="row commentView">

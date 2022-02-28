@@ -75,7 +75,15 @@ namespace NetMedsFull.Controllers
 
         public IActionResult Shop()
         {
-            return View();
+            ProductShopViewModel productDetailVM = new ProductShopViewModel
+            {
+                ShopSliders = _context.ShopSliders.ToList(),
+                Categories = _context.Categories.Where(x=>x.IsDelete == false).ToList(),
+                Brands = _context.Brands.Where(x=>x.IsDelete == false).ToList(),
+                SubCategories = _context.SubCategories.Where(x=>x.IsDelete == false).ToList(),
+                Types = _context.Products.Where(x=>x.IsDelete == false).ToList(),
+            };
+            return View(productDetailVM);
         }
 
         public async Task<IActionResult> AddBasket(int id)
@@ -234,7 +242,7 @@ namespace NetMedsFull.Controllers
                 Comments = comment,
                 RelatedProduct = _context.Products
                 .Include(x => x.ProductImages).Include(x => x.Brand)
-                .Where(x => x.Brand.Id == product.BrandId).OrderByDescending(x => x.Id).Take(5).ToList()
+                .Where(x => x.Brand.Id == product.BrandId).ToList()
             };
             return productDetailVM;
         }

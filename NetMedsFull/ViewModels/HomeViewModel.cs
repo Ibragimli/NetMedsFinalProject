@@ -13,6 +13,8 @@ namespace NetMedsFull.ViewModels
         public List<Product> FavouriteProducts { get; set; }
         public List<TrendSlider> TrendSliders { get; set; }
         public List<Slider> Sliders { get; set; }
+        public List<Category> Categories { get; set; }
+        public List<SbiLab> SbiLabs { get; set; }
 
 
     }

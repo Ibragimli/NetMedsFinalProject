@@ -15,15 +15,15 @@
         @if (newProduct.DiscountPercent > 0)
         {
             <div class="disPrice">
-                <p>₼@((newProduct.SalePrice*(100-newProduct.DiscountPercent)/100))</p>
-                <del> ₼@newProduct.SalePrice</del>
-                <span> @newProduct.SalePrice%</span>
+                <p>₼@((newProduct.SalePrice*(100-newProduct.DiscountPercent)/100).ToString("#.00"))</p>
+                <del> ₼@newProduct.SalePrice.ToString("#.00")</del>
+                <span> @newProduct.DiscountPercent%</span>
             </div>
         }
         else
         {
             <div class="disPrice">
-                <p>₼@newProduct.SalePrice</p>
+                <p>₼@newProduct.SalePrice.ToString("#.00")</p>
             </div>
         }
 
