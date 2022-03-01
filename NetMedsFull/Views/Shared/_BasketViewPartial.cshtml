@@ -17,14 +17,14 @@
                 {
                     //if (item.StockStatus == true)
                     //{
-                        <div class="itemBasket">
-                            <div class="basketName">
-                                <a asp-action="detail" asp-controller="product" asp-route-proId="@item.ProductId">
-                                    @item.Name
-                                </a>
-                            </div>
-                            <div class="basketPriceCount">  ₼@(item.Price.ToString("#.00")) x @item.Count</div>
+                    <div class="itemBasket">
+                        <div class="basketName">
+                            <a asp-action="detail" asp-controller="product" asp-route-proId="@item.ProductId">
+                                @item.Name
+                            </a>
                         </div>
+                        <div class="basketPriceCount">  ₼@(item.Price.ToString("0.00")) x @item.Count</div>
+                    </div>
                     //}
 
                 }
@@ -36,7 +36,7 @@
     <div class="basketHoverDown">
         <div class="me-2 DownLeft">
             <h3 class="salePrice">
-                ₼@(Model?.TotalAmount!=null?(Model.TotalAmount.ToString("#.00")):("0"))
+                ₼@(Model?.TotalAmount!=null?(Model.TotalAmount.ToString("0.00")):("0"))
             </h3>
             <div class="savePrices">
                 <div class="savePricesText">
@@ -45,11 +45,21 @@
                     </span>
 
                 </div>
-                <p id="savePrice">
-                    @*₼@(Model?.TotalSave != null?(Model.TotalSave.ToString("#.00")):("0"))*@
-                    ₼@(Model?.TotalSaveUser != null?(Model.TotalSaveUser.ToString("#.00")):("0"))
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p id="savePrice">
+                        ₼@(Model?.TotalSaveUser != null?(Model.TotalSaveUser.ToString("0.00")):("0"))
+                    </p>
+                }
+                else
+                {
+                    <p id="savePrice">
 
-                </p>
+                        ₼@(Model?.TotalSave != null?(Model.TotalSave.ToString("#.00")):("0"))
+
+                    </p>
+                }
+
             </div>
 
         </div>

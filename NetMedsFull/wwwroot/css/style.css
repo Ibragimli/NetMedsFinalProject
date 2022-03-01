@@ -134,14 +134,20 @@ footer .container-fluid .footSocial ul li h2 {
 
 footer .container-fluid .footSocial ul li a {
   line-height: 32px;
-  font-size: 14px;
   color: #0b1219;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
 }
 
-footer .container-fluid .footSocial ul li a:hover {
-  color: #31B3B6;
+footer .container-fluid .footSocial ul li a i {
+  margin-left: 10px;
+  color: #32AEB1;
+  font-size: 20px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  margin-top: 2px;
+}
+
+footer .container-fluid .footSocial ul li a:hover i {
+  color: crimson;
 }
 
 footer .container-fluid .footSubscribe h2 {
@@ -5020,8 +5026,5 @@ body #shopFilter .shopRight .shopPagination nav ul li a {
 
 #detailSlider .container .detailSliderDown .owl-carousel-detail .owl-nav button:hover {
   color: gray;
-}
-.hiddenRow {
-    padding: 0 !important;
 }
 /*# sourceMappingURL=style.css.map */

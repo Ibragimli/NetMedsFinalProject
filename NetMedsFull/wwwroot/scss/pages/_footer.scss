@@ -1,6 +1,7 @@
 footer {
     background-color: white;
     border-radius: 2px;
+
     .container-fluid {
         padding: 30px 25px;
 
@@ -94,14 +95,22 @@ footer {
 
                     a {
                         line-height: 32px;
-                        font-size: 14px;
                         color: #0b1219;
-                        transition: all 0.5s;
+
+                        i {
+                            margin-left: 10px;
+                            color: #32AEB1;
+                            font-size: 20px;
+                            transition: all 0.5s;
+                            margin-top: 2px;
+                        }
 
                     }
 
                     a:hover {
-                        color: #31B3B6;
+                        i {
+                            color: crimson;
+                        }
                     }
                 }
             }

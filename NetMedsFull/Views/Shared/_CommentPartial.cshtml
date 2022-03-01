@@ -1,42 +1,55 @@
 ﻿@model Comment
 
-<div class="form-floating">
-    <form asp-action="comment"  method="post">
-        <div class="commentRate mb-3">
-            <div class="row">
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="form-floating">
+        <form asp-action="comment" method="post">
+            <div class="commentRate mb-3">
+                <div class="row">
 
-                <div class="col-lg-6 col-md-6">
-                    <input asp-for="Title" maxlength="50" type="text" class="form-control" placeholder="Title">
-                </div>
+                    <div class="col-lg-6 col-md-6">
+                        <input asp-for="Title" maxlength="50" type="text" class="form-control" placeholder="Title">
+                    </div>
 
-                <div class="col-lg-6  col-md-6 starCenter">
-                    <div class="stars">
-                        <input type="radio" id="five" name="rate" value="5">
-                        <label for="five"></label>
-                        <input type="radio" id="four" name="rate" value="4">
-                        <label for="four"></label>
-                        <input type="radio" id="three" name="rate" value="3">
-                        <label for="three"></label>
-                        <input type="radio" id="two" name="rate" value="2">
-                        <label for="two"></label>
-                        <input type="radio" id="one" name="rate" value="1">
-                        <label for="one"></label>
-                        <span class="result"></span>
+                    <div class="col-lg-6  col-md-6 starCenter">
+                        <div class="stars">
+                            <input type="radio" id="five" name="rate" value="5">
+                            <label for="five"></label>
+                            <input type="radio" id="four" name="rate" value="4">
+                            <label for="four"></label>
+                            <input type="radio" id="three" name="rate" value="3">
+                            <label for="three"></label>
+                            <input type="radio" id="two" name="rate" value="2">
+                            <label for="two"></label>
+                            <input type="radio" id="one" name="rate" value="1">
+                            <label for="one"></label>
+                            <span class="result"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="commentArea">
-            <textarea asp-for="Text" maxlength="500" class="form-control" placeholder="Comment"
-                      id="floatingTextarea"></textarea>
-        </div>
-        <div>
-            
-            <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
-        </div>
-        <div class="mt-2 text-center" >
-            <button type="submit" style="background: #24aeb1; border:none" class="btn btn-primary" >Send comment</button>
-        </div>
-    </form>
-</div>
+            <div class="commentArea">
+                <textarea asp-for="Text" maxlength="500" class="form-control" placeholder="Comment"
+                          id="floatingTextarea"></textarea>
+                <span class="text-danger" asp-validation-for="Text"> </span>
+
+            </div>
+            <div class="mt-2 text-center">
+                <button type="submit" style="background: #24aeb1; border:none" class="btn btn-primary">Send comment</button>
+            </div>
+            <input type="hidden" asp-for="ProductId" value="@ViewBag.productId" />
+
+        </form>
+    </div>
+}
+
+else
+{
+    <div class="unForm" style="padding: 60px 0px; ">
+        <a asp-action="login" asp-controller="account">
+            <i class="fa fa-edit"></i>
+            Write Review
+        </a>
+    </div>
+}

@@ -27,6 +27,7 @@ namespace NetMedsFull.Models
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<SbiLab> SbiLabs { get; set; }
         public DbSet<ShopSlider> ShopSliders { get; set; }
+        public DbSet<LabTest> LabTests { get; set; }
 
     }
 }

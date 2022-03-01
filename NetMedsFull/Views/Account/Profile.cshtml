@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Profile";
     var orderCount = 0;
+    var Count = 0;
 
 }
 @model MemberProfileViewModel
@@ -38,15 +39,12 @@
                              aria-labelledby="v-pills-profile-tab">
                             <h3>Order</h3>
 
-                            
+
 
                             @*Start*@
                             <div class="container">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            Employee
-                                        </div>
                                         <div class="panel-body">
                                             <table class="table table-condensed table-striped">
                                                 <thead>
@@ -221,152 +219,172 @@
                                 </div>
                             </div>
 
-
                             @*End*@
 
 
 
 
                             @*<table class="table table-cell">
-            <thead>
-                <tr>
-                    <th class="p-0" scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Aug 22, 2018</td>
-                    <td> ₼27,00</td>
-                    <td>
-                        <span class="badge bg-danger">  Pending</span>
-                    </td>
-                </tr>
+                                    <thead>
+                                        <tr>
+                                            <th class="p-0" scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Aug 22, 2018</td>
+                                            <td> ₼27,00</td>
+                                            <td>
+                                                <span class="badge bg-danger">  Pending</span>
+                                            </td>
+                                        </tr>
 
 
-            </tbody>
-        </table>*@
+                                    </tbody>
+                                </table>*@
 
                             @*<div class="text-center">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
 
-                        <div class="panel-body">
-                            <table class="table table-condensed table-striped">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Code</th>
-                                        <th>CreatedAt</th>
-                                        <th>Status</th>
-                                        <th>DeliveryStatus</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-                                    @foreach (var order in Model.Orders)
-                                    {
-                                        orderCount++;
-                                        <tr data-toggle="collapse" data-target="#demo@(orderCount)" class="accordion-toggle">
-                                            <td>@orderCount</td>
-                                            <td>@(order.CodePrefix+order.CodeNumber)</td>
-                                            <td>@order.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
-                                            <td>@order.Status</td>
-                                            <td>@order.DeliveryStatus</td>
-                                            <td>@order.TotalAmount</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="12" class="hiddenRow">
-                                                <div class="accordian-body collapse" id="demo@(orderCount)">
-                                                    <table class="table table-striped">
+                                                <div class="panel-body">
+                                                    <table class="table table-condensed table-striped">
                                                         <thead>
-                                                            <tr class="info">
-                                                                <th>BookName</th>
-                                                                <th>Price</th>
-                                                                <th>DiscountPercent</th>
-                                                                <th>SoldPrice</th>
-                                                                <th>Count</th>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Code</th>
+                                                                <th>CreatedAt</th>
+                                                                <th>Status</th>
+                                                                <th>DeliveryStatus</th>
+                                                                <th>Amount</th>
                                                             </tr>
                                                         </thead>
 
                                                         <tbody>
 
-                                                            @foreach (var item in order.OrderItems)
+                                                            @foreach (var order in Model.Orders)
                                                             {
-                                                                <tr data-toggle="collapse" class="accordion-toggle" data-target="#demo10">
-                                                                    <td> <a asp-action="detail" asp-controller="book" asp-route-id="@item.ProductId">@item.Product.Name</a></td>
-                                                                    <td>@item.SalePrice</td>
-                                                                    <td>@item.DiscountPercent </td>
-                                                                    <td>@((item.DiscountPercent>0?(item.SalePrice* (1-item.DiscountPercent/100)):item.SalePrice).ToString("0.00"))</td>
-                                                                    <td>@item.Count</td>
+                                                                orderCount++;
+                                                                <tr data-toggle="collapse" data-target="#demo@(orderCount)" class="accordion-toggle">
+                                                                    <td>@orderCount</td>
+                                                                    <td>@(order.CodePrefix+order.CodeNumber)</td>
+                                                                    <td>@order.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                                                                    <td>@order.Status</td>
+                                                                    <td>@order.DeliveryStatus</td>
+                                                                    <td>@order.TotalAmount</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="12" class="hiddenRow">
+                                                                        <div class="accordian-body collapse" id="demo@(orderCount)">
+                                                                            <table class="table table-striped">
+                                                                                <thead>
+                                                                                    <tr class="info">
+                                                                                        <th>BookName</th>
+                                                                                        <th>Price</th>
+                                                                                        <th>DiscountPercent</th>
+                                                                                        <th>SoldPrice</th>
+                                                                                        <th>Count</th>
+                                                                                    </tr>
+                                                                                </thead>
+
+                                                                                <tbody>
+
+                                                                                    @foreach (var item in order.OrderItems)
+                                                                                    {
+                                                                                        <tr data-toggle="collapse" class="accordion-toggle" data-target="#demo10">
+                                                                                            <td> <a asp-action="detail" asp-controller="book" asp-route-id="@item.ProductId">@item.Product.Name</a></td>
+                                                                                            <td>@item.SalePrice</td>
+                                                                                            <td>@item.DiscountPercent </td>
+                                                                                            <td>@((item.DiscountPercent>0?(item.SalePrice* (1-item.DiscountPercent/100)):item.SalePrice).ToString("0.00"))</td>
+                                                                                            <td>@item.Count</td>
+                                                                                        </tr>
+                                                                                    }
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </td>
                                                                 </tr>
                                                             }
+
 
                                                         </tbody>
                                                     </table>
                                                 </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                             aria-labelledby="v-pills-messages-tab">
+                            <h3>
+                                Lab Tests
+                            </h3>
+                            <table class="table table-cell">
+                                <thead>
+                                    <tr class="labTests">
+                                        <th class="p-0" scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Mobile Number</th>
+                                        <th scope="col">Package</th>
+                                        <th scope="col"> Date </th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.LabTests.Where(x=>x.AppUserId == ViewBag.LabUser))
+                                    {
+                                        Count++;
+                                        <tr>
+                                            <th scope="row">@Count</th>
+                                            <td>@item.Fullname</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.LabTestPrice.LabPackage </td>
+                                            <td>@item.Rendezvous.ToString("dddd, dd MMMM yyyy")</td>
+                                            <td>₼@item.LabTestPrice.Price</td>
+                                            <td>
+                                                @if ((int)item.LabStatus == 1)
+                                                {
+
+                                                    <span class="badge bg-success">  Accepted</span>
+                                                }
+
+                                                @if ((int)item.LabStatus == 2)
+                                                {
+                                                    <span class="badge bg-danger">  Canceled</span>
+                                                }
+                                                @if ((int)item.LabStatus == 3)
+                                                {
+                                                    <span class="badge bg-warning">  Waiting</span>
+                                                }
                                             </td>
+
                                         </tr>
                                     }
-
 
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
 
-                </div>
-            </div>
-        </div>*@
-                        </div>
-                    </div>
+
                 </div>
 
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                     aria-labelledby="v-pills-messages-tab">
-                    <h3>
-                        Lab Tests
-                    </h3>
-                    <table class="table table-cell">
-                        <thead>
-                            <tr class="labTests">
-                                <th class="p-0" scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Mobile Number</th>
-                                <th scope="col">Package</th>
-                                <th scope="col"> Date </th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>+09924321</td>
-                                <td> ₼27,00</td>
-                                <td>Aug 22, 2018</td>
-                                <td>25</td>
-                                <td>
-                                    <span class="badge bg-danger">  Pending</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
 
             </div>
         </div>
     </div>
-    </div>
-    </div>
+
 </section>

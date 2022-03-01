@@ -1,6 +1,7 @@
-﻿
+﻿@model LabTest
 @{
     ViewData["Title"] = "LabTest";
+    var Package = 0;
 }
 
 <section id="labtests">
@@ -14,18 +15,21 @@
             <div class="col-lg-3 labForm">
                 <p>Please fill in your details</p>
 
-                <form method="post">
+                <form asp-action="labtest" method="post">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">NAME</label>
-                        <input type="text" class="form-control">
+                        <label asp-for="Fullname" class="form-label">NAME</label>
+                        <input asp-for="Fullname" type="text" class="form-control">
+                        <span class="text-danger" asp-validation-for="Fullname"> </span>
+
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">MOBILE NUMBER</label>
-                        <input type="tel" class="form-control">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" type="email" class="form-control">
+                        <span class="text-danger" asp-validation-for="Email"> </span>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">CHOOSE PACKAGE</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <label asp-for="LabTestPriceId" class="form-label">CHOOSE PACKAGE</label>
+                        <select asp-for="LabTestPriceId" class="form-select" aria-label="Default select example">
                             <option value="1">
                                 <a href="#">
                                     Others
@@ -92,24 +96,28 @@
                                 </a>
                             </option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Price</label>
-                        <input class="form-control" placeholder="Price: 25" type="number" disabled>
+                        <span class="text-danger" asp-validation-for="LabTestPriceId"> </span>
+
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Rendezvous</label>
-                        <input id="datefield" type='date' min='02/21/2022' >
+                        <label class="form-label">Price</label>
+                        <input class="form-control" placeholder="Price: 25" disabled>
+
+
                     </div>
 
+                    <div class="mb-3">
+                        <label asp-for="Rendezvous" class="form-label">Rendezvous</label>
+                        <input asp-for="Rendezvous" id="datefield" type='date' min='02/21/2022'>
+                        <span class="text-danger" asp-validation-for="Rendezvous"> </span>
+                    </div>
                     <div class="mb-3 text-center">
-                        <button class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             Book Now
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
 

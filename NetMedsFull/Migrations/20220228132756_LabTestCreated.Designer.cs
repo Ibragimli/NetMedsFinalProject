@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetMedsFull.Models;
 
 namespace NetMedsFull.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220228132756_LabTestCreated")]
+    partial class LabTestCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -352,12 +354,8 @@ namespace NetMedsFull.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
+                    b.Property<int>("Email")
+                        .HasColumnType("int")
                         .HasMaxLength(25);
 
                     b.Property<string>("Fullname")
@@ -368,9 +366,6 @@ namespace NetMedsFull.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LabStatus")
-                        .HasColumnType("int");
-
                     b.Property<int>("LabTestPriceId")
                         .HasColumnType("int");
 
@@ -378,8 +373,6 @@ namespace NetMedsFull.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
 
                     b.HasIndex("LabTestPriceId");
 
@@ -860,10 +853,6 @@ namespace NetMedsFull.Migrations
 
             modelBuilder.Entity("NetMedsFull.Models.LabTest", b =>
                 {
-                    b.HasOne("NetMedsFull.Models.AppUser", "AppUser")
-                        .WithMany("LabTests")
-                        .HasForeignKey("AppUserId");
-
                     b.HasOne("NetMedsFull.Models.LabTestPrice", "LabTestPrice")
                         .WithMany()
                         .HasForeignKey("LabTestPriceId")

@@ -24,4 +24,14 @@
                 }
             })
     })
+    $(document).on("click", ".deleteBtn", function (e) {
+        e.preventDefault();
+        let url = $(this).attr("href")
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                window.location.reload(true)
+                console.log(url)
+            })
+    })
 })

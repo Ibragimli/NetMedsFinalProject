@@ -81,11 +81,14 @@
 
                                     </div>
                                 </div>
-                                <div class="productBtn">
-                                    <a class="btn btn-primary" asp-action="deleteBasket" asp-controller="product">
-                                        Remove
-                                    </a>
-                                </div>
+                                <form method="post" asp-action="DeleteBasket" asp-controller="product"> 
+                                    <div class="productBtn">
+                                        <a class="btn btn-primary deleteBtn" asp-action="deleteBasket" asp-controller="product" asp-route-id="@item.Product.Id">
+                                            Remove
+                                        </a>
+                                    </div>
+                                </form>
+                              
                             </div>
                         </div>
                     }

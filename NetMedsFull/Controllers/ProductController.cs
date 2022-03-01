@@ -24,6 +24,8 @@ namespace NetMedsFull.Controllers
 
         public IActionResult Detail(int id)
         {
+            ViewBag.productId = id;
+
             Product product = _getProductContext(id);
             if (product == null)
             {
@@ -31,6 +33,7 @@ namespace NetMedsFull.Controllers
 
             }
             ProductDetailViewModel productDetailVM = GetProductDetail(product, new Comment());
+
             return View(productDetailVM);
         }
 
@@ -78,10 +81,10 @@ namespace NetMedsFull.Controllers
             ProductShopViewModel productDetailVM = new ProductShopViewModel
             {
                 ShopSliders = _context.ShopSliders.ToList(),
-                Categories = _context.Categories.Where(x=>x.IsDelete == false).ToList(),
-                Brands = _context.Brands.Where(x=>x.IsDelete == false).ToList(),
-                SubCategories = _context.SubCategories.Where(x=>x.IsDelete == false).ToList(),
-                Types = _context.Products.Where(x=>x.IsDelete == false).ToList(),
+                Categories = _context.Categories.Where(x => x.IsDelete == false).ToList(),
+                Brands = _context.Brands.Where(x => x.IsDelete == false).ToList(),
+                SubCategories = _context.SubCategories.Where(x => x.IsDelete == false).ToList(),
+                Types = _context.Products.Where(x => x.IsDelete == false).ToList(),
             };
             return View(productDetailVM);
         }
@@ -101,7 +104,6 @@ namespace NetMedsFull.Controllers
 
             if (user != null && user.IsAdmin == false)
             {
-
 
                 BasketItem basketItem = _context.BasketItems.FirstOrDefault(x => x.AppUserId == user.Id && x.ProductId == id);
 
@@ -165,7 +167,53 @@ namespace NetMedsFull.Controllers
             return Json(basketItem);
         }
 
+        public async Task<IActionResult> DeleteBasket(int id)
+        {
+            if (!_context.Products.Any(x => x.Id == id))
+            {
+                return RedirectToAction("error", "error");
+            }
+            List<BasketItemViewModel> productsDetail = new List<BasketItemViewModel>();
 
+            if (User.Identity.IsAuthenticated)
+            {
+                BasketItem basketItem = _context.BasketItems.FirstOrDefault(x => x.ProductId == id);
+                if (basketItem == null)
+                {
+                    return RedirectToAction("error", "error");
+                }
+                if (basketItem.Count == 1)
+                {
+                    _context.BasketItems.Remove(basketItem);
+                }
+                else
+                {
+                    basketItem.Count--;
+                }
+                _context.SaveChanges();
+            }
+            else
+            {
+                string basket = HttpContext.Request.Cookies["basketItemList"];
+                productsDetail = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(basket);
+                BasketItemViewModel productBasket = productsDetail.FirstOrDefault(x => x.ProductId == id);
+                if (productBasket == null)
+                {
+                    return RedirectToAction("error", "error");
+                }
+                if (productBasket.Count == 1)
+                {
+                    productsDetail.Remove(productBasket);
+                }
+                else
+                {
+                    productBasket.Count--;
+                }
+                HttpContext.Response.Cookies.Append("basketItemList", JsonConvert.SerializeObject(productsDetail));
+            }
+            return Ok(productsDetail);
+
+        }
         private BasketViewModel _getBasketItems(List<CookieBasketItemViewModel> cookieBasketItems)
         {
             BasketViewModel basket = new BasketViewModel
@@ -209,12 +257,10 @@ namespace NetMedsFull.Controllers
                     ProductId = item.Product.Id,
                     Count = item.Count,
                     StockStatus = item.Product.StockStatus,
-
-
                 };
                 basketItem.TotalPrice = basketItem.Count * basketItem.Price;
                 basket.TotalAmount += basketItem.TotalPrice;
-                basket.TotalSaveUser += (basketItem.Count * basketItem.SalePrice) - (basketItem.Count * basketItem.Price);
+                basket.TotalSaveUser += ((basketItem.Count * basketItem.Price) - (basketItem.Count * basketItem.SalePrice));
                 basket.BasketItems.Add(basketItem);
             }
 
@@ -242,7 +288,7 @@ namespace NetMedsFull.Controllers
                 Comments = comment,
                 RelatedProduct = _context.Products
                 .Include(x => x.ProductImages).Include(x => x.Brand)
-                .Where(x => x.Brand.Id == product.BrandId).ToList()
+                .Where(x => x.Brand.Id == product.BrandId).OrderByDescending(x => x.Id).Take(5).ToList()
             };
             return productDetailVM;
         }

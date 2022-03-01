@@ -78,8 +78,8 @@ namespace NetMedsFull.Controllers
                 order.OrderItems.Add(orderItem);
             }
             _context.Orders.Add(order);
-            _context.SaveChanges();
             _context.BasketItems.RemoveRange(_context.BasketItems.Where(x => x.AppUserId == user.Id));
+            _context.SaveChanges();
             _emailService.Send(user.Email, "Netmeds.com Order Completed", order.CodePrefix + order.CodeNumber + "-Kodlu şifarişiniz qebul olundu. Zəhmət olmasa şifarişin təsdiqlənməsini gözləyin). Bizi seçdiyiniz üçün `Netmeds` ailəsi olaraq təşəkkürümüzü bildiririk  :)" + user.FullName);
             return RedirectToAction("profile", "account");
         }

@@ -10,6 +10,7 @@ namespace NetMedsFull.ViewModels
     {
         public ProfileUpdateViewModel ProfileUpdateViewModel { get; set; }
         public List<Order> Orders { get; set; }
+        public List<LabTest> LabTests { get; set; }
 
     }
 }

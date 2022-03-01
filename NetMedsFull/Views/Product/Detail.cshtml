@@ -221,7 +221,7 @@
                 @await Html.PartialAsync("_DetailRelatedSliderPartial", Model.RelatedProduct)
             </div>
         </div>
-    
+
     </div>
 
 </section>
@@ -306,70 +306,44 @@
                         <h1>Rate Product</h1>
                     </div>
                 </div>
-                @await Html.PartialAsync("_CommentPartial", Model.Comments)
+    
+                <partial name="_CommentPartial" model="Model.Comments"/>
             </div>
         </div>
         <div class="row commentView">
             <div class="col-lg-8">
                 <div class="comments">
-                    <div class="comment">
-                        <div class="commentUp">
-                            <div class="commentUpLeft">
-                                <span>
-                                    5
-                                    <i class="fa-solid fa-star"></i>
-                                </span>
-                                <h1>Saadhana</h1>
+                    <h1 style=" font-size: 28px; color: #32AEB1; line-height: 20px; font-weight: 700; padding-bottom:20px ">Comments </h1>
+                    @foreach (var comment in Model.Products.Comments.Where(x => x.CommentStatus))
+                    {
+                        <div class="comment">
+                            <div class="commentUp">
+                                <div class="commentUpLeft">
+                                    <span>
+                                        @comment.Rate
+                                        <i class="fa-solid fa-star"></i>
+                                    </span>
+                                    <h1>@comment.Fullname</h1>
+                                </div>
+                                <div class="commentUpRight">
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Verified Buyer</span>
+                                </div>
                             </div>
-                            <div class="commentUpRight">
-                                <i class="fa-solid fa-check"></i>
-                                <span>Verified Buyer</span>
+                            <div class="commentMiddle">
+                                <h3>
+                                    @comment.Title
+                                </h3>
+                                <p>
+                                    @comment.Text
+                                </p>
                             </div>
-                        </div>
-                        <div class="commentMiddle">
-                            <h3>
-                                Good experience
-                            </h3>
-                            <p>
-                                Feel these test strips work much better and give a more accurate blood glucose
-                                levels.
-                                Value for money. Received my parcel in good condition. Will order again,,,
-                            </p>
-                        </div>
-                        <div class="commentDown">
-                            <span>Posted on </span>
-                            <p>16 April 2020</p>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <div class="commentUp">
-                            <div class="commentUpLeft">
-                                <span>
-                                    5
-                                    <i class="fa-solid fa-star"></i>
-                                </span>
-                                <h1>Saadhana</h1>
-                            </div>
-                            <div class="commentUpRight">
-                                <i class="fa-solid fa-check"></i>
-                                <span>Verified Buyer</span>
+                            <div class="commentDown">
+                                <span>Posted on </span>
+                                <p>@comment.Time</p>
                             </div>
                         </div>
-                        <div class="commentMiddle">
-                            <h3>
-                                Good experience
-                            </h3>
-                            <p>
-                                Feel these test strips work much better and give a more accurate blood glucose
-                                levels.
-                                Value for money. Received my parcel in good condition. Will order again,,,
-                            </p>
-                        </div>
-                        <div class="commentDown">
-                            <span>Posted on </span>
-                            <p>16 April 2020</p>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
