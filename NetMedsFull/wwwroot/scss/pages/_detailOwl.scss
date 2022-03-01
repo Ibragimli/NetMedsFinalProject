@@ -15,7 +15,6 @@
         .detailSliderDown {
             .owl-carousel-detail {
                 position: relative;
-                background-color: white;
                 .owl-stage-outer {
                     .owl-stage {
 
@@ -32,7 +31,7 @@
                                 flex-direction: column;
                                 border-radius: 10px;
                                 width: 231px;
-
+                                margin:  0px 10px;
                                 .disTitle {
                                     a {
                                         h2 {

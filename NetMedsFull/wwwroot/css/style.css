@@ -4892,7 +4892,6 @@ body #shopFilter .shopRight .shopPagination nav ul li a {
 
 #detailSlider .container .detailSliderDown .owl-carousel-detail {
   position: relative;
-  background-color: white;
 }
 
 #detailSlider .container .detailSliderDown .owl-carousel-detail .owl-stage-outer .owl-stage .owl-item,
@@ -4920,6 +4919,7 @@ body #shopFilter .shopRight .shopPagination nav ul li a {
           flex-direction: column;
   border-radius: 10px;
   width: 231px;
+  margin: 0px 10px;
 }
 
 #detailSlider .container .detailSliderDown .owl-carousel-detail .owl-stage-outer .owl-stage .owl-item .item .disTitle a h2,
