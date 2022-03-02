@@ -28,6 +28,10 @@ namespace NetMedsFull.Services
         {
             return await _context.Settings.ToListAsync();
         }
+        public async Task<List<Product>> GetProductSearch()
+        {
+            return await _context.Products.ToListAsync();
+        }
 
         public async Task<BasketViewModel> GetHeaderBasket()
         {

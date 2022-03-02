@@ -68,14 +68,7 @@ namespace NetMedsFull.Controllers
         }
 
 
-        //[HttpPost]
-        //public IActionResult Comment(Comment comment)
-        //{
-        //    Comment comment1 = comment;
-
-        //    return Ok(comment1);
-        //}
-
+       
         public IActionResult Shop()
         {
             ProductShopViewModel productDetailVM = new ProductShopViewModel
@@ -273,7 +266,7 @@ namespace NetMedsFull.Controllers
         {
 
             Product product = _context.Products.Include(x => x.ProductImages)
-                .Include(x => x.Brand).ThenInclude(x => x.SubCategory)
+                .Include(x => x.Brand)
                 .Include(x => x.Comments)
                 .FirstOrDefault(x => x.Id == id);
             return product;

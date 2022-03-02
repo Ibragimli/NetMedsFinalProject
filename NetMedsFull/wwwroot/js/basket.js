@@ -21,6 +21,7 @@
                                                 <div class="basketPriceCount">`+ data.basketItems[i].price + `x` + data.basketItems[i].count + `</div>
                                             </div>`
                     $('#basketHoverMiddle').append($(element));
+                    window.location.reload(true)
                 }
             })
     })

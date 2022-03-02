@@ -12,7 +12,7 @@ namespace NetMedsFull.Models
         public string Name { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public List<Brand> Brands { get; set; }
+        public List<SubCategoryBrand> SubCategoryBrands { get; set; }
 
     }
 }

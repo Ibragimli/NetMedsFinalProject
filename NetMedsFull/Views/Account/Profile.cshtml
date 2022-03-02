@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Profile";
     var orderCount = 0;
+    int orderModalCount = 0;
     var Count = 0;
 
 }
@@ -38,292 +39,228 @@
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                              aria-labelledby="v-pills-profile-tab">
                             <h3>Order</h3>
-
-
-
-                            @*Start*@
-                            <div class="container">
-                                <div class="col-md-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <table class="table table-condensed table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Fist Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>City</th>
-                                                        <th>State</th>
-                                                        <th>Status</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
-                                                        <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
-                                                        <td>Carlos</td>
-                                                        <td>Mathias</td>
-                                                        <td>Leme</td>
-                                                        <td>SP</td>
-                                                        <td>new</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td colspan="12" class="hiddenRow">
-                                                            <div class="accordian-body collapse" id="demo1">
-                                                                <table class="table table-striped">
-                                                                    <thead>
-                                                                        <tr class="info">
-                                                                            <th>Job</th>
-                                                                            <th>Company</th>
-                                                                            <th>Salary</th>
-                                                                            <th>Date On</th>
-                                                                            <th>Date off</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-
-                                                                    <tbody>
-
-                                                                        <tr data-toggle="collapse" class="accordion-toggle" data-target="#demo10">
-                                                                            <td> <a href="#">Enginner Software</a></td>
-                                                                            <td>Google</td>
-                                                                            <td>U$8.00000 </td>
-                                                                            <td> 2016/09/27</td>
-                                                                            <td> 2017/09/27</td>
-                                                                            <td>
-                                                                                <a href="#" class="btn btn-default btn-sm">
-                                                                                    <i class="glyphicon glyphicon-cog"></i>
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td colspan="12" class="hiddenRow">
-                                                                                <div class="accordian-body collapse" id="demo10">
-                                                                                    <table class="table table-striped">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <td><a href="#"> XPTO 1</a></td>
-                                                                                                <td>XPTO 2</td>
-                                                                                                <td>Obs</td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <th>item 1</th>
-                                                                                                <th>item 2</th>
-                                                                                                <th>item 3 </th>
-                                                                                                <th>item 4</th>
-                                                                                                <th>item 5</th>
-                                                                                                <th>Actions</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td>item 1</td>
-                                                                                                <td>item 2</td>
-                                                                                                <td>item 3</td>
-                                                                                                <td>item 4</td>
-                                                                                                <td>item 5</td>
-                                                                                                <td>
-                                                                                                    <a href="#" class="btn btn-default btn-sm">
-                                                                                                        <i class="glyphicon glyphicon-cog"></i>
-                                                                                                    </a>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td>Scrum Master</td>
-                                                                            <td>Google</td>
-                                                                            <td>U$8.00000 </td>
-                                                                            <td> 2016/09/27</td>
-                                                                            <td> 2017/09/27</td>
-                                                                            <td>
-                                                                                <a href="#" class="btn btn-default btn-sm">
-                                                                                    <i class="glyphicon glyphicon-cog"></i>
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-
-
-                                                                        <tr>
-                                                                            <td>Back-end</td>
-                                                                            <td>Google</td>
-                                                                            <td>U$8.00000 </td>
-                                                                            <td> 2016/09/27</td>
-                                                                            <td> 2017/09/27</td>
-                                                                            <td>
-                                                                                <a href="#" class="btn btn-default btn-sm">
-                                                                                    <i class="glyphicon glyphicon-cog"></i>
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-
-
-                                                                        <tr>
-                                                                            <td>Front-end</td>
-                                                                            <td>Google</td>
-                                                                            <td>U$8.00000 </td>
-                                                                            <td> 2016/09/27</td>
-                                                                            <td> 2017/09/27</td>
-                                                                            <td>
-                                                                                <a href="#" class="btn btn-default btn-sm">
-                                                                                    <i class="glyphicon glyphicon-cog"></i>
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-
-
-                                                                    </tbody>
-                                                                </table>
-
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-
-
-                                                    <tr data-toggle="collapse" data-target="#demo2" class="accordion-toggle">
-                                                        <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
-                                                        <td>Silvio</td>
-                                                        <td>Santos</td>
-                                                        <td>São Paulo</td>
-                                                        <td>SP</td>
-                                                        <td> new</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="6" class="hiddenRow"><div id="demo2" class="accordian-body collapse">Demo2</div></td>
-                                                    </tr>
-                                                    <tr data-toggle="collapse" data-target="#demo3" class="accordion-toggle">
-                                                        <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
-                                                        <td>John</td>
-                                                        <td>Doe</td>
-                                                        <td>Dracena</td>
-                                                        <td>SP</td>
-                                                        <td> New</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="6" class="hiddenRow"><div id="demo3" class="accordian-body collapse">Demo3 sadasdasdasdasdas</div></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            @*End*@
-
-
-
-
-                            @*<table class="table table-cell">
-                                    <thead>
+                            <table class="table table-cell">
+                                <thead>
+                                    <tr>
+                                        <th class="p-0" scope="col">#</th>
+                                        <th scope="col">Fullname</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var order in Model.Orders)
+                                    {
+                                        orderCount++;
+                                        orderModalCount++;
+                                        TempData["modalOrder"] = orderModalCount;
                                         <tr>
-                                            <th class="p-0" scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Aug 22, 2018</td>
-                                            <td> ₼27,00</td>
+                                            <th scope="row">@orderCount</th>
+                                            <td>@order.Fullname</td>
+                                            <td>@order.CodePrefix @order.CodeNumber</td>
+                                            <td>@order.CreatedAt</td>
+                                            <td>₼@order.TotalAmount</td>
                                             <td>
-                                                <span class="badge bg-danger">  Pending</span>
+                                                <span class="badge @((int)(order.Status) == 1?"bg-primary":"") @((int)(order.Status) == 2?"bg-success":"")  @((int)(order.Status) == 3?"bg-warning":"") @((int)(order.Status) == 4?"bg-danger":"")  ">
+
+                                                    @((int)(order.Status) == 1?"Pending":"") @((int)(order.Status) == 2?"Accepted":"")  @((int)(order.Status) == 3?"Rejected":"") @((int)(order.Status) == 4?"Canceled":"")
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <button type="button" class=" p-0 p-2 btn btn-warning" data-bs-toggle="modal" data-bs-target="#orderModal-@orderModalCount">
+                                                    View
+                                                </button>
+                                                @await Html.PartialAsync("_OrderViewModalPartial", order)
+
                                             </td>
                                         </tr>
 
+                                    }
+                                </tbody>
+                            </table>
+                            @*Start*@
+                            @*<div class="container">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <table class="table table-condensed table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Fist Name</th>
+                                                            <th>Last Name</th>
+                                                            <th>City</th>
+                                                            <th>State</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
 
-                                    </tbody>
-                                </table>*@
+                                                    <tbody>
+                                                        <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+                                                            <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
+                                                            <td>Carlos</td>
+                                                            <td>Mathias</td>
+                                                            <td>Leme</td>
+                                                            <td>SP</td>
+                                                            <td>new</td>
+                                                        </tr>
 
-                            @*<div class="text-center">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel panel-default">
+                                                        <tr>
+                                                            <td colspan="12" class="hiddenRow">
+                                                                <div class="accordian-body collapse" id="demo1">
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                            <tr class="info">
+                                                                                <th>Job</th>
+                                                                                <th>Company</th>
+                                                                                <th>Salary</th>
+                                                                                <th>Date On</th>
+                                                                                <th>Date off</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
 
-                                                <div class="panel-body">
-                                                    <table class="table table-condensed table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th></th>
-                                                                <th>Code</th>
-                                                                <th>CreatedAt</th>
-                                                                <th>Status</th>
-                                                                <th>DeliveryStatus</th>
-                                                                <th>Amount</th>
-                                                            </tr>
-                                                        </thead>
+                                                                        <tbody>
 
-                                                        <tbody>
+                                                                            <tr data-toggle="collapse" class="accordion-toggle" data-target="#demo10">
+                                                                                <td> <a href="#">Enginner Software</a></td>
+                                                                                <td>Google</td>
+                                                                                <td>U$8.00000 </td>
+                                                                                <td> 2016/09/27</td>
+                                                                                <td> 2017/09/27</td>
+                                                                                <td>
+                                                                                    <a href="#" class="btn btn-default btn-sm">
+                                                                                        <i class="glyphicon glyphicon-cog"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
 
-                                                            @foreach (var order in Model.Orders)
-                                                            {
-                                                                orderCount++;
-                                                                <tr data-toggle="collapse" data-target="#demo@(orderCount)" class="accordion-toggle">
-                                                                    <td>@orderCount</td>
-                                                                    <td>@(order.CodePrefix+order.CodeNumber)</td>
-                                                                    <td>@order.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
-                                                                    <td>@order.Status</td>
-                                                                    <td>@order.DeliveryStatus</td>
-                                                                    <td>@order.TotalAmount</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="12" class="hiddenRow">
-                                                                        <div class="accordian-body collapse" id="demo@(orderCount)">
-                                                                            <table class="table table-striped">
-                                                                                <thead>
-                                                                                    <tr class="info">
-                                                                                        <th>BookName</th>
-                                                                                        <th>Price</th>
-                                                                                        <th>DiscountPercent</th>
-                                                                                        <th>SoldPrice</th>
-                                                                                        <th>Count</th>
-                                                                                    </tr>
-                                                                                </thead>
+                                                                            <tr>
+                                                                                <td colspan="12" class="hiddenRow">
+                                                                                    <div class="accordian-body collapse" id="demo10">
+                                                                                        <table class="table table-striped">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <td><a href="#"> XPTO 1</a></td>
+                                                                                                    <td>XPTO 2</td>
+                                                                                                    <td>Obs</td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <th>item 1</th>
+                                                                                                    <th>item 2</th>
+                                                                                                    <th>item 3 </th>
+                                                                                                    <th>item 4</th>
+                                                                                                    <th>item 5</th>
+                                                                                                    <th>Actions</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td>item 1</td>
+                                                                                                    <td>item 2</td>
+                                                                                                    <td>item 3</td>
+                                                                                                    <td>item 4</td>
+                                                                                                    <td>item 5</td>
+                                                                                                    <td>
+                                                                                                        <a href="#" class="btn btn-default btn-sm">
+                                                                                                            <i class="glyphicon glyphicon-cog"></i>
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
 
-                                                                                <tbody>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
 
-                                                                                    @foreach (var item in order.OrderItems)
-                                                                                    {
-                                                                                        <tr data-toggle="collapse" class="accordion-toggle" data-target="#demo10">
-                                                                                            <td> <a asp-action="detail" asp-controller="book" asp-route-id="@item.ProductId">@item.Product.Name</a></td>
-                                                                                            <td>@item.SalePrice</td>
-                                                                                            <td>@item.DiscountPercent </td>
-                                                                                            <td>@((item.DiscountPercent>0?(item.SalePrice* (1-item.DiscountPercent/100)):item.SalePrice).ToString("0.00"))</td>
-                                                                                            <td>@item.Count</td>
-                                                                                        </tr>
-                                                                                    }
-
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            }
+                                                                            <tr>
+                                                                                <td>Scrum Master</td>
+                                                                                <td>Google</td>
+                                                                                <td>U$8.00000 </td>
+                                                                                <td> 2016/09/27</td>
+                                                                                <td> 2017/09/27</td>
+                                                                                <td>
+                                                                                    <a href="#" class="btn btn-default btn-sm">
+                                                                                        <i class="glyphicon glyphicon-cog"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
 
 
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                                            <tr>
+                                                                                <td>Back-end</td>
+                                                                                <td>Google</td>
+                                                                                <td>U$8.00000 </td>
+                                                                                <td> 2016/09/27</td>
+                                                                                <td> 2017/09/27</td>
+                                                                                <td>
+                                                                                    <a href="#" class="btn btn-default btn-sm">
+                                                                                        <i class="glyphicon glyphicon-cog"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
 
+
+                                                                            <tr>
+                                                                                <td>Front-end</td>
+                                                                                <td>Google</td>
+                                                                                <td>U$8.00000 </td>
+                                                                                <td> 2016/09/27</td>
+                                                                                <td> 2017/09/27</td>
+                                                                                <td>
+                                                                                    <a href="#" class="btn btn-default btn-sm">
+                                                                                        <i class="glyphicon glyphicon-cog"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+
+
+                                                        <tr data-toggle="collapse" data-target="#demo2" class="accordion-toggle">
+                                                            <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
+                                                            <td>Silvio</td>
+                                                            <td>Santos</td>
+                                                            <td>São Paulo</td>
+                                                            <td>SP</td>
+                                                            <td> new</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="6" class="hiddenRow"><div id="demo2" class="accordian-body collapse">Demo2</div></td>
+                                                        </tr>
+                                                        <tr data-toggle="collapse" data-target="#demo3" class="accordion-toggle">
+                                                            <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
+                                                            <td>John</td>
+                                                            <td>Doe</td>
+                                                            <td>Dracena</td>
+                                                            <td>SP</td>
+                                                            <td> New</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="6" class="hiddenRow"><div id="demo3" class="accordian-body collapse">Demo3 sadasdasdasdasdas</div></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
 
                                         </div>
+
                                     </div>
                                 </div>*@
+
+                            @*End*@
+
                         </div>
 
                         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
@@ -344,7 +281,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.LabTests.Where(x=>x.AppUserId == ViewBag.LabUser))
+                                    @foreach (var item in Model.LabTests.Where(x => x.AppUserId == TempData["LabUser"]))
                                     {
                                         Count++;
                                         <tr>
@@ -353,7 +290,7 @@
                                             <td>@item.Email</td>
                                             <td>@item.LabTestPrice.LabPackage </td>
                                             <td>@item.Rendezvous.ToString("dddd, dd MMMM yyyy")</td>
-                                            <td>₼@item.LabTestPrice.Price</td>
+                                            <td>₼@item.LabTestPrice.Price₼</td>
                                             <td>
                                                 @if ((int)item.LabStatus == 1)
                                                 {
@@ -373,6 +310,7 @@
 
                                         </tr>
                                     }
+
 
                                 </tbody>
                             </table>

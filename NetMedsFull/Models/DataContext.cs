@@ -28,6 +28,7 @@ namespace NetMedsFull.Models
         public DbSet<SbiLab> SbiLabs { get; set; }
         public DbSet<ShopSlider> ShopSliders { get; set; }
         public DbSet<LabTest> LabTests { get; set; }
+        public DbSet<SubCategoryBrand> SubCategoryBrands { get; set; }
 
     }
 }

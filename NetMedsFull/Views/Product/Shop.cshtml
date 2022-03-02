@@ -29,7 +29,7 @@
                                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <ul>
-                                            @foreach (var subCategory in Model.SubCategories)
+                                            @foreach (var subCategory in Model.SubCategories.Where(x=>x.CategoryId == category.Id))
                                             {
                                                 <li>
                                                     <a href="#">
@@ -57,16 +57,24 @@
                                 Brands
                             </h2>
                             <form method="post">
-                                @foreach (var brand in Model.Brands)
+                                @*@foreach (var category in Model.Categories)
                                 {
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                               id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            @brand.Name
-                                        </label>
-                                    </div>
-                                }
+                                    @foreach (var subCategory in Model.SubCategories.Where(x=>x.CategoryId == category.Id))
+                                    {
+                                        @foreach (var brand in Model.Brands.Where(x => x.SubCategoryId == subCategory.Id))
+                                        {
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    @brand.Name
+                                                </label>
+                                            </div>
+                                        }
+                                    }
+                                }*@
+
+
                             </form>
                         </div>
                     </div>

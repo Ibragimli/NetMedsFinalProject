@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetMedsFull.Models;
 
 namespace NetMedsFull.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220302135057_brandsubcategorydelete")]
+    partial class brandsubcategorydelete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,7 +265,12 @@ namespace NetMedsFull.Migrations
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
+                    b.Property<int?>("SubCategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SubCategoryId");
 
                     b.ToTable("Brands");
                 });
@@ -728,31 +735,6 @@ namespace NetMedsFull.Migrations
                     b.ToTable("SubCategories");
                 });
 
-            modelBuilder.Entity("NetMedsFull.Models.SubCategoryBrand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("SubCategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BrandId");
-
-                    b.HasIndex("SubCategoryId");
-
-                    b.ToTable("SubCategoryBrands");
-                });
-
             modelBuilder.Entity("NetMedsFull.Models.TrendSlider", b =>
                 {
                     b.Property<int>("Id")
@@ -856,6 +838,13 @@ namespace NetMedsFull.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("NetMedsFull.Models.Brand", b =>
+                {
+                    b.HasOne("NetMedsFull.Models.SubCategory", "SubCategory")
+                        .WithMany()
+                        .HasForeignKey("SubCategoryId");
+                });
+
             modelBuilder.Entity("NetMedsFull.Models.Comment", b =>
                 {
                     b.HasOne("NetMedsFull.Models.AppUser", "AppUser")
@@ -945,21 +934,6 @@ namespace NetMedsFull.Migrations
                     b.HasOne("NetMedsFull.Models.Category", "Category")
                         .WithMany("SubCategories")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("NetMedsFull.Models.SubCategoryBrand", b =>
-                {
-                    b.HasOne("NetMedsFull.Models.Brand", "Brand")
-                        .WithMany("SubCategoryBrands")
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NetMedsFull.Models.SubCategory", "SubCategory")
-                        .WithMany("SubCategoryBrands")
-                        .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

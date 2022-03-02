@@ -2,6 +2,7 @@
 
 @{
     List<Setting> settings = await service.GetSettings();
+    List<Product> products = await service.GetProductSearch();
     BasketViewModel HeaderVm = await service.GetHeaderBasket();
 }
 
@@ -89,31 +90,7 @@
                             <div class="col-lg-12">
                                 <div class="searchBox">
                                     <ul>
-                                        <li>
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                            <a href="#">
-                                                Search1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                            <a href="#">
-                                                Search1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                            <a href="#">
-                                                Search1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                            <a href="#">
-                                                Search1
-                                            </a>
-                                        </li>
-
+                                        @await Html.PartialAsync("_SearchPartial", products)
                                     </ul>
                                 </div>
                             </div>
@@ -195,13 +172,13 @@
             <div class="row">
                 <div class="col    navBox navMed">
                     <img src="~/Images/navbars/medicine.svg" alt="medicine">
-                    <a class="me-5 nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    <a class="me-5 nav-link dropdown-toggle" asp-action="shop" asp-controller="product" id="navbarDropdownMenuLink" role="button"
                        aria-expanded="false">
                         Medicine
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">All Medicines</a></li>
-                        <li><a class="dropdown-item" href="#">Previously Ordered Products </a></li>
+                        <li><a class="dropdown-item" asp-action="shop" asp-controller="product">All Medicines</a></li>
+                        <li><a class="dropdown-item" asp-action="shop" asp-controller="product">Previously Ordered Products </a></li>
                     </ul>
                 </div>
                 <div class="col  navBox">
@@ -303,7 +280,7 @@
                                 <i class="fa-brands fa-youtube"></i>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <div class="col-lg-3 footSubscribe">
@@ -317,20 +294,7 @@
                         <input type="text" class="form-control" placeholder="Enter your email address">
                         <i class="fa-solid fa-arrow-right"></i>
                     </form>
-                    <ul>
-                        <li>
-                            <a href="https://play.google.com/store/apps/details?id=com.NetmedsMarketplace.Netmeds&hl=en"
-                               target="_blank">
-                                <img src="~/Images/footers/play_store.png" alt="">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://apps.apple.com/in/app/netmeds-india-ki-pharmacy/id1011070011"
-                               target="_blank">
-                                <img src="~/Images/footers/app_store.png" alt="">
-                            </a>
-                        </li>
-                    </ul>
+
                 </div>
             </div>
             <hr>

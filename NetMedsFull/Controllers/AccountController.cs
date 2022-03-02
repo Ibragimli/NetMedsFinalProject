@@ -151,12 +151,17 @@ namespace NetMedsFull.Controllers
         }
         public IActionResult ForgotPassword()
         {
-            return View();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            return RedirectToAction("index", "home");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotViewModel forgotVM)
         {
+       
             AppUser user = await _userManager.FindByEmailAsync(forgotVM.Email);
             if (user == null)
             {
@@ -175,6 +180,14 @@ namespace NetMedsFull.Controllers
         }
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPasswordVM)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("index", "home");
+            }
+            if (resetPasswordVM.Email == null)
+            {
+                return RedirectToAction("error", "error");
+            }
             AppUser user = await _userManager.FindByEmailAsync(resetPasswordVM.Email);
             if (user == null || !(await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", resetPasswordVM.Token)))
             {
