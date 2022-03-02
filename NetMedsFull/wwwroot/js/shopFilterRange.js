@@ -9,12 +9,14 @@ $(document).ready(function () {
         thousand: ',',
         prefix: '₼'
     });
+    
     noUiSlider.create(rangeSlider, {
         start: [0, 1000],
         step: 1,
         range: {
-            'min': [0],
-            'max': [1000]
+            
+            'min': [ViewBag.MinPrice],
+            'max': [ViewBag.MaxPrice]
         },
         format: moneyFormat,
         connect: true

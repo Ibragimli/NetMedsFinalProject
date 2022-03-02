@@ -32,7 +32,9 @@
                                             @foreach (var subCategory in Model.SubCategories.Where(x => x.CategoryId == category.Id))
                                             {
                                                 <li>
-                                                    <a asp-action="shop" asp-controller="product" asp-route-categoryId="@category.Id">
+                                                    <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@category.Id"
+                                                       asp-route-subCategoryId="@subCategory.Id" asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ViewBag.TypeId"
+                                                       asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice">
                                                         @subCategory.Name
                                                     </a>
                                                 </li>
@@ -61,7 +63,9 @@
                                 @foreach (var brand in Model.Brands)
                                 {
                                     <div class="form-check">
-                                        <a asp-action="shop" asp-controller="product" asp-route-brandId="@brand.Id">
+                                        <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@ViewBag.CategoryId"
+                                           asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@brand.Id" asp-route-typeId="@ViewBag.TypeId" 
+                                           asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice">
                                             @brand.Name (@brand.SubCategoryBrands.Count())
                                         </a>
                                     </div>
@@ -84,11 +88,13 @@
                                 <div id="flush-collapse1" class="accordion-collapse collapse"
                                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
-                                        <form >
+                                        <form>
                                             @foreach (var brand in Model.Brands)
                                             {
                                                 <div class="form-check">
-                                                    <a asp-action="shop" asp-controller="product" asp-route-brandId="@brand.Id">
+                                                    <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@ViewBag.CategoryId" 
+                                                       asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@brand.Id" asp-route-typeId="@ViewBag.TypeId" 
+                                                       asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice">
                                                         @brand.Name (@brand.SubCategoryBrands.Count())
                                                     </a>
                                                 </div>
@@ -103,16 +109,21 @@
                         <h2>
                             Type
                         </h2>
-                        <form >
+                        <form>
 
                             <div class="form-check">
-                                <a asp-action="shop" asp-controller="product" asp-route-typeId="@ProductType.Liquid">
+                                <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" 
+                                   asp-route-categoryId="@ViewBag.CategoryId" asp-route-subCategoryId="@ViewBag.SubCategoryId" 
+                                   asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ViewBag.TypeId" asp-route-maxPrice="@ViewBag.MaxPrice"
+                                   asp-route-minPrice="@ViewBag.MinPrice">
                                     @ProductType.Liquid
                                 </a>
 
                             </div>
                             <div class="form-check">
-                                <a asp-action="shop" asp-controller="product" asp-route-typeId="@ProductType.Tablet">
+                                <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@ViewBag.CategoryId"
+                                   asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ViewBag.TypeId" 
+                                   asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice">
                                     @ProductType.Tablet
                                 </a>
                             </div>
@@ -245,21 +256,29 @@
                             @if (Model.PagenatedProducts.HasPrev)
                             {
                                 <li class="page-item disabled">
-                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex-1)" class="page-link">Previous</a>
+                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex-1)" 
+                                       asp-route-categoryId="@ViewBag.CategoryId" asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId" 
+                                       asp-route-typeId="@ViewBag.TypeId" asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice" 
+                                       class="page-link">Previous</a>
                                 </li>
                             }
 
                             @for (int i = 1; i <= Model.PagenatedProducts.TotalPages; i++)
                             {
                                 <li class="page-item @(Model.PagenatedProducts.PageIndex==i?"active":"")" aria-current="page">
-                                    <a asp-action="shop" asp-controller="product" asp-route-page="@i" class="page-link">@i</a>
+                                    <a asp-action="shop" asp-controller="product" asp-route-page="@i" asp-route-categoryId="@ViewBag.CategoryId"
+                                       asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ViewBag.TypeId" 
+                                       asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice" class="page-link">@i</a>
                                 </li>
                             }
 
                             @if (Model.PagenatedProducts.HasNext)
                             {
                                 <li class="page-item">
-                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex+1)" class="page-link">Next</a>
+                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex+1)" 
+                                       asp-route-categoryId="@ViewBag.CategoryId" asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId"
+                                       asp-route-typeId="@ViewBag.TypeId" asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice" 
+                                       class="page-link">Next</a>
                                 </li>
                             }
                         </ul>

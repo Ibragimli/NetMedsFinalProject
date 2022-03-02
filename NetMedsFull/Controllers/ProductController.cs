@@ -69,9 +69,44 @@ namespace NetMedsFull.Controllers
 
 
 
-        public IActionResult Shop(int page = 1, int? brandId = null, int? categoryId = null, int? subcategoryId = null)
+        public IActionResult Shop( int? brandId = null, int? categoryId = null, int? subcategoryId = null, decimal? maxPrice = null, decimal? minPrice = null, int? typeId = null , int page = 1)
         {
             var products = _context.Products.Include(x => x.Brand).ThenInclude(x => x.SubCategoryBrands).Include(x => x.ProductImages).Where(x => x.IsDelete == false).AsQueryable();
+            ViewBag.BrandId = brandId;
+            ViewBag.CategoryId = categoryId;
+            ViewBag.SubCategoryId = subcategoryId;
+            ViewBag.TypeId = typeId;
+            ViewBag.MaxPrice = maxPrice;
+            ViewBag.MinPrice = minPrice;
+            ViewBag.PageIndex = page;
+
+            if (brandId != null)
+            {
+                products = products.Where(x => x.Brand.Id == brandId);
+            }
+
+            if (subcategoryId != null)
+            {
+                products = products.Where(x => x.Brand.SubCategoryBrands.Any(x => x.SubCategory.Id == subcategoryId));
+            }
+            if (categoryId != null)
+            {
+                products = products.Where(x => x.Brand.SubCategoryBrands.Any(x => x.SubCategory.CategoryId == categoryId));
+            }
+            if (minPrice != null)
+            {
+                products = products.Where(x => x.SalePrice > minPrice);
+            }
+            if (maxPrice != null)
+            {
+                products = products.Where(x => x.SalePrice < maxPrice);
+            }
+            if (typeId != null)
+            {
+                products = products.Where(x => x.Type == Enums.ProductType.Liquid || x.Type == Enums.ProductType.Tablet);
+            }
+           
+
             ProductShopViewModel productDetailVM = new ProductShopViewModel
             {
                 ShopSliders = _context.ShopSliders.ToList(),
