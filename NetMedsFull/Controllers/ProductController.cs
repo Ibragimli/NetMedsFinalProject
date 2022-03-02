@@ -68,16 +68,17 @@ namespace NetMedsFull.Controllers
         }
 
 
-       
-        public IActionResult Shop()
+
+        public IActionResult Shop(int page = 1, int? brandId = null, int? categoryId = null, int? subcategoryId = null)
         {
+            var products = _context.Products.Include(x => x.Brand).ThenInclude(x => x.SubCategoryBrands).Include(x => x.ProductImages).Where(x => x.IsDelete == false).AsQueryable();
             ProductShopViewModel productDetailVM = new ProductShopViewModel
             {
                 ShopSliders = _context.ShopSliders.ToList(),
                 Categories = _context.Categories.Where(x => x.IsDelete == false).ToList(),
-                Brands = _context.Brands.Where(x => x.IsDelete == false).ToList(),
+                Brands = _context.Brands.Include(x => x.SubCategoryBrands).ThenInclude(x => x.SubCategory).Where(x => x.IsDelete == false).ToList(),
                 SubCategories = _context.SubCategories.Where(x => x.IsDelete == false).ToList(),
-                Types = _context.Products.Where(x => x.IsDelete == false).ToList(),
+                PagenatedProducts = PagenetedList<Product>.Create(products, page, 9)
             };
             return View(productDetailVM);
         }

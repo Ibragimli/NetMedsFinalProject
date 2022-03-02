@@ -29,10 +29,10 @@
                                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <ul>
-                                            @foreach (var subCategory in Model.SubCategories.Where(x=>x.CategoryId == category.Id))
+                                            @foreach (var subCategory in Model.SubCategories.Where(x => x.CategoryId == category.Id))
                                             {
                                                 <li>
-                                                    <a href="#">
+                                                    <a asp-action="shop" asp-controller="product" asp-route-categoryId="@category.Id">
                                                         @subCategory.Name
                                                     </a>
                                                 </li>
@@ -56,24 +56,16 @@
                             <h2>
                                 Brands
                             </h2>
-                            <form method="post">
-                                @*@foreach (var category in Model.Categories)
-                                {
-                                    @foreach (var subCategory in Model.SubCategories.Where(x=>x.CategoryId == category.Id))
-                                    {
-                                        @foreach (var brand in Model.Brands.Where(x => x.SubCategoryId == subCategory.Id))
-                                        {
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                       id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    @brand.Name
-                                                </label>
-                                            </div>
-                                        }
-                                    }
-                                }*@
+                            <form>
 
+                                @foreach (var brand in Model.Brands)
+                                {
+                                    <div class="form-check">
+                                        <a asp-action="shop" asp-controller="product" asp-route-brandId="@brand.Id">
+                                            @brand.Name (@brand.SubCategoryBrands.Count())
+                                        </a>
+                                    </div>
+                                }
 
                             </form>
                         </div>
@@ -92,15 +84,13 @@
                                 <div id="flush-collapse1" class="accordion-collapse collapse"
                                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
-                                        <form method="post">
+                                        <form >
                                             @foreach (var brand in Model.Brands)
                                             {
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                           id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        @brand.Name
-                                                    </label>
+                                                    <a asp-action="shop" asp-controller="product" asp-route-brandId="@brand.Id">
+                                                        @brand.Name (@brand.SubCategoryBrands.Count())
+                                                    </a>
                                                 </div>
                                             }
                                         </form>
@@ -113,17 +103,20 @@
                         <h2>
                             Type
                         </h2>
-                        <form method="post">
-                            @foreach (var type in Model.Types)
-                            {
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                           id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        @type.Name
-                                    </label>
-                                </div>
-                            }
+                        <form >
+
+                            <div class="form-check">
+                                <a asp-action="shop" asp-controller="product" asp-route-typeId="@ProductType.Liquid">
+                                    @ProductType.Liquid
+                                </a>
+
+                            </div>
+                            <div class="form-check">
+                                <a asp-action="shop" asp-controller="product" asp-route-typeId="@ProductType.Tablet">
+                                    @ProductType.Tablet
+                                </a>
+                            </div>
+
                         </form>
                     </div>
                     <h2>
@@ -175,217 +168,100 @@
                         ALL PRODUCTS
                     </h2>
                     <div class="row">
-                        <div class="col-lg-3">
-                            <div class="shopProduct">
-                                <div class="shopProImage">
-                                    <a href="#">
-                                        <img src="~/Images/shopFilters/kapiva_wheat_grass_juice_1_ltr_0_2.jpg"
-                                             alt="">
-                                        <span>6% OFF</span>
-                                    </a>
-                                </div>
-                                <div class="shopTitle">
-                                    <a href="#">
-                                        <h2>
-
-                                            Kapiva Wheat Grass Juice 1 ltr
-                                        </h2>
-                                    </a>
-
-                                    <p>
-                                        Mkt: Adret Retail Pvt Ltd, (Kapiva)
-                                    </p>
-                                </div>
-                                <div class="shopPrice">
-                                    <div class="bestP">
-                                        <span>Best price* </span>
-                                        <p>₹469.06</p>
+                        @foreach (var product in Model.PagenatedProducts)
+                        {
+                            <div class="col-lg-3">
+                                <div class="shopProduct">
+                                    <div class="shopProImage">
+                                        <a asp-action="detail" asp-controller="product" asp-route-id="@product.Id">
+                                            <img src="~/Images/productImages/@product.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image"
+                                                 alt="">
+                                            <span>@product.DiscountPercent% OFF</span>
+                                        </a>
                                     </div>
-                                    <div class="MRP">
-                                        <span>MRP </span>
-                                        <del>Rs.499.00</del>
+                                    <div class="mt-3 shopTitle">
+                                        <a asp-action="detail" asp-controller="product" asp-route-id="@product.Id">
+                                            <h2>
+                                                @product.Name
+                                            </h2>
+                                        </a>
+
+                                        <p>
+                                            Mkt: @product.Brand.Name
+                                        </p>
                                     </div>
-                                </div>
-                                <div class="shopBtn">
-                                    <a class="AddBtn" href="#">ADD TO CART</a>
-                                    <a href="#">
-                                        <i class="fa-solid fa-heart"></i>
-                                    </a>
+                                    @if (product.DiscountPercent > 0)
+                                    {
+                                        <div class="shopPrice">
+                                            <div class="bestP">
+                                                <span>Best price* </span>
+                                                <p>₼@((product.SalePrice*(100- product.DiscountPercent)/100).ToString("#.00"))</p>
+                                            </div>
+                                            <div class="MRP">
+                                                <span>MRP </span>
+                                                <del>₼@product.SalePrice.ToString("#.00")</del>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="shopPrice">
+                                            <div class="bestP">
+                                                <span>Price* </span>
+                                                <p>₼@((product.SalePrice*(100- product.DiscountPercent)/100).ToString("#.00"))</p>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (product.StockStatus == false)
+                                    {
+                                        <div class="shopBtn">
+                                            <div class="notStock ">
+                                                <h1>Not Stock</h1>
+                                            </div>
+                                            <a href="#">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="shopBtn">
+                                            <a class="AddBtn" href="#">ADD TO CART</a>
+                                            <a href="#">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </a>
+                                        </div>
+                                    }
+
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="shopProduct">
-                                <div class="shopProImage">
-                                    <a href="#">
-                                        <img src="~/Images/shopFilters/kapiva_wheat_grass_juice_1_ltr_0_2.jpg"
-                                             alt="">
-                                        <span>6% OFF</span>
-                                    </a>
-                                </div>
-                                <div class="shopTitle">
-                                    <a href="#">
-                                        <h2>
-
-                                            Kapiva Wheat Grass Juice 1 ltr
-                                        </h2>
-                                    </a>
-
-                                    <p>
-                                        Mkt: Adret Retail Pvt Ltd, (Kapiva)
-                                    </p>
-                                </div>
-                                <div class="shopPrice">
-                                    <div class="bestP">
-                                        <span>Best price* </span>
-                                        <p>₹469.06</p>
-                                    </div>
-                                    <div class="MRP">
-                                        <span>MRP </span>
-                                        <del>Rs.499.00</del>
-                                    </div>
-                                </div>
-                                <div class="shopBtn">
-                                    <a class="AddBtn" href="#">ADD TO CART</a>
-                                    <a href="#">
-                                        <i class="fa-solid fa-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="shopProduct">
-                                <div class="shopProImage">
-                                    <a href="#">
-                                        <img src="~/Images/shopFilters/kapiva_wheat_grass_juice_1_ltr_0_2.jpg"
-                                             alt="">
-                                        <span>6% OFF</span>
-                                    </a>
-                                </div>
-                                <div class="shopTitle">
-                                    <a href="#">
-                                        <h2>
-
-                                            Kapiva Wheat Grass Juice 1 ltr
-                                        </h2>
-                                    </a>
-
-                                    <p>
-                                        Mkt: Adret Retail Pvt Ltd, (Kapiva)
-                                    </p>
-                                </div>
-                                <div class="shopPrice">
-                                    <div class="bestP">
-                                        <span>Best price* </span>
-                                        <p>₹469.06</p>
-                                    </div>
-                                    <div class="MRP">
-                                        <span>MRP </span>
-                                        <del>Rs.499.00</del>
-                                    </div>
-                                </div>
-                                <div class="shopBtn">
-                                    <a class="AddBtn" href="#">ADD TO CART</a>
-                                    <a href="#">
-                                        <i class="fa-solid fa-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="shopProduct">
-                                <div class="shopProImage">
-                                    <a href="#">
-                                        <img src="~/Images/shopFilters/kapiva_wheat_grass_juice_1_ltr_0_2.jpg"
-                                             alt="">
-                                        <span>6% OFF</span>
-                                    </a>
-                                </div>
-                                <div class="shopTitle">
-                                    <a href="#">
-                                        <h2>
-
-                                            Kapiva Wheat Grass Juice 1 ltr
-                                        </h2>
-                                    </a>
-
-                                    <p>
-                                        Mkt: Adret Retail Pvt Ltd, (Kapiva)
-                                    </p>
-                                </div>
-                                <div class="shopPrice">
-                                    <div class="bestP">
-                                        <span>Best price* </span>
-                                        <p>₹469.06</p>
-                                    </div>
-                                    <div class="MRP">
-                                        <span>MRP </span>
-                                        <del>Rs.499.00</del>
-                                    </div>
-                                </div>
-                                <div class="shopBtn">
-                                    <a class="AddBtn" href="#">ADD TO CART</a>
-                                    <a href="#">
-                                        <i class="fa-solid fa-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="shopProduct">
-                                <div class="shopProImage">
-                                    <a href="#">
-                                        <img src="~/Images/shopFilters/kapiva_wheat_grass_juice_1_ltr_0_2.jpg"
-                                             alt="">
-                                        <span>6% OFF</span>
-                                    </a>
-                                </div>
-                                <div class="shopTitle">
-                                    <a href="#">
-                                        <h2>
-
-                                            Kapiva Wheat Grass Juice 1 ltr
-                                        </h2>
-                                    </a>
-
-                                    <p>
-                                        Mkt: Adret Retail Pvt Ltd, (Kapiva)
-                                    </p>
-                                </div>
-                                <div class="shopPrice">
-                                    <div class="bestP">
-                                        <span>Best price* </span>
-                                        <p>₹469.06</p>
-                                    </div>
-                                    <div class="MRP">
-                                        <span>MRP </span>
-                                        <del>Rs.499.00</del>
-                                    </div>
-                                </div>
-                                <div class="shopBtn">
-                                    <a class="AddBtn" href="#">ADD TO CART</a>
-                                    <a href="#">
-                                        <i class="fa-solid fa-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
                 <div class="row shopPagination">
                     <nav aria-label="...">
                         <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
+                            @if (Model.PagenatedProducts.HasPrev)
+                            {
+                                <li class="page-item disabled">
+                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex-1)" class="page-link">Previous</a>
+                                </li>
+                            }
+
+                            @for (int i = 1; i <= Model.PagenatedProducts.TotalPages; i++)
+                            {
+                                <li class="page-item @(Model.PagenatedProducts.PageIndex==i?"active":"")" aria-current="page">
+                                    <a asp-action="shop" asp-controller="product" asp-route-page="@i" class="page-link">@i</a>
+                                </li>
+                            }
+
+                            @if (Model.PagenatedProducts.HasNext)
+                            {
+                                <li class="page-item">
+                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex+1)" class="page-link">Next</a>
+                                </li>
+                            }
                         </ul>
                     </nav>
                 </div>

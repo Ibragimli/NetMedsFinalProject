@@ -36,7 +36,7 @@
                 <ul class="pCategory">
                     <li>
                         <a href="#">
-                            @*@Model.Products. .Name*@
+                            @*@Model.Products.Brand.SubCategoryBrands.FirstOrDefault(x=>x.SubCategory.Name)*@
 
                         </a>
                     </li>
@@ -306,8 +306,8 @@
                         <h1>Rate Product</h1>
                     </div>
                 </div>
-    
-                <partial name="_CommentPartial" model="Model.Comments"/>
+
+                <partial name="_CommentPartial" model="Model.Comments" />
             </div>
         </div>
         <div class="row commentView">

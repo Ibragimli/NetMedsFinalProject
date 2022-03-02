@@ -3930,7 +3930,7 @@ body {
 }
 
 body #shopFilter {
-  padding: 20px 0px;
+  padding: 24px 0px;
 }
 
 body #shopFilter .container .shopLeft .shopCategory {
@@ -4058,16 +4058,15 @@ body #shopFilter .container .shopLeft .shopFilter .filterType form .form-check {
   border-bottom: 1px solid rgba(21, 27, 57, 0.089);
 }
 
-body #shopFilter .container .shopLeft .shopFilter .filterType form .form-check input {
-  font-weight: 500;
-  border-radius: 0.25em;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterType form .form-check label {
-  color: #151b39;
-  font-size: 13px;
+body #shopFilter .container .shopLeft .shopFilter .filterType form .form-check a {
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  font-size: 15px;
+  color: #6f7284;
+  padding-left: 6px;
   font-weight: 400;
   line-height: 1.5;
+  margin-bottom: 2px;
 }
 
 body #shopFilter .container .shopLeft .shopFilter .filterBrands .noneAccordion {
@@ -4088,16 +4087,15 @@ body #shopFilter .container .shopLeft .shopFilter .filterBrands .noneAccordion f
   border-bottom: 1px solid rgba(21, 27, 57, 0.089);
 }
 
-body #shopFilter .container .shopLeft .shopFilter .filterBrands .noneAccordion form .form-check input {
-  font-weight: 500;
-  border-radius: 0.25em;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterBrands .noneAccordion form .form-check label {
-  color: #151b39;
-  font-size: 13px;
+body #shopFilter .container .shopLeft .shopFilter .filterBrands .noneAccordion form .form-check a {
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  font-size: 15px;
+  color: #6f7284;
+  padding-left: 6px;
   font-weight: 400;
   line-height: 1.5;
+  margin-bottom: 2px;
 }
 
 body #shopFilter .container .shopLeft .shopFilter .filterBrands .accordion {
@@ -4144,16 +4142,15 @@ body #shopFilter .container .shopLeft .shopFilter .filterBrands .accordion .acco
   border-bottom: 1px solid rgba(21, 27, 57, 0.089);
 }
 
-body #shopFilter .container .shopLeft .shopFilter .filterBrands .accordion .accordion-item .accordion-collapse .accordion-body form .form-check input {
-  font-weight: 500;
-  border-radius: 0.25em;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterBrands .accordion .accordion-item .accordion-collapse .accordion-body form .form-check label {
-  color: #151b39;
-  font-size: 13px;
+body #shopFilter .container .shopLeft .shopFilter .filterBrands .accordion .accordion-item .accordion-collapse .accordion-body form .form-check a {
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  font-size: 15px;
+  color: #6f7284;
+  padding-left: 6px;
   font-weight: 400;
   line-height: 1.5;
+  margin-bottom: 2px;
 }
 
 body #shopFilter .container .shopLeft .shopFilter h2 {
@@ -4383,14 +4380,20 @@ body #shopFilter .shopRight .shopProducts .shopProduct {
   border: solid 1px rgba(112, 112, 112, 0.38);
   background-color: #fff;
   border-radius: 8px;
+  height: 428px;
+  max-height: 428px;
 }
 
 body #shopFilter .shopRight .shopProducts .shopProduct .shopProImage {
+  width: 100%;
   text-align: center;
+  height: 213px;
   cursor: pointer;
 }
 
 body #shopFilter .shopRight .shopProducts .shopProduct .shopProImage img {
+  width: 100%;
+  height: 100%;
   margin-top: 10px;
 }
 

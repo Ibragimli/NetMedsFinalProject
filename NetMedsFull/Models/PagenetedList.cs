@@ -15,7 +15,15 @@ namespace NetMedsFull.Models
         }
         public int PageIndex { get; set; }
         public int TotalPages { get; set; }
+        public bool HasPrev
+        {
+            get => PageIndex > 1;
+        }
 
+        public bool HasNext
+        {
+            get => TotalPages > PageIndex;
+        }
         public static PagenetedList<T> Create(IQueryable<T> query, int pageindex, int pagesize)
         {
             var items = query.Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();

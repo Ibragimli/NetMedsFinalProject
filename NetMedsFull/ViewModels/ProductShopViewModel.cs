@@ -12,6 +12,6 @@ namespace NetMedsFull.ViewModels
         public List<Category> Categories { get; set; }
         public List<SubCategory> SubCategories { get; set; }
         public List<Brand> Brands { get; set; }
-        public List<Product> Types { get; set; }
+        public PagenetedList<Product> PagenatedProducts { get; set; }
     }
 }
