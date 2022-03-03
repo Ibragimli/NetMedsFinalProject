@@ -50,10 +50,12 @@ namespace NetMedsFull.Controllers
 
             if (!ModelState.IsValid)
             {
+                TempData["Error"] = "Comment model is not valid!";
                 return View("Detail", productDetailVM);
             }
             if (!_context.Products.Any(x => x.Id == comment.ProductId))
             {
+                TempData["Error"] = "Selected Product not found";
                 return View("Detail", productDetailVM);
             }
 
@@ -65,6 +67,7 @@ namespace NetMedsFull.Controllers
             comment.Time = DateTime.UtcNow.AddHours(4);
             _context.Comments.Add(comment);
             _context.SaveChanges();
+            TempData["Success"] = "Comment added successfully";
             return RedirectToAction("detail", new { Id = comment.ProductId });
         }
 
@@ -73,7 +76,6 @@ namespace NetMedsFull.Controllers
         public IActionResult Shop(int? brandId = null, int? categoryId = null, int? subcategoryId = null, int? maxPrice = null, int? minPrice = null, ProductType? typeId = null, int page = 1)
         {
             var products = _context.Products.Include(x => x.Brand).ThenInclude(x => x.SubCategoryBrands).Include(x => x.ProductImages).Where(x => x.IsDelete == false).AsQueryable();
-            //var SalePrice = products.FirstOrDefault(x=>x.DiscountPercent>0?(products.FirstOrDefault(x=>.sale)))
             ViewBag.BrandId = brandId;
             ViewBag.CategoryId = categoryId;
             ViewBag.SubCategoryId = subcategoryId;
@@ -125,7 +127,6 @@ namespace NetMedsFull.Controllers
             };
             return View(productDetailVM);
         }
-
         public async Task<IActionResult> AddBasket(int id)
         {
             if (!_context.Products.Any(x => x.Id == id))
@@ -203,7 +204,6 @@ namespace NetMedsFull.Controllers
 
             return Json(basketItem);
         }
-
         public async Task<IActionResult> DeleteBasket(int id)
         {
             if (!_context.Products.Any(x => x.Id == id))
@@ -278,7 +278,6 @@ namespace NetMedsFull.Controllers
             return basket;
 
         }
-
         private BasketViewModel _getBasketItems(List<BasketItem> basketItems)
         {
             BasketViewModel basket = new BasketViewModel
@@ -304,8 +303,6 @@ namespace NetMedsFull.Controllers
 
             return basket;
         }
-
-
         private Product _getProductContext(int id)
         {
 
@@ -315,7 +312,6 @@ namespace NetMedsFull.Controllers
                 .FirstOrDefault(x => x.Id == id);
             return product;
         }
-
         private ProductDetailViewModel GetProductDetail(Product product, Comment comment = null)
         {
 

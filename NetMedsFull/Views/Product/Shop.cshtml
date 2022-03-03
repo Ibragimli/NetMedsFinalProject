@@ -179,7 +179,10 @@
                                         <a asp-action="detail" asp-controller="product" asp-route-id="@product.Id">
                                             <img src="~/Images/productImages/@product.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image"
                                                  alt="">
-                                            <span>@product.DiscountPercent% OFF</span>
+                                            @if (product.DiscountPercent > 0)
+                                            {
+                                                <span>@product.DiscountPercent% OFF</span>
+                                            }
                                         </a>
                                     </div>
                                     <div class="mt-3 shopTitle">

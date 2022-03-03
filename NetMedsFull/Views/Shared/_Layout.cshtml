@@ -35,6 +35,16 @@
 </head>
 
 <body>
+
+    <span id="toaster-error"></span>
+    @if (TempData["Error"] != null)
+    {
+        <input type="hidden" id="toaster-error" value="@TempData["Error"]" />
+    }
+    @if (TempData["Success"] != null)
+    {
+        <input type="hidden" id="toaster-success" value="@TempData["Success"]" />
+    }
     <header>
         <div class="container-fluid">
             <div class="row">
@@ -330,8 +340,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/js/owl.carousel.min.js"></script>
     <script src="~/js/productDetailOwl.js"></script>
 
@@ -341,6 +350,35 @@
     <script src="~/js/search.js"></script>
     <script src="~/js/basket.js"></script>
 
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        $(document).ready(function () {
+            if ($("#toaster-error").length) {
+                console.log($("#toaster-error"))
+                toastr["error"]($("#toaster-error").val())
+            }
+            if ($("#toaster-success").length) {
+                console.log($("#toaster-success"))
+                toastr["success"]($("#toaster-success").val())
+            }
+        })
+    </script>
 
 </body>
 
