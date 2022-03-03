@@ -34,7 +34,7 @@
                                                 <li>
                                                     <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@category.Id"
                                                        asp-route-subCategoryId="@subCategory.Id" asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ViewBag.TypeId"
-                                                       asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice">
+                                                       asp-route-minPrice="@ViewBag.SelectedMinPrice" asp-route-maxPrice="@ViewBag.SelectedMaxPrice">
                                                         @subCategory.Name
                                                     </a>
                                                 </li>
@@ -64,8 +64,8 @@
                                 {
                                     <div class="form-check">
                                         <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@ViewBag.CategoryId"
-                                           asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@brand.Id" asp-route-typeId="@ViewBag.TypeId" 
-                                           asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice">
+                                           asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@brand.Id" asp-route-typeId="@ViewBag.TypeId"
+                                           asp-route-minPrice="@ViewBag.SelectedMinPrice" asp-route-maxPrice="@ViewBag.SelectedMaxPrice">
                                             @brand.Name (@brand.SubCategoryBrands.Count())
                                         </a>
                                     </div>
@@ -92,9 +92,9 @@
                                             @foreach (var brand in Model.Brands)
                                             {
                                                 <div class="form-check">
-                                                    <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@ViewBag.CategoryId" 
-                                                       asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@brand.Id" asp-route-typeId="@ViewBag.TypeId" 
-                                                       asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice">
+                                                    <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@ViewBag.CategoryId"
+                                                       asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@brand.Id" asp-route-typeId="@ViewBag.TypeId"
+                                                       asp-route-minPrice="@ViewBag.SelectedMinPrice" asp-route-maxPrice="@ViewBag.SelectedMaxPrice">
                                                         @brand.Name (@brand.SubCategoryBrands.Count())
                                                     </a>
                                                 </div>
@@ -112,47 +112,39 @@
                         <form>
 
                             <div class="form-check">
-                                <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" 
-                                   asp-route-categoryId="@ViewBag.CategoryId" asp-route-subCategoryId="@ViewBag.SubCategoryId" 
-                                   asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ViewBag.TypeId" asp-route-maxPrice="@ViewBag.MaxPrice"
-                                   asp-route-minPrice="@ViewBag.MinPrice">
+                                <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex"
+                                   asp-route-categoryId="@ViewBag.CategoryId" asp-route-subCategoryId="@ViewBag.SubCategoryId"
+                                   asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ProductType.Liquid" asp-route-minPrice="@ViewBag.SelectedMinPrice"
+                                   asp-route-maxPrice="@ViewBag.SelectedMaxPrice">
+
                                     @ProductType.Liquid
                                 </a>
 
                             </div>
                             <div class="form-check">
                                 <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@ViewBag.CategoryId"
-                                   asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ViewBag.TypeId" 
-                                   asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice">
+                                   asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ProductType.Tablet"
+                                   asp-route-minPrice="@ViewBag.SelectedMinPrice" asp-route-maxPrice="@ViewBag.SelectedMaxPrice">
                                     @ProductType.Tablet
                                 </a>
                             </div>
 
+
                         </form>
                     </div>
-                    <h2>
-                        Price
-                    </h2>
+
                     <div class="filterRangePrice">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div id="slider-range"></div>
-                            </div>
-                        </div>
-                        <div class="row slider-labels">
-                            <div class="col-lg-6 caption">
-                                <span id="slider-range-value1"></span>
-                            </div>
-                            <div class="col-lg-6 text-right caption d-flex justify-content-end">
-                                <span id="slider-range-value2"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <form>
-                                    <input type="hidden" name="min-value" value="">
-                                    <input type="hidden" name="max-value" value="">
-                                </form>
+                        <h2>
+                            Price
+                        </h2>
+                        <div class="single-block">
+                            <div class="range-slider pt--30">
+                                <div class="sb-range-slider"></div>
+                                <div class="slider-price">
+                                    <p>
+                                        <input type="text" id="amount" readonly="">
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -256,9 +248,9 @@
                             @if (Model.PagenatedProducts.HasPrev)
                             {
                                 <li class="page-item disabled">
-                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex-1)" 
-                                       asp-route-categoryId="@ViewBag.CategoryId" asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId" 
-                                       asp-route-typeId="@ViewBag.TypeId" asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice" 
+                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex-1)"
+                                       asp-route-categoryId="@ViewBag.CategoryId" asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId"
+                                       asp-route-typeId="@ViewBag.TypeId" asp-route-minPrice="@ViewBag.SelectedMinPrice" asp-route-maxPrice="@ViewBag.SelectedMaxPrice"
                                        class="page-link">Previous</a>
                                 </li>
                             }
@@ -267,17 +259,17 @@
                             {
                                 <li class="page-item @(Model.PagenatedProducts.PageIndex==i?"active":"")" aria-current="page">
                                     <a asp-action="shop" asp-controller="product" asp-route-page="@i" asp-route-categoryId="@ViewBag.CategoryId"
-                                       asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ViewBag.TypeId" 
-                                       asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice" class="page-link">@i</a>
+                                       asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId" asp-route-typeId="@ViewBag.TypeId"
+                                       asp-route-minPrice="@ViewBag.SelectedMinPrice" asp-route-maxPrice="@ViewBag.SelectedMaxPrice" class="page-link">@i</a>
                                 </li>
                             }
 
                             @if (Model.PagenatedProducts.HasNext)
                             {
                                 <li class="page-item">
-                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex+1)" 
+                                    <a asp-action="shop" asp-controller="product" asp-route-page="@(Model.PagenatedProducts.PageIndex+1)"
                                        asp-route-categoryId="@ViewBag.CategoryId" asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@ViewBag.BrandId"
-                                       asp-route-typeId="@ViewBag.TypeId" asp-route-maxPrice="@ViewBag.MaxPrice" asp-route-minPrice="@ViewBag.MinPrice" 
+                                       asp-route-typeId="@ViewBag.TypeId" asp-route-minPrice="@ViewBag.SelectedMinPrice" asp-route-maxPrice="@ViewBag.SelectedMaxPrice"
                                        class="page-link">Next</a>
                                 </li>
                             }
@@ -289,9 +281,42 @@
     </div>
 </section>
 @section Scripts{
+    <script src="~/js/plugins.js"></script>
+    <script>
+                    $(function () {
+                        $(".sb-range-slider").slider({
+                            range: true,
+                            min: @ViewBag.MinPrice,
+                            max: @ViewBag.MaxPrice,
+                            values: [@ViewBag.SelectedMinPrice, @ViewBag.SelectedMaxPrice],
+                            slide: function (event, ui) {
+                                $("#amount").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                            },
+                            change: function (event, ui) {
+                                console.log(ui.values[0] + ' - ' + ui.values[1])
+
+                                let url = new URL(window.location.href);
+                                let params = new URLSearchParams(url.search);
+
+                                params.set("minPrice", ui.values[0]);
+                                params.set("maxPrice", ui.values[1]);
+                                url.search = params;
+
+                                window.location = url.href;
+                            }
+                        });
+                        $("#amount").val("£" + $(".sb-range-slider").slider("values", 0) +
+                            " - £" + $(".sb-range-slider").slider("values", 1));
+                    });
+    </script>
+
     <script src="script.js"></script>
     <script src="~/js/shopSlider.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+
     <script src="~/js/bootstrap-slider.js"></script>
     <script src="~/js/bootstrap-slider.min.js"></script>
     <script src="~/js/shopFilterRange.js"></script>
+
 }
+

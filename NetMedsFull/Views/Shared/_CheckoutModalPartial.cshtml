@@ -3,8 +3,6 @@
 @inject UserManager<AppUser> userManager
 @{
     AppUser user = userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && x.IsAdmin == false);
-
-
 }
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -38,7 +36,13 @@
                         </div>
                         <div class="col-md-6 pe-3  col-12 mb--20">
                             <label asp-for="Phone">Phone no*</label>
-                            <input value="@user.PhoneNumber" class="form-control" asp-for="Phone" placeholder="Phone number">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <input value="@user.PhoneNumber" class="form-control" asp-for="Phone" placeholder="Phone number">
+
+                            }
+                            <input  class="form-control" asp-for="Phone" placeholder="Phone number">
+
                             <span asp-validation-for="Phone" class="text-danger"></span>
                         </div>
                         <div class="col-md-6  col-12 mb--20">
@@ -52,9 +56,13 @@
                                       placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                         </div>
                         <div>
-                            <input type="hidden" asp-for="Fullname" value="@user.FullName" />
-                            <input type="hidden" asp-for="Email" value="@user.Email" />
-                            <input type="hidden" asp-for="AppUserId" value="@user.Id" />
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <input type="hidden" asp-for="Fullname" value="@user.FullName" />
+                                <input type="hidden" asp-for="Email" value="@user.Email" />
+                                <input type="hidden" asp-for="AppUserId" value="@user.Id" />
+                            }
+
                         </div>
                         <div class="text-danger" asp-validation-summary="ModelOnly"> </div>
                     </div>

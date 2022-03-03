@@ -4021,10 +4021,6 @@ body #shopFilter .container .shopLeft .shopFilter {
   padding: 25px 15px;
   border-radius: 8px;
   margin-bottom: 15px;
-  /* Handles and cursors;
-                           */
-  /* Disabled state;
-                           */
 }
 
 body #shopFilter .container .shopLeft .shopFilter h1 {
@@ -4162,166 +4158,62 @@ body #shopFilter .container .shopLeft .shopFilter h2 {
   padding: 8px 5px;
 }
 
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice {
-  padding: 0px 15px;
-  /* Painting and performance;
-                           * Browsers can paint handles in their own layer.
-                           */
-  /* Slider size and handle placement;
-                           */
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .slider-labels {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-top: 10px;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .slider-labels .caption #slider-range-value1 {
-  color: #151b39;
-  background: 0 0;
-  min-width: 42px;
-  padding: 5px 0px 0px 0px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .slider-labels .caption #slider-range-value2 {
-  color: #151b39;
-  background: 0 0;
-  min-width: 42px;
-  padding: 5px 0px 0px 55px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-target,
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-target * {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -ms-touch-action: none;
-  touch-action: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-target {
-  position: relative;
-  direction: ltr;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-base {
+body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .single-block .range-slider .slider {
   width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 1;
-  /* Fix 401 */
 }
 
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-origin {
-  position: absolute;
-  right: 0;
-  top: 0;
-  left: 0;
-  bottom: 0;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-handle {
-  position: relative;
-  z-index: 1;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-stacking .noUi-handle {
-  /* This class is applied to the lower origin when
-                             its values is > 50%. */
-  z-index: 10;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-state-tap .noUi-origin {
-  -webkit-transition: left 0.3s, top .3s;
-  transition: left 0.3s, top .3s;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-state-drag * {
-  cursor: inherit !important;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-base,
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-handle {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-horizontal {
-  height: 4px;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .noUi-horizontal .noUi-handle {
-  border-radius: 50%;
-  left: -7px;
-  top: -9px;
-  width: 8px;
-  height: 8px;
-  position: relative;
+body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .single-block .range-slider .slider .slider-handle {
+  width: 20px;
+  height: 20px;
   z-index: 1;
   border: 7px solid #24aeb1;
   border-radius: 50%;
   cursor: pointer;
+  text-align: center;
   background: #fff;
 }
 
-body #shopFilter .container .shopLeft .shopFilter .noUi-background {
-  background: #D6D7D9;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .noUi-connect {
+body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .single-block .range-slider .slider .slider-track .slider-selection {
   background: #24aeb1;
-  -webkit-transition: background 450ms;
-  transition: background 450ms;
 }
 
-body #shopFilter .container .shopLeft .shopFilter .noUi-origin {
-  border-radius: 2px;
+body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .single-block .range-slider .sb-range-slider {
+  height: 7px;
+  background: #e8e8e8;
 }
 
-body #shopFilter .container .shopLeft .shopFilter .noUi-target {
-  border-radius: 2px;
+body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .single-block .range-slider .sb-range-slider .ui-slider-range {
+  background: #24aeb1;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  font-size: .7em;
+  display: block;
 }
 
-body #shopFilter .container .shopLeft .shopFilter .noUi-draggable {
-  cursor: w-resize;
+body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .single-block .range-slider .sb-range-slider .ui-slider-handle {
+  cursor: pointer;
+  width: 21px;
+  height: 21px;
+  top: -7px;
+  background: #fff;
+  border: 3px solid #24aeb1;
+  border-radius: 100%;
 }
 
-body #shopFilter .container .shopLeft .shopFilter .noUi-vertical .noUi-draggable {
-  cursor: n-resize;
+body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .single-block .range-slider .slider-price {
+  margin-top: 25px;
+  text-align: center;
 }
 
-body #shopFilter .container .shopLeft .shopFilter .noUi-handle {
-  cursor: default;
-  -webkit-box-sizing: content-box !important;
-  box-sizing: content-box !important;
-}
-
-body #shopFilter .container .shopLeft .shopFilter .noUi-handle:active {
-  border: 8px solid #345DBB;
-  border: 8px solid rgba(53, 93, 187, 0.38);
-  background-clip: padding-box;
-  left: -14px;
-  top: -14px;
-}
-
-body #shopFilter .container .shopLeft .shopFilter [disabled].noUi-connect,
-body #shopFilter .container .shopLeft .shopFilter [disabled] .noUi-connect {
-  background: #B8B8B8;
-}
-
-body #shopFilter .container .shopLeft .shopFilter [disabled].noUi-origin,
-body #shopFilter .container .shopLeft .shopFilter [disabled] .noUi-handle {
-  cursor: not-allowed;
+body #shopFilter .container .shopLeft .shopFilter .filterRangePrice .single-block .range-slider .slider-price p input {
+  background: transparent;
+  border: transparent;
+  color: #333;
+  text-align: left;
+  font-weight: 700;
+  word-spacing: 15px;
 }
 
 body #shopFilter .shopRight .shopSlider {

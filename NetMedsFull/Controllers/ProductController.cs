@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NetMedsFull.Enums;
 using NetMedsFull.Models;
 using NetMedsFull.ViewModels;
 using Newtonsoft.Json;
@@ -69,16 +70,23 @@ namespace NetMedsFull.Controllers
 
 
 
-        public IActionResult Shop( int? brandId = null, int? categoryId = null, int? subcategoryId = null, decimal? maxPrice = null, decimal? minPrice = null, int? typeId = null , int page = 1)
+        public IActionResult Shop(int? brandId = null, int? categoryId = null, int? subcategoryId = null, int? maxPrice = null, int? minPrice = null, ProductType? typeId = null, int page = 1)
         {
             var products = _context.Products.Include(x => x.Brand).ThenInclude(x => x.SubCategoryBrands).Include(x => x.ProductImages).Where(x => x.IsDelete == false).AsQueryable();
+            //var SalePrice = products.FirstOrDefault(x=>x.DiscountPercent>0?(products.FirstOrDefault(x=>.sale)))
             ViewBag.BrandId = brandId;
             ViewBag.CategoryId = categoryId;
             ViewBag.SubCategoryId = subcategoryId;
             ViewBag.TypeId = typeId;
-            ViewBag.MaxPrice = maxPrice;
-            ViewBag.MinPrice = minPrice;
             ViewBag.PageIndex = page;
+            ViewBag.MinPrice = (int)products.Min(x => x.SalePrice);
+            ViewBag.MaxPrice = (int)products.Max(x => x.SalePrice);
+
+            if (minPrice != null && maxPrice != null)
+                products = products.Where(x => x.SalePrice >= minPrice && x.SalePrice <= maxPrice);
+
+            ViewBag.SelectedMinPrice = minPrice ?? ViewBag.MinPrice;
+            ViewBag.SelectedMaxPrice = maxPrice ?? ViewBag.MaxPrice;
 
             if (brandId != null)
             {
@@ -103,9 +111,9 @@ namespace NetMedsFull.Controllers
             }
             if (typeId != null)
             {
-                products = products.Where(x => x.Type == Enums.ProductType.Liquid || x.Type == Enums.ProductType.Tablet);
+                products = products.Where(x => x.Type == typeId.Value);
             }
-           
+
 
             ProductShopViewModel productDetailVM = new ProductShopViewModel
             {
@@ -113,7 +121,7 @@ namespace NetMedsFull.Controllers
                 Categories = _context.Categories.Where(x => x.IsDelete == false).ToList(),
                 Brands = _context.Brands.Include(x => x.SubCategoryBrands).ThenInclude(x => x.SubCategory).Where(x => x.IsDelete == false).ToList(),
                 SubCategories = _context.SubCategories.Where(x => x.IsDelete == false).ToList(),
-                PagenatedProducts = PagenetedList<Product>.Create(products, page, 9)
+                PagenatedProducts = PagenetedList<Product>.Create(products, page, 5)
             };
             return View(productDetailVM);
         }
