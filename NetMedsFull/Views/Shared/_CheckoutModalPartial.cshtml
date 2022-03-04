@@ -2,7 +2,8 @@
 @model Order
 @inject UserManager<AppUser> userManager
 @{
-    AppUser user = userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && x.IsAdmin == false);
+    AppUser user = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
+
 }
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -36,12 +37,16 @@
                         </div>
                         <div class="col-md-6 pe-3  col-12 mb--20">
                             <label asp-for="Phone">Phone no*</label>
-                            @if (User.Identity.IsAuthenticated)
+                            @if (user != null && user.IsAdmin == false)
                             {
                                 <input value="@user.PhoneNumber" class="form-control" asp-for="Phone" placeholder="Phone number">
 
                             }
-                            <input  class="form-control" asp-for="Phone" placeholder="Phone number">
+                            else
+                            {
+                                <input class="form-control" asp-for="Phone" placeholder="Phone number">
+
+                            }
 
                             <span asp-validation-for="Phone" class="text-danger"></span>
                         </div>
@@ -56,7 +61,7 @@
                                       placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                         </div>
                         <div>
-                            @if (User.Identity.IsAuthenticated)
+                            @if (user != null && user.IsAdmin == false)
                             {
                                 <input type="hidden" asp-for="Fullname" value="@user.FullName" />
                                 <input type="hidden" asp-for="Email" value="@user.Email" />

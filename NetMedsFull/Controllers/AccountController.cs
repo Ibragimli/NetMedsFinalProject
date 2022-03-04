@@ -29,13 +29,16 @@ namespace NetMedsFull.Controllers
             _emailService = emailService;
             _roleManager = roleManager;
         }
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
-            if (!User.Identity.IsAuthenticated)
+            AppUser user = User.Identity.IsAuthenticated ? await _userManager.FindByNameAsync(User.Identity.Name) : null;
+
+            if (user != null && user.IsAdmin == false)
             {
-                return View();
+                return RedirectToAction("index", "home");
             }
-            return RedirectToAction("index", "home");
+            return View();
+
         }
 
         [HttpPost]
@@ -50,7 +53,7 @@ namespace NetMedsFull.Controllers
             }
             if (!UserExists.IsAdmin)
             {
-               
+
                 var result = await _signInManager.PasswordSignInAsync(UserExists, user.Password, false, false);
                 if (!result.Succeeded)
                 {
@@ -96,13 +99,15 @@ namespace NetMedsFull.Controllers
         }
 
 
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
-            if (!User.Identity.IsAuthenticated)
+            AppUser user = User.Identity.IsAuthenticated ? await _userManager.FindByNameAsync(User.Identity.Name) : null;
+
+            if (user != null && user.IsAdmin == false)
             {
-                return View();
+                return RedirectToAction("index", "home");
             }
-            return RedirectToAction("index", "home");
+            return View();
         }
 
         [HttpPost]
@@ -149,19 +154,21 @@ namespace NetMedsFull.Controllers
 
             return RedirectToAction("index", "home");
         }
-        public IActionResult ForgotPassword()
+        public async Task<IActionResult> ForgotPassword()
         {
-            if (!User.Identity.IsAuthenticated)
+            AppUser user = User.Identity.IsAuthenticated ? await _userManager.FindByNameAsync(User.Identity.Name) : null;
+
+            if (user != null && user.IsAdmin == false)
             {
-                return View();
+                return RedirectToAction("index", "home");
             }
-            return RedirectToAction("index", "home");
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotViewModel forgotVM)
         {
-       
+
             AppUser user = await _userManager.FindByEmailAsync(forgotVM.Email);
             if (user == null)
             {
@@ -240,8 +247,8 @@ namespace NetMedsFull.Controllers
                     PhoneNumber = user.PhoneNumber,
                     Email = user.Email,
                 },
-                Orders = _context.Orders.Include(x=>x.OrderItems).ThenInclude(x=>x.Product).Where(x => x.AppUserId == user.Id).ToList(),
-                LabTests = _context.LabTests.Include(x=>x.LabTestPrice).Where(x=>x.AppUserId == user.Id).ToList(),
+                Orders = _context.Orders.Include(x => x.OrderItems).ThenInclude(x => x.Product).Where(x => x.AppUserId == user.Id).ToList(),
+                LabTests = _context.LabTests.Include(x => x.LabTestPrice).Where(x => x.AppUserId == user.Id).ToList(),
             };
             return View(memberProfile);
         }
@@ -302,20 +309,5 @@ namespace NetMedsFull.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("login", "account");
         }
-
-        //public async Task<IActionResult> CreateRole()
-        //{
-        //    var role1 = await _roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
-        //    var role2 = await _roleManager.CreateAsync(new IdentityRole("Admin"));
-        //    var role3 = await _roleManager.CreateAsync(new IdentityRole("Member"));
-
-        //    AppUser SuperAdmin = new AppUser { FullName = "Super Admin", UserName = "SuperAdmin" };
-        //    var admin = await _userManager.CreateAsync(SuperAdmin, "Admin123");
-        //    var resultRole = await _userManager.AddToRoleAsync(SuperAdmin, "SuperAdmin");
-
-        //    return Ok(resultRole);
-        //}
-
-
     }
 }

@@ -1,10 +1,14 @@
 ﻿@model CheckoutViewModel
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> userManager;
 @{
     ViewData["Title"] = "Cart";
     decimal TotalPrice = 0;
     decimal SalePrice = 0;
     decimal TotalSave = 0;
     decimal MRPTotal = 0;
+    AppUser user = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
+
 }
 
 
@@ -81,14 +85,14 @@
 
                                     </div>
                                 </div>
-                                <form method="post" asp-action="DeleteBasket" asp-controller="product"> 
+                                <form method="post" asp-action="DeleteBasket" asp-controller="product">
                                     <div class="productBtn">
                                         <a class="btn btn-primary deleteBtn" asp-action="deleteBasket" asp-controller="product" asp-route-id="@item.Product.Id">
                                             Remove
                                         </a>
                                     </div>
                                 </form>
-                              
+
                             </div>
                         </div>
                     }
@@ -144,19 +148,19 @@
                             </p>
                         </div>
                         <div class="proceedBtn">
-                            @if (!User.Identity.IsAuthenticated)
-                            {
-                                <a asp-action="login" asp-controller="account" class="btn btn-primary">
-                                    PROCEED
-                                </a>
-                            }
-                            else
+                            @if ( user != null && user.IsAdmin == false)
                             {
                                 <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
                                     PROCEED
                                 </a>
                             }
-                            @await Html.PartialAsync("_CheckoutModalPartial",Model.Order)
+                            else
+                            {
+                                <a asp-action="login" asp-controller="account" class="btn btn-primary">
+                                    PROCEED
+                                </a>
+                            }
+                            @await Html.PartialAsync("_CheckoutModalPartial", Model.Order)
 
                         </div>
                     </div>

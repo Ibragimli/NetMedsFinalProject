@@ -1,9 +1,16 @@
-﻿@inject LayoutService service
+﻿@using Microsoft.AspNetCore.Identity;
+
+@inject LayoutService service
+@inject UserManager<AppUser> userManager;
 
 @{
+
+    AppUser user = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
+
     List<Setting> settings = await service.GetSettings();
     List<Product> products = await service.GetProductSearch();
     BasketViewModel HeaderVm = await service.GetHeaderBasket();
+
 }
 
 
@@ -136,12 +143,21 @@
                                 @await Html.PartialAsync("_BasketViewPartial", HeaderVm)
                             </div>
                         </li>
-                        @if (!User.Identity.IsAuthenticated)
+                        @if (user != null && user.IsAdmin == false)
+                        {
+
+                            <li class="ms-4">
+                                <a asp-controller="account" asp-action="profile">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    <span>@User.Identity.Name</span>
+                                </a>
+                            </li>
+
+                        }
+                        else
                         {
                             <li class="signInUp">
-
                                 <img src="~/Images/headers/profile_icon.svg" alt="profile_icon">
-
                                 <ul>
                                     <li>
                                         <a asp-controller="account" asp-action="login">
@@ -154,19 +170,6 @@
                                         </a>
                                     </li>
                                 </ul>
-
-
-
-                            </li>
-
-                        }
-                        else
-                        {
-                            <li class="ms-4">
-                                <a asp-controller="account" asp-action="profile">
-                                    <i class="fa-solid fa-user-tie"></i>
-                                    <span>@User.Identity.Name</span>
-                                </a>
                             </li>
                         }
 

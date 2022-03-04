@@ -1,4 +1,4 @@
-﻿
+﻿@model AdminLoginViewModel
 @{
     ViewData["Title"] = "Login";
     Layout = null;
@@ -38,17 +38,18 @@
                                     </div>
                                     <form method="post" asp-action="login" asp-controller="account">
                                         <div class="mb-3">
-                                            <label class="mb-1"><strong>Login</strong></label>
-                                            <input class="form-control">
+                                            <label asp-for="Username" class="mb-1"><strong>Login</strong></label>
+                                            <input asp-for="Username" class="form-control">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="mb-1"><strong>Password</strong></label>
-                                            <input type="password" class="form-control">
+                                            <label asp-for="Password" class="mb-1"><strong>Password</strong></label>
+                                            <input asp-for="Password" type="password" class="form-control">
                                         </div>
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
                                         </div>
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     </form>
                                 </div>
                             </div>
