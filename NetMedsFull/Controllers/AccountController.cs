@@ -241,7 +241,7 @@ namespace NetMedsFull.Controllers
                     Email = user.Email,
                 },
                 Orders = _context.Orders.Include(x=>x.OrderItems).ThenInclude(x=>x.Product).Where(x => x.AppUserId == user.Id).ToList(),
-                LabTests = _context.LabTests.Include(x=>x.LabTestPrice).ToList(),
+                LabTests = _context.LabTests.Include(x=>x.LabTestPrice).Where(x=>x.AppUserId == user.Id).ToList(),
             };
             return View(memberProfile);
         }

@@ -1,7 +1,8 @@
 ﻿@model LabTest
 @{
     ViewData["Title"] = "LabTest";
-    var Package = 0;
+    Array values = Enum.GetValues(typeof(LabPackage));
+
 }
 
 <section id="labtests">
@@ -97,13 +98,10 @@
                             </option>
                         </select>
                         <span class="text-danger" asp-validation-for="LabTestPriceId"> </span>
-
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label">Price</label>
-                        <input class="form-control" placeholder="Price: 25" disabled>
-
+                        <input class="form-control" placeholder="Price:" disabled>
 
                     </div>
 

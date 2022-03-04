@@ -1,4 +1,7 @@
 ﻿@model Order
+@{
+    var Count = 0;
+}
 <div class="modal fade" id="orderModal-@TempData["modalOrder"]" tabindex="-1" aria-labelledby="orderModal-@TempData["modalOrder"]-Label" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -31,13 +34,14 @@
                         </tr>
                     </tbody>
                 </table>
-                <h1 class="mb-2">Products</h1>
+                <h1 style="font-weight: 700;color: blue;font-size: 23px;" class="mb-2">Products</h1>
                 @foreach (var item in Model.OrderItems)
                 {
-
+                    Count++;
                     <table class="table table-cell">
                         <thead>
                             <tr>
+                                <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">SalePrice</th>
                                 <th scope="col">Count</th>
@@ -46,6 +50,7 @@
                         <tbody>
 
                             <tr>
+                                <td>@Count</td>
                                 <td>@item.Product.Name</td>
                                 <td>@item.Product.SalePrice</td>
                                 <td>@item.Count</td>

@@ -14,5 +14,6 @@ namespace NetMedsFull.Models
         public LabPackage LabPackage { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
+        public List<LabTest> LabTests { get; set; }
     }
 }

@@ -4,13 +4,13 @@
 {
     <div class="form-floating">
         <form asp-action="comment" method="post">
+            <input type="hidden" asp-for="ProductId" value="@ViewBag.productId" />
             <div class="commentRate mb-3">
                 <div class="row">
-
                     <div class="col-lg-6 col-md-6">
                         <input asp-for="Title" maxlength="50" type="text" class="form-control" placeholder="Title">
+                        <span asp-validation-for="Title"></span>
                     </div>
-
                     <div class="col-lg-6  col-md-6 starCenter">
                         <div class="stars">
                             <input type="radio" id="five" name="rate" value="5">
@@ -25,6 +25,7 @@
                             <label for="one"></label>
                             <span class="result"></span>
                         </div>
+                        <span class="text-danger" asp-validation-for="Rate"></span>
                     </div>
                 </div>
             </div>
@@ -38,7 +39,6 @@
             <div class="mt-2 text-center">
                 <button type="submit" style="background: #24aeb1; border:none" class="btn btn-primary">Send comment</button>
             </div>
-            <input type="hidden" asp-for="ProductId" value="@ViewBag.productId" />
 
         </form>
     </div>

@@ -44,18 +44,18 @@ namespace NetMedsFull.Controllers
             Product product = _getProductContext(comment.ProductId);
             if (product == null)
             {
-                return RedirectToAction("error", "error");
+                return RedirectToAction("Error","error");
             }
             ProductDetailViewModel productDetailVM = GetProductDetail(product, comment);
 
             if (!ModelState.IsValid)
             {
-                TempData["Error"] = "Comment model is not valid!";
+                TempData["error"] = "Comment model is not valid!";
                 return View("Detail", productDetailVM);
             }
             if (!_context.Products.Any(x => x.Id == comment.ProductId))
             {
-                TempData["Error"] = "Selected Product not found";
+                TempData["error"] = "Selected Product not found";
                 return View("Detail", productDetailVM);
             }
 
