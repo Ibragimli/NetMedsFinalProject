@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NetMedsFull.Areas.Manage.ViewModels;
 using NetMedsFull.Models;
 using System;
@@ -22,8 +23,14 @@ namespace NetMedsFull.Areas.Manage.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
+            AppUser user = User.Identity.IsAuthenticated ? await _userManager.FindByNameAsync(User.Identity.Name) : null;
+
+            if (user != null && user.IsAdmin == true)
+            {
+                return RedirectToAction("index", "dashboard");
+            }
             return View();
         }
 
@@ -31,9 +38,9 @@ namespace NetMedsFull.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(AdminLoginViewModel adminVM)
         {
-            AppUser adminExist = await _userManager.FindByNameAsync(adminVM.Username);
+            AppUser adminExist = await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName ==  adminVM.Username);
 
-            if (adminExist.IsAdmin == true && adminExist != null)
+            if (adminExist != null  && adminExist.IsAdmin == true)
             {
                 if (!ModelState.IsValid)
                 {

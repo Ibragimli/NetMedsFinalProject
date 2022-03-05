@@ -45,7 +45,7 @@ namespace NetMedsFull.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(MemberLoginViewModel user)
         {
-            var UserExists = await _userManager.FindByNameAsync(user.Username);
+            var UserExists = await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName ==  user.Username);
             if (UserExists == null)
             {
                 ModelState.AddModelError("", "Username or Password is incorrect!");
@@ -115,12 +115,12 @@ namespace NetMedsFull.Controllers
         public async Task<IActionResult> Register(MemberRegisterViewModel user)
         {
 
-            var userExistEmail = await _userManager.FindByEmailAsync(user.Email);
+            var userExistEmail = await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName  == user.Email);
             if (userExistEmail != null)
             {
                 ModelState.AddModelError("Email", "Email is Already!");
             }
-            var userExistUsername = await _userManager.FindByNameAsync(user.Username);
+            var userExistUsername = await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName == user.Username);
             if (userExistUsername != null)
             {
                 ModelState.AddModelError("Username", "Username is Already!");
@@ -169,7 +169,7 @@ namespace NetMedsFull.Controllers
         public async Task<IActionResult> ForgotPassword(ForgotViewModel forgotVM)
         {
 
-            AppUser user = await _userManager.FindByEmailAsync(forgotVM.Email);
+            AppUser user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == forgotVM.Email);
             if (user == null)
             {
                 ModelState.AddModelError("email", "User not found!");
