@@ -31,7 +31,7 @@ namespace NetMedsFull.Models
         public Brand Brand { get; set; }
         public ProductType Type { get; set; }
         [NotMapped]
-        public IFormFile ImageFiles { get; set; }
+        public List<IFormFile> ImageFiles { get; set; }
         [NotMapped]
         public IFormFile PosterImageFile { get; set; }
         public List<ProductImage> ProductImages { get; set; }

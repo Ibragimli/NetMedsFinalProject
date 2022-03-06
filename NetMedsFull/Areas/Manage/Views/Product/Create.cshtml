@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Create";
 }
-@model ProductCreateViewModel
+@model Product
 <h1>Create</h1>
 
 
@@ -20,130 +20,127 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-6 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Name</label>
-                                    <input maxlength="150" asp-for="Product.Name" class="form-control input-default " placeholder="Name">
-                                    <span class="text-danger" asp-validation-for="Product.Name"></span>
+                                    <input maxlength="150" asp-for="Name" class="form-control input-default " placeholder="Name">
+                                    <span class="text-danger" asp-validation-for="Name"></span>
                                 </div>
                                 <div class="col-lg-6 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Country</label>
-                                    <input maxlength="30" asp-for="Product.Country" class="form-control input-default " placeholder="Country">
-                                    <span class="text-danger" asp-validation-for="Product.Country"></span>
+                                    <input maxlength="30" asp-for="Country" class="form-control input-default " placeholder="Country">
+                                    <span class="text-danger" asp-validation-for="Country"></span>
                                 </div>
                                 <div class="col-lg-6 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">SalePrice</label>
-                                    <input asp-for="Product.SalePrice" class="form-control input-default " placeholder="SalePrice">
-                                    <span class="text-danger" asp-validation-for="Product.SalePrice"></span>
+                                    <input asp-for="SalePrice" class="form-control input-default " placeholder="SalePrice">
+                                    <span class="text-danger" asp-validation-for="SalePrice"></span>
 
                                 </div>
                                 <div class="col-lg-6 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">CostPrice</label>
-                                    <input asp-for="Product.CostPrice" type="text" class="form-control input-default " placeholder="CostPrice">
-                                    <span class="text-danger" asp-validation-for="Product.CostPrice"></span>
+                                    <input asp-for="CostPrice" type="text" class="form-control input-default " placeholder="CostPrice">
+                                    <span class="text-danger" asp-validation-for="CostPrice"></span>
 
                                 </div>
                                 <div class="col-lg-6 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">DiscountPercent</label>
-                                    <input asp-for="Product.DiscountPercent" type="number" maxlength="100" min="1" max="100" class="form-control input-default " placeholder="DiscountPercent">
-                                    <span class="text-danger" asp-validation-for="Product.DiscountPercent"></span>
+                                    <input asp-for="DiscountPercent" type="number" maxlength="100" min="1" max="100" class="form-control input-default " placeholder="DiscountPercent">
+                                    <span class="text-danger" asp-validation-for="DiscountPercent"></span>
                                 </div>
 
                                 <div class="col-lg-6 mb-3">
-                                    <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Brand</label>
-                                    <select asp-for="Product.BrandId" class="form-select" aria-label="Default select example">
-                                        @foreach (var brand in Model.Brands)
-                                        {
-                                            <option  value="@brand.Id">@brand.Name</option>
-                                        }
-                                    </select>
-                                    <span class="text-danger" asp-validation-for="Brands"></span>
+                                    <label asp-for="BrandId" style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Brand</label>
+                                    <div class="form-group col-lg-6">
+                                        <select class="form-control" asp-for="BrandId" asp-items="@new SelectList((List<Brand>)ViewBag.Brand,nameof(Brand.Id),nameof(Brand.Name))"></select>
+                                        <span asp-validation-for="BrandId" class="text-danger"></span>
+                                    </div>
                                 </div>
 
                                 <div class="col-lg-3 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Product Type</label>
                                     <div class="form-check">
-                                        <input asp-for="Product.Type" class="form-check-input" type="radio" value="@ProductType.Liquid" checked>
-                                        <label class="form-check-label" asp-for="Product.Type">
+                                        <input asp-for="Type" class="form-check-input" type="radio" value="@ProductType.Liquid" checked>
+                                        <label class="form-check-label" asp-for="Type">
                                             Liquid
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input asp-for="Product.Type" class="form-check-input" type="radio" value="@ProductType.Tablet" checked>
-                                        <label class="form-check-label" asp-for="Product.Type">
+                                        <input asp-for="Type" class="form-check-input" type="radio" value="@ProductType.Tablet" checked>
+                                        <label class="form-check-label" asp-for="Type">
                                             Tablet
                                         </label>
                                     </div>
-                                    <span class="text-danger" asp-validation-for="Product.Type"></span>
+                                    <span class="text-danger" asp-validation-for="Type"></span>
                                 </div>
 
                                 <div class="col-lg-3 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">IsTrending</label>
                                     <div class="form-check">
-                                        <input asp-for="Product.IsTrending" class="form-check-input" type="radio" value="@true" checked>
-                                        <label class="form-check-label" asp-for="Product.IsTrending">
+                                        <input asp-for="IsTrending" class="form-check-input" type="radio" value="@true" checked>
+                                        <label class="form-check-label" asp-for="IsTrending">
                                             True
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input asp-for="Product.IsTrending" class="form-check-input" type="radio" value="@false" checked>
-                                        <label class="form-check-label" asp-for="Product.IsTrending">
+                                        <input asp-for="IsTrending" class="form-check-input" type="radio" value="@false" checked>
+                                        <label class="form-check-label" asp-for="IsTrending">
                                             False
                                         </label>
                                     </div>
-                                    <span class="text-danger" asp-validation-for="Product.IsTrending"></span>
+                                    <span class="text-danger" asp-validation-for="IsTrending"></span>
                                 </div>
 
                                 <div class="col-lg-3 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">IsNew</label>
                                     <div class="form-check">
-                                        <input asp-for="Product.IsNew" class="form-check-input" type="radio" value="@true" checked>
-                                        <label class="form-check-label" asp-for="Product.IsNew">
+                                        <input asp-for="IsNew" class="form-check-input" type="radio" value="@true" checked>
+                                        <label class="form-check-label" asp-for="IsNew">
                                             True
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input asp-for="Product.IsNew" class="form-check-input" type="radio" value="@false" checked>
-                                        <label class="form-check-label" asp-for="Product.IsNew">
+                                        <input asp-for="IsNew" class="form-check-input" type="radio" value="@false" checked>
+                                        <label class="form-check-label" asp-for="IsNew">
                                             False
                                         </label>
                                     </div>
-                                    <span class="text-danger" asp-validation-for="Product.IsNew"></span>
+                                    <span class="text-danger" asp-validation-for="IsNew"></span>
                                 </div>
 
                                 <div class="col-lg-3 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">StockStatus</label>
                                     <div class="form-check">
-                                        <input asp-for="Product.StockStatus" class="form-check-input" type="radio" value="@true" checked>
-                                        <label class="form-check-label" asp-for="Product.StockStatus">
+                                        <input asp-for="StockStatus" class="form-check-input" type="radio" value="@true" checked>
+                                        <label class="form-check-label" asp-for="StockStatus">
                                             True
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input asp-for="Product.StockStatus" class="form-check-input" type="radio" value="@false" checked>
-                                        <label class="form-check-label" asp-for="Product.StockStatus">
+                                        <input asp-for="StockStatus" class="form-check-input" type="radio" value="@false" checked>
+                                        <label class="form-check-label" asp-for="StockStatus">
                                             False
                                         </label>
                                     </div>
-                                    <span class="text-danger" asp-validation-for="Product.StockStatus"></span>
+                                    <span class="text-danger" asp-validation-for="StockStatus"></span>
                                 </div>
 
                                 <div class="col-lg-8 mb-3">
                                     <div class="form-floating">
-                                        <textarea style="height:100px; max-height:150px" class="form-control" asp-for="Product.Description"></textarea>
-                                        <label asp-for="Product.Description">Description</label>
-                                        <span class="text-danger" asp-validation-for="Product.Description"></span>
+                                        <textarea style="height:100px; max-height:150px" class="form-control" asp-for="Description"></textarea>
+                                        <label asp-for="Description">Description</label>
+                                        <span class="text-danger" asp-validation-for="Description"></span>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label style=" color: #886CC0; font-weight: 700; font-size: 20px; " asp-for="Product.PosterImageFile">PosterFile</label>
-                                        <input class="form-control" asp-for="Product.PosterImageFile">
-                                        <span class="text-danger" asp-validation-for="Product.PosterImageFile"></span>
+                                        <label style=" color: #886CC0; font-weight: 700; font-size: 20px; " asp-for="PosterImageFile">PosterFile</label>
+                                        <input class="form-control" asp-for="PosterImageFile">
+                                        <span class="text-danger" asp-validation-for="PosterImageFile"></span>
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <label style=" color: #886CC0; font-weight: 700; font-size: 20px; " asp-for="Product.ImageFiles">ImageFiles</label>
-                                        <input class="form-control" multiple asp-for="Product.ImageFiles">
-                                        <span class="text-danger" asp-validation-for="Product.ImageFiles"></span>
+                                        <label style=" color: #886CC0; font-weight: 700; font-size: 20px; " asp-for="ImageFiles">ImageFiles</label>
+                                        <input class="form-control" multiple asp-for="ImageFiles">
+                                        <span class="text-danger" asp-validation-for="ImageFiles"></span>
                                     </div>
                                 </div>
 
