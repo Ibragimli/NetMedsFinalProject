@@ -34,6 +34,8 @@ namespace NetMedsFull.Models
         public List<IFormFile> ImageFiles { get; set; }
         [NotMapped]
         public IFormFile PosterImageFile { get; set; }
+        [NotMapped]
+        public List<int> ProductImagesIds { get; set; }
         public List<ProductImage> ProductImages { get; set; }
         public List<Comment> Comments { get; set; }
         public List<TrendSlider> TrendSliders { get; set; }
