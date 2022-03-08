@@ -1,0 +1,34 @@
+﻿@model Comment
+@{
+    var count = 0;
+}
+<div class="modal fade" id="infoModal-@TempData["InfoModal"]" tabindex="-1" aria-labelledby="infoModal-@TempData["InfoModal"]-Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModal-@TempData["InfoModal"]-Label">Comment Info</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="card-title">FullName: @Model.Fullname</h5>
+                <h5 class="card-title">Email: @Model.Email</h5>
+                <h5 class="card-title">Product name: @Model.Product.Name</h5>
+                <h5 class="card-title">Rate: @Model.Rate</h5>
+                <h5 class="card-title">Text: @Model.Text</h5>
+                <h5 class="card-title">Status: <span class="badge badge-@(Model.CommentStatus?"success":"info")">@(Model.CommentStatus ? "Tesdiqlenib":"Gözlemededir")</span></h5>
+
+
+                @if (Model.CommentStatus == false)
+                {
+                    <form method="post" asp-action="AcceptComment" class="d-inline-block">
+                        <input name="Id" value="@Model.Id" type="hidden" />
+                        <button type="submit" class="btn btn-primary">Accept</button>
+                    </form>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

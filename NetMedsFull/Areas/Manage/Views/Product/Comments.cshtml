@@ -28,6 +28,7 @@
                     @foreach (var item in Model)
                     {
                         count++;
+                        TempData["InfoModal"] = count;
                         <tr>
                             <th scope="row">@count</th>
                             <td>@item.Fullname</td>
@@ -37,10 +38,11 @@
                             <td>@item.Rate</td>
                             <td><span class="badge badge-@(item.CommentStatus?"success":"info")">@(item.CommentStatus ? "Tesdiqlenib":"Gözlemededir")</span></td>
                             <td>
-                                <a asp-action="infocomment" asp-route-id="@item.Id" class="btn btn-warning">Info</a>
+                                <a data-bs-toggle="modal" data-bs-target="#infoModal-@count" class="btn btn-warning">Info</a>
                                 <a asp-action="deletecomment" asp-route-id="@item.Id" class="btn btn-danger delete-btn">Delete</a>
                             </td>
                         </tr>
+                        @await Html.PartialAsync("_CommentInfoModalPartial", item)
                     }
 
                 </tbody>
@@ -51,3 +53,5 @@
 @section Scripts{
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 }
+
+

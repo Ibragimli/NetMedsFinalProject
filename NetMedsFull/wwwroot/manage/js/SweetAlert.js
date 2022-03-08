@@ -27,15 +27,6 @@
             }
         })
     })
-    //$(document).on("click", ".delete-imgBtn", function () {
-    //    let bookId = $(this).attr("data-book-id")
-    //    let Id = $(this).attr("data-id")
-    //    console.log(`manage/book/edit/${bookId}/getImage/${Id}`);
-    //    fetch(`manage/book/edit/bookId/getImage`)
-    //        .then(response => {
-    //            console.log(response)
-    //            $(".imgBox").remove();
-    //        })
-    //})
+   
 
 })

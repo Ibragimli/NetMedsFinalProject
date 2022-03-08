@@ -189,9 +189,9 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 ModelState.AddModelError("SalePrice", "SalePrice is required");
                 return View();
             }
-            if (product.DiscountPercent <= 0 && product.DiscountPercent > 100)
+            if (product.DiscountPercent < 0 && product.DiscountPercent > 100)
             {
-                ModelState.AddModelError("DiscountPercent", "DiscountPercent Range(1,100)");
+                ModelState.AddModelError("DiscountPercent", "DiscountPercent Range(0,100)");
                 return View();
             }
             if (!_context.Brands.Any(x => x.Id == product.BrandId))
@@ -199,13 +199,17 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 ModelState.AddModelError("BrandId", "BrandId not found");
                 return View();
             }
+
             var productExist = _context.Products.Include(x => x.Brand).Include(x => x.ProductImages).FirstOrDefault(x => x.Id == product.Id);
             if (productExist == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
 
-
+            if (!ModelState.IsValid)
+            {
+                return View(productExist);
+            }
             if (product.PosterImageFile != null)
             {
 
@@ -253,7 +257,24 @@ namespace NetMedsFull.Areas.Manage.Controllers
             }
 
 
-            productExist.ProductImages.RemoveAll(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id));
+            if (product.ProductImagesIds != null)
+            {
+                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id)))
+                {
+                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
+                }
+                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id));
+
+            }
+            else
+            {
+                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false))
+                {
+                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
+                }
+                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false);
+            }
+
 
 
 
@@ -290,24 +311,27 @@ namespace NetMedsFull.Areas.Manage.Controllers
             productExist.Type = product.Type;
             productExist.IsTrending = product.IsTrending;
             productExist.IsNew = product.IsNew;
+            productExist.StockStatus = product.StockStatus;
             _context.SaveChanges();
             return RedirectToAction("index");
         }
 
         public IActionResult Delete(int id)
         {
-            var product = _context.Products.FirstOrDefault(x => x.Id == id);
+            var product = _context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
             if (product == null)
             {
                 return NotFound();
             }
             var PosterImage = product.ProductImages.FirstOrDefault(x => x.PosterStatus == true);
-            var Images = product.ProductImages.FirstOrDefault(x => x.PosterStatus == false);
-
             FileManager.Delete(_env.WebRootPath, "uploads/products", PosterImage.Image);
-            FileManager.Delete(_env.WebRootPath, "uploads/products", Images.Image);
-            _context.Products.Remove(product);
 
+            var Images = product.ProductImages.FirstOrDefault(x => x.PosterStatus == false);
+            foreach (var item in product.ProductImages.Where(x => x.PosterStatus == false))
+            {
+                FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
+            }
+            _context.Products.Remove(product);
             _context.SaveChanges();
             return Ok();
         }
@@ -321,7 +345,31 @@ namespace NetMedsFull.Areas.Manage.Controllers
             }
             return View(comments);
         }
+        public IActionResult DeleteComment(int id)
+        {
+            Comment comment = _context.Comments.FirstOrDefault(x => x.Id == id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+            _context.Comments.Remove(comment);
+            _context.SaveChanges();
+            return Ok();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AcceptComment(int id)
+        {
+            Comment comment = await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);
 
+            if (comment == null)
+            {
+                return NotFound();
+            }
+            comment.CommentStatus = true;
+            _context.SaveChanges();
+            return RedirectToAction("comments", new { Id = comment.Id });
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace NetMedsFull.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal SalePrice { get; set; }
         [Column(TypeName = "decimal(18,2)")]
-        [Range(1, 100)]
+        [Range(0, 100)]
         public decimal DiscountPercent { get; set; }
         [StringLength(maximumLength: 30)]
         public string Country { get; set; }
