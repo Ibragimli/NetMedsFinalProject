@@ -159,7 +159,7 @@
                         {
                             <div class="item">
                                 <a asp-action="detail" asp-controller="product" asp-route-id="@item.ProductId">
-                                    <img src="~/Images/sliders/@item.Image" alt="" width="100%"
+                                    <img src="~/uploads/shopsliders/@item.Image" alt="" width="100%"
                                          height="100%">
                                 </a>
                             </div>
@@ -233,7 +233,7 @@
                                     else
                                     {
                                         <div class="shopBtn">
-                                            <a class="AddBtn addBasket" asp-action="addbasket"  asp-controller="product" asp-route-id="@product.Id">ADD TO CART</a>
+                                            <a class="AddBtn addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@product.Id">ADD TO CART</a>
                                             <a href="#">
                                                 <i class="fa-regular fa-heart"></i>
                                             </a>

@@ -4,7 +4,7 @@
     var count = 0;
 }
 
-@model List<Slider>
+@model List<TrendSlider>
 
 <div class="content-body" style="min-height: 740px;">
     <div class="container-fluid">
@@ -13,12 +13,12 @@
                 <div class="card">
                     <div class="displ card-header">
                         <h4 class="card-title">
-                            Slider Panel
+                            Trend Slider Panel
                         </h4>
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-end">
-                            <a class="btn btn-primary mb-1" asp-action="create" asp-controller="slider">Create</a>
+                            <a class="btn btn-primary mb-1" asp-action="create" asp-controller="trendslider">Create</a>
                         </div>
                         <div class="table-responsive">
                             <table id="example" class="display" style="min-width: 845px">
@@ -31,18 +31,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var slider in Model)
+                                    @foreach (var trend in Model)
                                     {
                                         count++;
                                         <tr>
                                             <td>@count</td>
                                             <td>
-                                                <img src="~/uploads/sliders/@slider.Image" width="300" height="180" />
+                                                <img src="~/uploads/trendsliders/@trend.Name" width="100" height="100" />
                                             </td>
-                                            <td class="text-center">@slider.ProductId</td>
+                                            <td>@trend.ProductId</td>
                                             <td class="text-center">
-                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="slider" asp-route-id="@slider.Id">Edit</a>
-                                                <a class="btn btn-danger delete-btn  mb-1" asp-action="delete" asp-controller="slider" asp-route-id="@slider.Id">Delete</a>
+                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="trendslider" asp-route-id="@trend.Id">Edit</a>
+                                                <a class="btn btn-danger delete-btn  mb-1" asp-action="delete" asp-controller="trendslider" asp-route-id="@trend.Id">Delete</a>
                                             </td>
                                         </tr>
                                     }

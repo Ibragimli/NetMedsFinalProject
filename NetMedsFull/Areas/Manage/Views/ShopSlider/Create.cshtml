@@ -1,9 +1,7 @@
-﻿
+﻿@model ShopSlider
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
-@model Slider
-
 <div class="content-body" style="min-height: 740px;">
     <div class="container-fluid">
 
@@ -11,10 +9,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Edit</h4>
+                        <h4 class="card-title">Create</h4>
                     </div>
                     <div class="card-body">
-                        <form method="post" asp-action="edit" asp-controller="slider" enctype="multipart/form-data">
+                        <form method="post" asp-action="create" asp-controller="shopslider" enctype="multipart/form-data">
                             <div class="row justify-content-center">
                                 <div class="col-lg-6 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">ProductId</label>
@@ -26,10 +24,9 @@
                                         <label style=" color: #886CC0; font-weight: 700; font-size: 20px; " asp-for="ImageFile">ImageFile</label>
                                         <input class="form-control" asp-for="ImageFile">
                                         <span class="text-danger" asp-validation-for="ImageFile"></span>
-                                        <img width="200" height="180" src="~/uploads/sliders/@Model.Image" />
                                     </div>
                                 </div>
-                                <button type="submit" class="mt-4 btn  btn-primary">Edit</button>
+                                <button type="submit" class="mt-4 btn  btn-primary">Create</button>
                                 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                             </div>
                         </form>

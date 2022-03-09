@@ -10,13 +10,12 @@ namespace NetMedsFull.Models
 {
     public class TrendSlider : BaseEntity
     {
-        [Required]
         [StringLength(maximumLength: 100)]
         public string Name { get; set; }
         [Required]
         public int ProductId { get; set; }
         public Product Product { get; set; }
         [NotMapped]
-        public IFormFile ImageFiles { get; set; }
+        public IFormFile ImageFile { get; set; }
     }
 }

@@ -12,12 +12,12 @@ namespace NetMedsFull.Areas.Manage.Controllers
 {
     [Area("manage")]
     [Authorize(Roles = "SuperAdmin,Admin")]
-    public class SliderController : Controller
+    public class TrendSliderController : Controller
     {
         private readonly DataContext _context;
         private readonly IWebHostEnvironment _env;
 
-        public SliderController(DataContext context, IWebHostEnvironment env)
+        public TrendSliderController(DataContext context, IWebHostEnvironment env)
         {
             _context = context;
             _env = env;
@@ -25,13 +25,13 @@ namespace NetMedsFull.Areas.Manage.Controllers
         public IActionResult Index()
         {
 
-            var slider = _context.Sliders.ToList();
-            if (slider == null)
+            var trends = _context.TrendSliders.ToList();
+            if (trends == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
 
-            return View(slider);
+            return View(trends);
         }
 
 
@@ -42,45 +42,45 @@ namespace NetMedsFull.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Slider slider)
+        public IActionResult Create(TrendSlider trend)
         {
-            if (slider == null)
+            if (trend == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
-            var existProduct = _context.Products.Any(x => x.Id == slider.ProductId);
+            var existProduct = _context.Products.Any(x => x.Id == trend.ProductId);
 
             if (!existProduct)
             {
                 ModelState.AddModelError("ProductId", "Product not found!");
                 return View();
             }
-            if (slider.ImageFile == null)
+            if (trend.ImageFile == null)
             {
                 ModelState.AddModelError("ImageFile", "ImageFile is required");
                 return View();
             }
             else
             {
-                if (slider.ImageFile.ContentType != "image/png" && slider.ImageFile.ContentType != "image/jpeg")
+                if (trend.ImageFile.ContentType != "image/png" && trend.ImageFile.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("ImageFile", "ImageFile is required");
                     return View();
                 }
-                if (slider.ImageFile.Length > 2097152)
+                if (trend.ImageFile.Length > 2097152)
                 {
                     ModelState.AddModelError("ImageFile", "ImageFile max size is 2MB");
                     return View();
 
                 }
-                slider.Image = FileManager.Save(_env.WebRootPath, "uploads/sliders", slider.ImageFile);
+                trend.Name = FileManager.Save(_env.WebRootPath, "uploads/trendsliders", trend.ImageFile);
             }
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            _context.Sliders.Add(slider);
+            _context.TrendSliders.Add(trend);
             _context.SaveChanges();
 
             return RedirectToAction("index", "dashboard");
@@ -90,77 +90,77 @@ namespace NetMedsFull.Areas.Manage.Controllers
 
         public IActionResult Edit(int id)
         {
-            var slider = _context.Sliders.FirstOrDefault(x => x.Id == id);
-            if (slider == null)
+            var trend = _context.TrendSliders.FirstOrDefault(x => x.Id == id);
+            if (trend == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
 
-            return View(slider);
+            return View(trend);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Slider slider)
+        public IActionResult Edit(TrendSlider trend)
         {
-            var existSlider = _context.Sliders.FirstOrDefault(x => x.Id == slider.Id);
-            if (existSlider == null)
+            var existTrend = _context.TrendSliders.FirstOrDefault(x => x.Id == trend.Id);
+            if (existTrend == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
-            var existProduct = _context.Products.Any(x => x.Id == slider.ProductId);
+            var existProduct = _context.Products.Any(x => x.Id == trend.ProductId);
 
             if (!existProduct)
             {
                 ModelState.AddModelError("ProductId", "Product not found!");
-                return View(existSlider);
+                return View(existTrend);
             }
-            if (slider.ImageFile == null)
+            if (trend.ImageFile == null)
             {
                 ModelState.AddModelError("ImageFile", "ImageFile is required");
-                return View(existSlider);
+                return View(existTrend);
             }
             else
             {
-                if (slider.ImageFile.ContentType != "image/png" && slider.ImageFile.ContentType != "image/jpeg")
+                if (trend.ImageFile.ContentType != "image/png" && trend.ImageFile.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("ImageFile", "ImageFile is required");
-                    return View(existSlider);
+                    return View(existTrend);
                 }
-                if (slider.ImageFile.Length > 2097152)
+                if (trend.ImageFile.Length > 2097152)
                 {
                     ModelState.AddModelError("ImageFile", "ImageFile max size is 2MB");
-                    return View(existSlider);
+                    return View(existTrend);
 
                 }
-                FileManager.Delete(_env.WebRootPath, "uploads/sliders", existSlider.Image);
-                existSlider.Image = FileManager.Save(_env.WebRootPath, "uploads/sliders", slider.ImageFile);
+                FileManager.Delete(_env.WebRootPath, "uploads/trendsliders", existTrend.Name);
+                existTrend.Name = FileManager.Save(_env.WebRootPath, "uploads/trendsliders", trend.ImageFile);
             }
             if (!ModelState.IsValid)
             {
-                return View(existSlider);
+                return View(existTrend);
             }
 
-            existSlider.ProductId = slider.ProductId;
+            existTrend.ProductId = trend.ProductId;
 
             _context.SaveChanges();
             TempData["Success"] = "Edit is succesfull!";
-            return RedirectToAction("index", "slider");
+            return RedirectToAction("index", "trendslider");
 
         }
 
         public IActionResult Delete(int id)
         {
-            var slider = _context.Sliders.FirstOrDefault(x => x.Id == id);
-            if (slider == null)
+            var trend = _context.TrendSliders.FirstOrDefault(x => x.Id == id);
+            if (trend == null)
             {
                 return RedirectToAction("notfounds", "error");
 
             }
-            var Image = slider.Image;
-            FileManager.Delete(_env.WebRootPath, "uploads/sliders", Image);
+            var Image = trend.Name;
+            FileManager.Delete(_env.WebRootPath, "uploads/trendsliders", Image);
 
 
-            _context.Sliders.Remove(slider);
+            _context.TrendSliders.Remove(trend);
             _context.SaveChanges();
             TempData["Success"] = "Delete is succesfull!";
 

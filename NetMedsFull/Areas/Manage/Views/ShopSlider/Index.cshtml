@@ -4,7 +4,7 @@
     var count = 0;
 }
 
-@model List<Slider>
+@model List<ShopSlider>
 
 <div class="content-body" style="min-height: 740px;">
     <div class="container-fluid">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-end">
-                            <a class="btn btn-primary mb-1" asp-action="create" asp-controller="slider">Create</a>
+                            <a class="btn btn-primary mb-1" asp-action="create" asp-controller="shopslider">Create</a>
                         </div>
                         <div class="table-responsive">
                             <table id="example" class="display" style="min-width: 845px">
@@ -37,12 +37,12 @@
                                         <tr>
                                             <td>@count</td>
                                             <td>
-                                                <img src="~/uploads/sliders/@slider.Image" width="300" height="180" />
+                                                <img src="~/uploads/shopsliders/@slider.Image" width="100" height="100" />
                                             </td>
-                                            <td class="text-center">@slider.ProductId</td>
+                                            <td>@slider.ProductId</td>
                                             <td class="text-center">
-                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="slider" asp-route-id="@slider.Id">Edit</a>
-                                                <a class="btn btn-danger delete-btn  mb-1" asp-action="delete" asp-controller="slider" asp-route-id="@slider.Id">Delete</a>
+                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="shopslider" asp-route-id="@slider.Id">Edit</a>
+                                                <a class="btn btn-danger delete-btn  mb-1" asp-action="delete" asp-controller="shopslider" asp-route-id="@slider.Id">Delete</a>
                                             </td>
                                         </tr>
                                     }
