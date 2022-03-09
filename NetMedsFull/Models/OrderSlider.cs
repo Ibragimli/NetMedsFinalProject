@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NetMedsFull.Models
 {
-    public class ShopSlider : BaseEntity
+    public class OrderSlider: BaseEntity
     {
         [Required]
         public int ProductId { get; set; }
@@ -17,6 +17,5 @@ namespace NetMedsFull.Models
         [NotMapped]
         public IFormFile ImageFile { get; set; }
         public Product Product { get; set; }
-
     }
 }

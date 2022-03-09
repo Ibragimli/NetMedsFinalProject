@@ -4,53 +4,54 @@
     var count = 0;
 }
 
-@model List<Setting>
+@model List<OrderSlider>
 
 <div class="content-body" style="min-height: 740px;">
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="displ card-header">
                         <h4 class="card-title">
-                            Setting Panel
+                            Order Slider Panel
                         </h4>
                     </div>
                     <div class="card-body">
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-primary mb-1" asp-action="create" asp-controller="orderslider">Create</a>
+                        </div>
                         <div class="table-responsive">
                             <table id="example" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Key</th>
-                                        <th>Value</th>
+                                        <th>Image</th>
+                                        <th>ProductId</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    @foreach (var setting in Model)
+                                    @foreach (var slider in Model)
                                     {
                                         count++;
                                         <tr>
-
                                             <td>@count</td>
-                                            <td>@setting.Key</td>
-                                            <td>@setting.Value</td>
-
+                                            <td>
+                                                <img src="~/uploads/ordersliders/@slider.Image" width="300" height="180" />
+                                            </td>
+                                            <td class="text-center">@slider.ProductId</td>
                                             <td class="text-center">
-                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="setting" asp-route-id="@setting.Id">Edit</a>
+                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="orderslider" asp-route-id="@slider.Id">Edit</a>
+                                                <a class="btn btn-danger delete-btn  mb-1" asp-action="delete" asp-controller="orderslider" asp-route-id="@slider.Id">Delete</a>
                                             </td>
                                         </tr>
-
                                     }
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>#</th>
-                                        <th>Key</th>
-                                        <th>Value</th>
+                                        <th>Image</th>
+                                        <th>ProductId</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -70,3 +71,4 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
 }
+

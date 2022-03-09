@@ -29,7 +29,8 @@ namespace NetMedsFull.Controllers
             CheckoutViewModel checkoutVM = new CheckoutViewModel
             {
                 CheckoutItems = await _getCheckoutItems(),
-                Order = new Order()
+                Order = new Order(),
+                OrderSliders = _context.OrderSliders.ToList(),
             };
             return View(checkoutVM);
         }

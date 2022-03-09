@@ -10,5 +10,6 @@ namespace NetMedsFull.ViewModels
     {
         public List<CheckoutItemViewModel> CheckoutItems { get; set; }
         public Order Order { get; set; }
+        public List<OrderSlider> OrderSliders { get; set; }
     }
 }

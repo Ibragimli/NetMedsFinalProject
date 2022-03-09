@@ -4,17 +4,16 @@
     var count = 0;
 }
 
-@model List<Setting>
+@model List<Contact>
 
 <div class="content-body" style="min-height: 740px;">
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="displ card-header">
                         <h4 class="card-title">
-                            Setting Panel
+                            Contact Panel
                         </h4>
                     </div>
                     <div class="card-body">
@@ -30,17 +29,17 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach (var setting in Model)
+                                    @foreach (var contact in Model)
                                     {
                                         count++;
                                         <tr>
 
                                             <td>@count</td>
-                                            <td>@setting.Key</td>
-                                            <td>@setting.Value</td>
+                                            <td>@contact.Key</td>
+                                            <td>@(contact.Value.Length <= 250?(contact.Value):(contact.Value.Substring(0,250)+" .........."))</td>
 
                                             <td class="text-center">
-                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="setting" asp-route-id="@setting.Id">Edit</a>
+                                                <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="contact" asp-route-id="@contact.Id">Edit</a>
                                             </td>
                                         </tr>
 

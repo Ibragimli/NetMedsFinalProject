@@ -12,26 +12,25 @@ namespace NetMedsFull.Areas.Manage.Controllers
 {
     [Area("manage")]
     [Authorize(Roles = "SuperAdmin,Admin")]
-    public class ShopSliderController : Controller
+    public class OrderSliderController : Controller
     {
         private readonly DataContext _context;
         private readonly IWebHostEnvironment _env;
 
-        public ShopSliderController(DataContext context, IWebHostEnvironment env)
+        public OrderSliderController(DataContext context, IWebHostEnvironment env)
         {
             _context = context;
             _env = env;
         }
         public IActionResult Index()
         {
-
-            var shopSlider = _context.ShopSliders.ToList();
-            if (shopSlider == null)
+            var orderSliders = _context.OrderSliders.ToList();
+            if (orderSliders == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
 
-            return View(shopSlider);
+            return View(orderSliders);
         }
 
 
@@ -42,125 +41,125 @@ namespace NetMedsFull.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ShopSlider shopSlider)
+        public IActionResult Create(OrderSlider orderSlider)
         {
-            if (shopSlider == null)
+            if (orderSlider == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
-            var existProduct = _context.Products.Any(x => x.Id == shopSlider.ProductId);
+            var existProduct = _context.Products.Any(x => x.Id == orderSlider.ProductId);
 
             if (!existProduct)
             {
                 ModelState.AddModelError("ProductId", "Product not found!");
                 return View();
             }
-            if (shopSlider.ImageFile == null)
+            if (orderSlider.ImageFile == null)
             {
                 ModelState.AddModelError("ImageFile", "ImageFile is required");
                 return View();
             }
             else
             {
-                if (shopSlider.ImageFile.ContentType != "image/png" && shopSlider.ImageFile.ContentType != "image/jpeg")
+                if (orderSlider.ImageFile.ContentType != "image/png" && orderSlider.ImageFile.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("ImageFile", "ImageFile is required");
                     return View();
                 }
-                if (shopSlider.ImageFile.Length > 2097152)
+                if (orderSlider.ImageFile.Length > 2097152)
                 {
                     ModelState.AddModelError("ImageFile", "ImageFile max size is 2MB");
                     return View();
 
                 }
-                shopSlider.Image = FileManager.Save(_env.WebRootPath, "uploads/shopsliders", shopSlider.ImageFile);
+                orderSlider.Image = FileManager.Save(_env.WebRootPath, "uploads/ordersliders", orderSlider.ImageFile);
             }
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            _context.ShopSliders.Add(shopSlider);
+            _context.OrderSliders.Add(orderSlider);
             _context.SaveChanges();
 
-            return RedirectToAction("index", "shopslider");
+            return RedirectToAction("index", "orderslider");
         }
 
 
 
         public IActionResult Edit(int id)
         {
-            var shopSlider = _context.ShopSliders.FirstOrDefault(x => x.Id == id);
-            if (shopSlider == null)
+            var orderSlider = _context.OrderSliders.FirstOrDefault(x => x.Id == id);
+            if (orderSlider == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
 
-            return View(shopSlider);
+            return View(orderSlider);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(ShopSlider shopSlider)
+        public IActionResult Edit(OrderSlider orderSlider)
         {
-            var existshopSlider = _context.Sliders.FirstOrDefault(x => x.Id == shopSlider.Id);
-            if (existshopSlider == null)
+            var existSlider = _context.OrderSliders.FirstOrDefault(x => x.Id == orderSlider.Id);
+            if (existSlider == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
-            var existProduct = _context.Products.Any(x => x.Id == shopSlider.ProductId);
+            var existProduct = _context.Products.Any(x => x.Id == orderSlider.ProductId);
 
             if (!existProduct)
             {
                 ModelState.AddModelError("ProductId", "Product not found!");
-                return View(existshopSlider);
+                return View(existSlider);
             }
-            if (shopSlider.ImageFile == null)
+            if (orderSlider.ImageFile == null)
             {
                 ModelState.AddModelError("ImageFile", "ImageFile is required");
-                return View(existshopSlider);
+                return View(existSlider);
             }
             else
             {
-                if (shopSlider.ImageFile.ContentType != "image/png" && shopSlider.ImageFile.ContentType != "image/jpeg")
+                if (orderSlider.ImageFile.ContentType != "image/png" && orderSlider.ImageFile.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("ImageFile", "ImageFile is required");
-                    return View(existshopSlider);
+                    return View(existSlider);
                 }
-                if (shopSlider.ImageFile.Length > 2097152)
+                if (orderSlider.ImageFile.Length > 2097152)
                 {
                     ModelState.AddModelError("ImageFile", "ImageFile max size is 2MB");
-                    return View(existshopSlider);
+                    return View(existSlider);
 
                 }
-                FileManager.Delete(_env.WebRootPath, "uploads/shopsliders", existshopSlider.Image);
-                existshopSlider.Image = FileManager.Save(_env.WebRootPath, "uploads/shopsliders", shopSlider.ImageFile);
+                FileManager.Delete(_env.WebRootPath, "uploads/ordersliders", existSlider.Image);
+                existSlider.Image = FileManager.Save(_env.WebRootPath, "uploads/ordersliders", orderSlider.ImageFile);
             }
             if (!ModelState.IsValid)
             {
-                return View(existshopSlider);
+                return View(existSlider);
             }
 
-            existshopSlider.ProductId = shopSlider.ProductId;
+            existSlider.ProductId = orderSlider.ProductId;
 
             _context.SaveChanges();
             TempData["Success"] = "Edit is succesfull!";
-            return RedirectToAction("index", "shopslider");
+            return RedirectToAction("index", "ordersliders");
 
         }
 
         public IActionResult Delete(int id)
         {
-            var shopsliders = _context.ShopSliders.FirstOrDefault(x => x.Id == id);
-            if (shopsliders == null)
+            var orderSlider = _context.OrderSliders.FirstOrDefault(x => x.Id == id);
+            if (orderSlider == null)
             {
                 return RedirectToAction("notfounds", "error");
 
             }
-            var Image = shopsliders.Image;
-            FileManager.Delete(_env.WebRootPath, "uploads/shopsliders", Image);
+            var Image = orderSlider.Image;
+            FileManager.Delete(_env.WebRootPath, "uploads/ordersliders", Image);
 
 
-            _context.ShopSliders.Remove(shopsliders);
+            _context.OrderSliders.Remove(orderSlider);
             _context.SaveChanges();
             TempData["Success"] = "Delete is succesfull!";
 

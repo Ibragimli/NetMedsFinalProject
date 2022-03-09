@@ -83,7 +83,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
             _context.Sliders.Add(slider);
             _context.SaveChanges();
 
-            return RedirectToAction("index", "dashboard");
+            return RedirectToAction("index", "slider");
         }
 
 
