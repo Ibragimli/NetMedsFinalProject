@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h1>Edit</h1>
+@model Setting
+
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" asp-action="edit" asp-controller="setting" enctype="multipart/form-data">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6 mb-3">
+                                    <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Name</label>
+                                    <input id="editor" maxlength="150" asp-for="Value" class="form-control input-default " placeholder="Name">
+                                    <span class="text-danger" asp-validation-for="Value"></span>
+                                </div>
+                                <button type="submit" class="mt-4 btn  btn-primary">Edit</button>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/manage/js/ProductImage.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+}
+

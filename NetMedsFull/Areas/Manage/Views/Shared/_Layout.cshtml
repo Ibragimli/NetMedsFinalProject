@@ -29,10 +29,21 @@
     <link href="~/manage/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <!-- Style css -->
     <link href="~/manage/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link href="~/manage/css/areastyle.css" rel="stylesheet">
 
 </head>
 <body>
+
+    @if (TempData["Error"] != null)
+    {
+        <input type="hidden" id="toaster-error" value="@TempData["Error"]" />
+    }
+    @if (TempData["Success"] != null)
+    {
+        <input type="hidden" id="toaster-success" value="@TempData["Success"]" />
+    }
 
     <!--*******************
         Preloader start
@@ -749,6 +760,37 @@
             }, 1000);
         });
 
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        $(document).ready(function () {
+            if ($("#toaster-error").length) {
+                toastr["error"]($("#toaster-error").val())
+            }
+            if ($("#toaster-success").length) {
+                toastr["success"]($("#toaster-success").val())
+            }
+        })
     </script>
     @RenderSection("Scripts", required: false)
 </body>

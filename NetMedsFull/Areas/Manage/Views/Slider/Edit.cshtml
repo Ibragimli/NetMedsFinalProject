@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+@model Slider
+
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" asp-action="edit" asp-controller="slider" enctype="multipart/form-data">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6 mb-3">
+                                    <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">ProductId</label>
+                                    <input asp-for="ProductId" class="form-control input-default " placeholder="ProductId">
+                                    <span class="text-danger" asp-validation-for="ProductId"></span>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label style=" color: #886CC0; font-weight: 700; font-size: 20px; " asp-for="ImageFile">ImageFile</label>
+                                        <input class="form-control" asp-for="ImageFile">
+                                        <span class="text-danger" asp-validation-for="ImageFile"></span>
+                                        <img width="200" height="180" src="~/uploads/sliders/@Model.Image" />
+                                    </div>
+                                </div>
+                                <button type="submit" class="mt-4 btn  btn-primary">Create</button>
+                                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+}

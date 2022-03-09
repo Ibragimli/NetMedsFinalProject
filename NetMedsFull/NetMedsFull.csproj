@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Manage\Models\" />
+    <Folder Include="wwwroot\uploads\sliders\" />
     <Folder Include="wwwroot\uploads\products\" />
   </ItemGroup>
 

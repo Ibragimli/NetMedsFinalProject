@@ -42,7 +42,6 @@ namespace NetMedsFull.Areas.Manage.Controllers
 
         public IActionResult Create()
         {
-
             ViewBag.Brand = _context.Brands.ToList();
             return View();
         }
@@ -71,9 +70,9 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 ModelState.AddModelError("SalePrice", "SalePrice is required");
                 return View();
             }
-            if (product.DiscountPercent <= 0 && product.DiscountPercent > 100)
+            if (product.DiscountPercent < 0 && product.DiscountPercent > 100)
             {
-                ModelState.AddModelError("DiscountPercent", "DiscountPercent Range(1,100)");
+                ModelState.AddModelError("DiscountPercent", "DiscountPercent Range(0,100)");
                 return View();
             }
             if (!_context.Brands.Any(x => x.Id == product.BrandId))
@@ -81,11 +80,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 ModelState.AddModelError("BrandId", "BrandId not found");
                 return View();
             }
-            //if (product.Type != ProductType.Tablet || product.Type != ProductType.Liquid)
-            //{
-            //    ModelState.AddModelError("Type", "Type not found");
-            //    return View();
-            //}
+
             if (product.PosterImageFile == null)
             {
                 ModelState.AddModelError("PosterImageFile", "PosterImageFile is required");
@@ -173,46 +168,44 @@ namespace NetMedsFull.Areas.Manage.Controllers
         public IActionResult Edit(Product product)
         {
             ViewBag.Brand = _context.Brands.ToList();
-
-            if (product.Name == null)
-            {
-                ModelState.AddModelError("Name", "Name is required");
-                return View();
-            }
-            if (product.CostPrice <= 0)
-            {
-                ModelState.AddModelError("CostPrice", "CostPrice is required");
-                return View();
-            }
-            if (product.SalePrice <= 0)
-            {
-                ModelState.AddModelError("SalePrice", "SalePrice is required");
-                return View();
-            }
-            if (product.DiscountPercent < 0 && product.DiscountPercent > 100)
-            {
-                ModelState.AddModelError("DiscountPercent", "DiscountPercent Range(0,100)");
-                return View();
-            }
-            if (!_context.Brands.Any(x => x.Id == product.BrandId))
-            {
-                ModelState.AddModelError("BrandId", "BrandId not found");
-                return View();
-            }
-
             var productExist = _context.Products.Include(x => x.Brand).Include(x => x.ProductImages).FirstOrDefault(x => x.Id == product.Id);
             if (productExist == null)
             {
                 return RedirectToAction("notfounds", "error");
+            }
+            if (product.Name == null)
+            {
+                ModelState.AddModelError("Name", "Name is required");
+                return View(productExist);
+            }
+            if (product.CostPrice <= 0)
+            {
+                ModelState.AddModelError("CostPrice", "CostPrice is required");
+                return View(productExist);
+            }
+            if (product.SalePrice <= 0)
+            {
+                ModelState.AddModelError("SalePrice", "SalePrice is required");
+                return View(productExist);
+            }
+            if (product.DiscountPercent < 0 && product.DiscountPercent > 100)
+            {
+                ModelState.AddModelError("DiscountPercent", "DiscountPercent Range(0,100)");
+                return View(productExist);
+            }
+            if (!_context.Brands.Any(x => x.Id == product.BrandId))
+            {
+                ModelState.AddModelError("BrandId", "BrandId not found");
+                return View(productExist);
             }
 
             if (!ModelState.IsValid)
             {
                 return View(productExist);
             }
+
             if (product.PosterImageFile != null)
             {
-
                 var posterImage = product.PosterImageFile;
                 if (posterImage.ContentType != "image/png" && posterImage.ContentType != "image/jpeg")
                 {
@@ -224,29 +217,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
                     ModelState.AddModelError("PosterImageFile", "PosterImageFile max size is 2MB");
                     return View(productExist);
                 }
-            }
 
-            if (product.ImageFiles != null)
-            {
-                var images = product.ImageFiles;
-                foreach (var item in images)
-                {
-                    if (item.ContentType != "image/png" && item.ContentType != "image/jpeg")
-                    {
-                        ModelState.AddModelError("ImageFiles", "ImageFiles is required");
-                        return View(productExist);
-                    }
-                    if (item.Length > 2097152)
-                    {
-                        ModelState.AddModelError("ImageFiles", "ImageFiles max size is 2MB");
-                        return View(productExist);
-                    }
-
-                }
-            }
-
-            if (product.PosterImageFile != null)
-            {
                 ProductImage Poster = productExist.ProductImages.FirstOrDefault(x => x.PosterStatus == true);
 
                 if (Poster == null) return RedirectToAction("notfound", "pages");
@@ -256,31 +227,11 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 Poster.Image = filename;
             }
 
-
-            if (product.ProductImagesIds != null)
-            {
-                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id)))
-                {
-                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
-                }
-                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id));
-
-            }
-            else
-            {
-                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false))
-                {
-                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
-                }
-                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false);
-            }
-
-
-
-
             if (product.ImageFiles != null)
             {
-                foreach (var file in product.ImageFiles)
+                var images = product.ImageFiles;
+
+                foreach (var file in images)
                 {
                     if (file.ContentType != "image/png" && file.ContentType != "image/jpeg")
                     {
@@ -302,16 +253,27 @@ namespace NetMedsFull.Areas.Manage.Controllers
                     productExist.ProductImages.Add(image);
                 }
             }
-            productExist.Name = product.Name;
-            productExist.Country = product.Country;
-            productExist.SalePrice = product.SalePrice;
-            productExist.CostPrice = product.CostPrice;
-            productExist.Description = product.Description;
-            productExist.BrandId = product.BrandId;
-            productExist.Type = product.Type;
-            productExist.IsTrending = product.IsTrending;
-            productExist.IsNew = product.IsNew;
-            productExist.StockStatus = product.StockStatus;
+
+            if (product.ProductImagesIds != null)
+            {
+                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id)))
+                {
+                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
+                }
+                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id));
+
+            }
+            else
+            {
+                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false))
+                {
+                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
+                }
+                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false);
+            }
+
+
+            _setProductData(productExist, product);
             _context.SaveChanges();
             return RedirectToAction("index");
         }
@@ -321,7 +283,8 @@ namespace NetMedsFull.Areas.Manage.Controllers
             var product = _context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
             if (product == null)
             {
-                return NotFound();
+                return RedirectToAction("notfounds", "error");
+
             }
             var PosterImage = product.ProductImages.FirstOrDefault(x => x.PosterStatus == true);
             FileManager.Delete(_env.WebRootPath, "uploads/products", PosterImage.Image);
@@ -370,6 +333,20 @@ namespace NetMedsFull.Areas.Manage.Controllers
             comment.CommentStatus = true;
             _context.SaveChanges();
             return RedirectToAction("comments", new { Id = comment.Id });
+        }
+
+        private void _setProductData(Product oldProduct, Product newProduct)
+        {
+            oldProduct.Name = newProduct.Name;
+            oldProduct.Country = newProduct.Country;
+            oldProduct.SalePrice = newProduct.SalePrice;
+            oldProduct.CostPrice = newProduct.CostPrice;
+            oldProduct.Description = newProduct.Description;
+            oldProduct.BrandId = newProduct.BrandId;
+            oldProduct.Type = newProduct.Type;
+            oldProduct.IsTrending = newProduct.IsTrending;
+            oldProduct.IsNew = newProduct.IsNew;
+            oldProduct.StockStatus = newProduct.StockStatus;
         }
     }
 }
