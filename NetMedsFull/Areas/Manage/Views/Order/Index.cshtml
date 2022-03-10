@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    var count = 0;
+}
+
+@model List<Order>
+
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="displ card-header">
+                        <h4 class="card-title">
+                            Order Panel
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Code</th>
+                                        <th>Fullname</th>
+                                        <th>TotalAmount</th>
+                                        <th>Status</th>
+                                        <th>DeliveryStatus</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var order in Model)
+                                    {
+                                        count++;
+                                        ViewBag.OrderModalCount = count;
+                                        <tr>
+
+                                            <td>@count</td>
+                                            <td>@order.CodePrefix@order.CodeNumber</td>
+                                            <td>@order.Fullname</td>
+                                            <td>@order.TotalAmount₼</td>
+                                            <td>
+                                                @if (order.Status == OrderStatus.Accepted)
+                                                {
+                                                    <span class="badge bg-success">  Accepted</span>
+                                                }
+                                                @if (order.Status == OrderStatus.Rejected)
+                                                {
+                                                    <span class="badge bg-danger">  Rejected</span>
+                                                }
+
+                                                @if (order.Status == OrderStatus.Pending)
+                                                {
+                                                    <span class="badge bg-warning">  Pending</span>
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @if (order.DeliveryStatus == OrderDeliveryStatus.Delivered)
+                                                {
+                                                    <span class="badge bg-success">  Delivered</span>
+                                                }
+                                                @if (order.DeliveryStatus == OrderDeliveryStatus.OnCourier)
+                                                {
+                                                    <span class="badge bg-secondary">  OnCourier</span>
+                                                }
+
+                                                @if (order.DeliveryStatus == OrderDeliveryStatus.OnDepot)
+                                                {
+                                                    <span class="badge bg-info">  OnDepot</span>
+                                                }
+                                                @if (order.DeliveryStatus == OrderDeliveryStatus.OnProcessing)
+                                                {
+                                                    <span class="badge bg-light">  OnProcessing</span>
+                                                }
+                                                @if (order.DeliveryStatus == OrderDeliveryStatus.OnWaiting)
+                                                {
+                                                    <span class="badge bg-warning">  OnWaiting</span>
+                                                }
+                                            </td>
+
+                                            <td class="text-center">
+                                                @if (order.Status != OrderStatus.Accepted)
+                                                {
+                                                    <a class="btn btn-primary mb-1" asp-action="acceptlab" asp-controller="labtest" asp-route-id="@order.Id">Accept</a>
+
+                                                }
+                                                @if (order.Status != OrderStatus.Rejected)
+                                                {
+                                                    <a class="btn btn-danger mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal-@count">Cancel</a>
+                                                }
+                                                <a class="btn btn-info  mb-1" data-bs-toggle="modal" data-bs-target="#orderModal-@count">View</a>
+                                            </td>
+                                        </tr>
+                                        @await Html.PartialAsync("_OrderViewInfoPartial", order)
+
+                                        @* Modal *@
+                                        <div class="modal fade" id="exampleModal-@count" tabindex="-1" aria-labelledby="exampleModal-@count-Label" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <form method="post" asp-action="rejectorder">
+
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModal-@count-Label">Modal title</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="text-center col-lg-10 mb-3">
+                                                                <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Cancel Comment</label>
+                                                                <textarea style="height:10rem;max-height" :11rem;" maxlength="100" asp-for="@order.RejectComment" class="form-control input-default " placeholder="Reject Comment"></textarea>
+                                                                <span class="text-danger" asp-validation-for="@order.RejectComment"></span>
+                                                                <input type="hidden" asp-for="@order.Id" value="@order.Id" />
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Code</th>
+                                        <th>Fullname</th>
+                                        <th>TotalAmount</th>
+                                        <th>Status</th>
+                                        <th>DeliveryStatus</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/manage/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/manage/js/plugins-init/datatables.init.js"></script>
+    <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
+}
+

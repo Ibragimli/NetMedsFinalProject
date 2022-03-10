@@ -9,6 +9,7 @@
 
     List<Setting> settings = await service.GetSettings();
     List<Product> products = await service.GetProductSearch();
+    List<Subscribe> subscribe = await service.GetSubscribe();
     BasketViewModel HeaderVm = await service.GetHeaderBasket();
 
 }
@@ -230,7 +231,7 @@
                         <li>
                             <h2>Company</h2>
                         </li>
-                        <li><a asp-action="aboutus" asp-controller="about" >About Netmeds</a></li>
+                        <li><a asp-action="aboutus" asp-controller="about">About Netmeds</a></li>
                         <li><a href="#">Customers Speak</a></li>
                         <li><a href="#">In the News</a></li>
                         <li>
@@ -304,8 +305,8 @@
                     <p>
                         Get a free subscription to our health and fitness tip and stay tuned to our latest offers
                     </p>
-                    <form action="#">
-                        <input type="text" class="form-control" placeholder="Enter your email address">
+                    <form method="post" asp-action="subscribe">
+                        <input asp-for="@subscribe" type="email" class="form-control" placeholder="Enter your email address">
                         <i class="fa-solid fa-arrow-right"></i>
                     </form>
 

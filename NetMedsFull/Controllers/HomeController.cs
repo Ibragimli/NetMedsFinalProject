@@ -30,9 +30,19 @@ namespace NetMedsFull.Controllers
                 Sliders = _context.Sliders.Include(x => x.Product).ToList(),
                 Categories = _context.Categories.Where(x => x.IsNav == true && x.IsDelete == false).ToList(),
                 SbiLabs = _context.SbiLabs.ToList(),
-
             };
             return View(homeVM);
+        }
+
+        [HttpPost]
+        public IActionResult Subscribe(Subscribe subscribe)
+        {
+            if (subscribe == null)
+            {
+                TempData["error"] = "Email is required";
+                return RedirectToAction("index", "home");
+            }
+            return Ok();
         }
     }
 }

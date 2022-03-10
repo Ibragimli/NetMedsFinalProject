@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetMedsFull.Models;
 
 namespace NetMedsFull.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220310070114_LabtestCancelComment")]
+    partial class LabtestCancelComment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -800,26 +802,6 @@ namespace NetMedsFull.Migrations
                     b.HasIndex("SubCategoryId");
 
                     b.ToTable("SubCategoryBrands");
-                });
-
-            modelBuilder.Entity("NetMedsFull.Models.Subscribe", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Subscribes");
                 });
 
             modelBuilder.Entity("NetMedsFull.Models.TrendSlider", b =>

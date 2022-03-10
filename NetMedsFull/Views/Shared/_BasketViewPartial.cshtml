@@ -1,5 +1,10 @@
 ﻿@model BasketViewModel
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> userManager;
 
+@{
+    AppUser user = User.Identity.IsAuthenticated ? (userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin == false)) : null;
+}
 <div class="basketAHover">
     <div class="basketHoverUp">
         <h2>
@@ -15,8 +20,7 @@
             {
                 @foreach (var item in Model.BasketItems)
                 {
-                    //if (item.StockStatus == true)
-                    //{
+
                     <div class="itemBasket">
                         <div class="basketName">
                             <a asp-action="detail" asp-controller="product" asp-route-proId="@item.ProductId">
@@ -25,7 +29,6 @@
                         </div>
                         <div class="basketPriceCount">  ₼@(item.Price.ToString("0.00")) x @item.Count</div>
                     </div>
-                    //}
 
                 }
             }
@@ -45,7 +48,7 @@
                     </span>
 
                 </div>
-                @if (User.Identity.IsAuthenticated)
+                @if (user != null && user.IsAdmin == false)
                 {
                     <p id="savePrice">
                         ₼@(Model?.TotalSaveUser != null?(Model.TotalSaveUser.ToString("0.00")):("0"))

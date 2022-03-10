@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    var count = 0;
+}
+
+@model List<LabTest>
+
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="displ card-header">
+                        <h4 class="card-title">
+                            Labtest Panel
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Fullname</th>
+                                        <th>Email</th>
+                                        <th>Rendezvous</th>
+                                        <th>LabTestPrice</th>
+                                        <th>Status</th>
+                                        <th> CancelComment</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var labtest in Model)
+                                    {
+                                        count++;
+                                        ViewBag.LabCount = count;
+                                        <tr>
+
+                                            <td>@count</td>
+                                            <td>@labtest.Fullname</td>
+                                            <td>@labtest.Email</td>
+                                            <td>@labtest.Rendezvous</td>
+                                            <td>@labtest.LabTestPrice.Price₼</td>
+                                            <td>
+                                                @if (labtest.LabStatus == LabStatus.Accepted)
+                                                {
+                                                    <span class="badge bg-success">  Accepted</span>
+                                                }
+                                                @if (labtest.LabStatus == LabStatus.Canceled)
+                                                {
+                                                    <span class="badge bg-danger">  Canceled</span>
+                                                }
+
+                                                @if (labtest.LabStatus == LabStatus.Waiting)
+                                                {
+                                                    <span class="badge bg-warning">  Waiting</span>
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @if (labtest.CancelComment != null)
+                                                {
+                                                    @labtest.CancelComment
+                                                }
+                                                else
+                                                {
+                                                    <p class="text-center">------</p>
+                                                }
+                                            </td>
+
+                                            <td class="text-center">
+                                                @if (labtest.LabStatus != LabStatus.Accepted)
+                                                {
+                                                    <a class="btn btn-primary mb-1" asp-action="acceptlab" asp-controller="labtest" asp-route-id="@labtest.Id">Accept</a>
+
+                                                }
+                                                @if (labtest.LabStatus != LabStatus.Canceled)
+                                                {
+                                                    <a class="btn btn-danger mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal-@count">Cancel</a>
+                                                }
+                                            </td>
+                                        </tr>
+
+                                        @* Modal *@
+                                        <div class="modal fade" id="exampleModal-@count" tabindex="-1" aria-labelledby="exampleModal-@count-Label" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <form method="post" asp-action="cancellab">
+
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModal-@count-Label">Modal title</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="text-center col-lg-10 mb-3">
+                                                                <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Cancel Comment</label>
+                                                                <textarea style="height:10rem;max-height" :11rem;" maxlength="100" asp-for="@labtest.CancelComment" class="form-control input-default " placeholder="Cancel Comment"></textarea>
+                                                                <span class="text-danger" asp-validation-for="@labtest.CancelComment"></span>
+                                                                <input type="hidden" asp-for="@labtest.Id" value="@labtest.Id" />
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Fullname</th>
+                                        <th>Email</th>
+                                        <th>Rendezvous</th>
+                                        <th>LabTestPrice</th>
+                                        <th>Status</th>
+                                        <th> CancelComment</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/manage/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/manage/js/plugins-init/datatables.init.js"></script>
+    <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
+}
+

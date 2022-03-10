@@ -31,6 +31,7 @@ namespace NetMedsFull.Models
         public DbSet<SubCategoryBrand> SubCategoryBrands { get; set; }
         public DbSet<OrderSlider> OrderSliders { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Subscribe> Subscribes { get; set; }
 
     }
 }

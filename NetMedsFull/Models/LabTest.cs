@@ -13,6 +13,8 @@ namespace NetMedsFull.Models
         [Required]
         [StringLength(maximumLength: 25)]
         public string Fullname { get; set; }
+        [StringLength(maximumLength: 100)]
+        public string CancelComment { get; set; }
         [Required]
         [StringLength(maximumLength: 25)]
         public string Email { get; set; }

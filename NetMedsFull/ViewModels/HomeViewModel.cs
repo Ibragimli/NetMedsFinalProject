@@ -16,6 +16,5 @@ namespace NetMedsFull.ViewModels
         public List<Category> Categories { get; set; }
         public List<SbiLab> SbiLabs { get; set; }
 
-
     }
 }

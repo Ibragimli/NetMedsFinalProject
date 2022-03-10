@@ -1,6 +1,11 @@
 ﻿@model Comment
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> userManager
+@{
+    AppUser user = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
 
-@if (User.Identity.IsAuthenticated)
+}
+@if (user !=null && user.IsAdmin == false )
 {
     <div class="form-floating">
         <form asp-action="comment" method="post">
