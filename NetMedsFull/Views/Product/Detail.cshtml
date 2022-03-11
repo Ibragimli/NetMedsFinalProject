@@ -36,12 +36,12 @@
                 <ul class="pCategory">
                     <li>
                         <a href="#">
-                            @*@Model.Products.Brand.SubCategoryBrands.FirstOrDefault(x=>x.SubCategory.Name)*@
-
+                            @Model.Products.Country
                         </a>
                     </li>
+
                     <li>
-                        <a href="#">
+                        <a asp-action="shop" asp-controller="product" asp-route-brandId="@Model.Products.BrandId">
                             @Model.Products.Brand.Name
 
                         </a>
@@ -50,35 +50,34 @@
                 <ul class="starReviews">
 
                     <li class="ms-3">
-                        <span>   @Model.Comments.Rate</span>
+                        <span>
+                        @ViewBag.RatePoint
+                        </span>
 
                         <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="fa-solid fa-star"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa-solid fa-star"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa-solid fa-star"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa-solid fa-star"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa-solid fa-star"></i>
-                                </a>
-                            </li>
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                if (i < ViewBag.RatePoint)
+                                {
+                                    <li>
+                                        <a href="#">
+                                            <i style="color: #73c330;" class="fa-solid fa-star"></i>
+                                        </a>
+                                    </li>
+                                }
 
+
+                                else
+                                {
+                                    <li>
+
+                                        <a href="#">
+                                            <i class="fa-solid fa-star"></i>
+                                        </a>
+                                    </li>
+                                }
+
+                            }
                         </ul>
                         <p>
 
@@ -235,7 +234,7 @@
                 </h1>
                 <div class="starRatings">
                     <span>
-                        @Model.Comments.Rate
+                        @ViewBag.RatePoint
                     </span>
                     <i class="fa-solid fa-star"></i>
 

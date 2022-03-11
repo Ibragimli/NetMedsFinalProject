@@ -26,13 +26,27 @@ namespace NetMedsFull.Controllers
         public IActionResult Detail(int id)
         {
             ViewBag.productId = id;
-
+            ViewBag.RatePoint = 0;
+            int ratePoint = 0;
+            int countRate = 0;
             Product product = _getProductContext(id);
             if (product == null)
             {
                 return RedirectToAction("error", "error");
-
             }
+
+            if (product.Comments.Count() > 0)
+            {
+                foreach (var comment in product.Comments)
+                {
+                    countRate++;
+                    ratePoint += comment.Rate;
+                }
+                ratePoint = ratePoint / countRate;
+                ViewBag.RatePoint = ratePoint;
+            }
+
+
             ProductDetailViewModel productDetailVM = GetProductDetail(product, new Comment());
 
             return View(productDetailVM);
@@ -44,7 +58,7 @@ namespace NetMedsFull.Controllers
             Product product = _getProductContext(comment.ProductId);
             if (product == null)
             {
-                return RedirectToAction("Error","error");
+                return RedirectToAction("Error", "error");
             }
             ProductDetailViewModel productDetailVM = GetProductDetail(product, comment);
 
@@ -307,7 +321,7 @@ namespace NetMedsFull.Controllers
         {
 
             Product product = _context.Products.Include(x => x.ProductImages)
-                .Include(x => x.Brand)
+                .Include(x => x.Brand).ThenInclude(x => x.SubCategoryBrands)
                 .Include(x => x.Comments)
                 .FirstOrDefault(x => x.Id == id);
             return product;
@@ -315,13 +329,14 @@ namespace NetMedsFull.Controllers
         private ProductDetailViewModel GetProductDetail(Product product, Comment comment = null)
         {
 
+
             ProductDetailViewModel productDetailVM = new ProductDetailViewModel
             {
                 Products = product,
                 Comments = comment,
                 RelatedProduct = _context.Products
                 .Include(x => x.ProductImages).Include(x => x.Brand)
-                .Where(x => x.Brand.Id == product.BrandId).OrderByDescending(x => x.Id).Take(5).ToList()
+                .Where(x => x.Brand.Id == product.BrandId).OrderByDescending(x => x.Id).Take(5).ToList(),
             };
             return productDetailVM;
         }

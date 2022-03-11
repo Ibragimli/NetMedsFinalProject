@@ -8,7 +8,7 @@ namespace NetMedsFull.ViewModels
 {
     public class ProductDetailViewModel
     {
-        public  Comment Comments { get; set; }
+        public Comment Comments { get; set; }
         public List<Product> RelatedProduct { get; set; }
         public Product Products { get; set; }
     }
