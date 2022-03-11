@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewData["Title"] = "View";
+    var count = 0;
+}
+
+@model Order
+<div class="content-body" style="min-height: 740px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="displ card-header">
+                        <h4 style="font-weight:700" class="card-title">
+                            Order View
+                        </h4>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="font-weight:700;">Phone</th>
+                                        <th style="font-weight:700;">Address1</th>
+                                        <th style="font-weight:700;">Address2</th>
+                                        <th style="font-weight:700;">Country</th>
+                                        <th style="font-weight:700;">City</th>
+                                        <th style="font-weight:700;">Zipcode</th>
+                                        <th style="font-weight:700;">Note</th>
+                                        <th style="font-weight:700;">CreatedAt</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Model.Phone</td>
+                                        <td>@Model.Address1</td>
+                                        <td>@Model.Address2</td>
+                                        <td>@Model.Country</td>
+                                        <td>@Model.City</td>
+                                        <td>@Model.Zipcode</td>
+                                        <td>@Model.Note</td>
+                                        <td>@Model.CreatedAt</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h1 class="text-center" style="font-weight:700">Delivery Status Action</h1>
+                        <div class="row mb-3">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusOnProcessing" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-danger">OnProcessing</a>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusOnDepot" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-dark">OnDepot</a>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusOnCourier" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-info">OnCourier</a>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusDelivered" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-success">Delivered</a>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusOnWaiting" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-warning">OnWaiting</a>
+                                </div>
+                                <div class="col-lg-1">
+                                </div>
+                        </div>
+
+                        <h1 style="font-weight:700;" class="text-center"> Order Items </h1>
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>SalePrice</th>
+                                        <th>CostPrice</th>
+                                        <th>DiscountPercent</th>
+                                        <th>Count</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.OrderItems)
+                                    {
+                                        <tr>
+                                            <td>@item.Product.Name</td>
+                                            <td>@(item.DiscountPercent>0?(item.SalePrice*(100-item.DiscountPercent)/100).ToString("0.00") : (item.SalePrice).ToString("0.00"))₼</td>
+                                            <td>@item.CostPrice₼</td>
+                                            <td>@item.DiscountPercent%</td>
+                                            <td>@item.Count</td>
+                                            <td>@(item.Count * (item.DiscountPercent>0?(item.SalePrice*((100-item.DiscountPercent)/100)) : (item.SalePrice)))₼</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>SalePrice</th>
+                                        <th>CostPrice</th>
+                                        <th>DiscountPercent</th>
+                                        <th>Count</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/manage/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/manage/js/plugins-init/datatables.init.js"></script>
+    <script src="~/manage/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
+}
+

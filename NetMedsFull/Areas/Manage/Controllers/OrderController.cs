@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NetMedsFull.Enums;
 using NetMedsFull.Models;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
             return RedirectToAction("index", "order");
         }
         [HttpPost]
-        public IActionResult RejectedOrder(Order Order)
+        public IActionResult RejectOrder(Order Order)
         {
             var orderExist = _context.Orders.FirstOrDefault(x => x.Id == Order.Id);
             if (orderExist == null)
@@ -62,6 +63,99 @@ namespace NetMedsFull.Areas.Manage.Controllers
             orderExist.RejectComment = Order.RejectComment;
             _context.SaveChanges();
             return RedirectToAction("index", "order");
+        }
+        //public IActionResult DeliveryStatus(OrderDeliveryStatus status, int id)
+        //{
+        //    var existOrder = _context.Orders.FirstOrDefault(x => x.Id == id);
+        //    if (existOrder == null)
+        //    {
+        //        return RedirectToAction("notfounds", "error");
+        //    }
+
+
+
+        //    if (status == Enums.OrderDeliveryStatus.OnProcessing)
+        //    {
+        //        existOrder.DeliveryStatus = Enums.OrderDeliveryStatus.OnProcessing;
+        //    }
+        //    if (status == Enums.OrderDeliveryStatus.OnWaiting)
+        //    {
+        //        existOrder.DeliveryStatus = Enums.OrderDeliveryStatus.OnWaiting;
+        //    }
+        //    return RedirectToAction("view", new { Id = existOrder.Id });
+        //}
+
+
+        public IActionResult StatusDelivered(int id)
+        {
+            var orderExist = _context.Orders.FirstOrDefault(x => x.Id == id);
+            if (orderExist == null)
+            {
+                return RedirectToAction("notfounds", "error");
+            }
+            orderExist.DeliveryStatus = Enums.OrderDeliveryStatus.Delivered;
+            _context.SaveChanges();
+            return RedirectToAction("view", new { Id = orderExist.Id });
+        }
+
+        public IActionResult StatusOnProcessing(int id)
+        {
+            var orderExist = _context.Orders.FirstOrDefault(x => x.Id == id);
+            if (orderExist == null)
+            {
+                return RedirectToAction("notfounds", "error");
+            }
+            orderExist.DeliveryStatus = Enums.OrderDeliveryStatus.OnProcessing;
+            _context.SaveChanges();
+            return RedirectToAction("view", new { Id = orderExist.Id });
+        }
+
+        public IActionResult StatusOnCourier(int id)
+        {
+            var orderExist = _context.Orders.FirstOrDefault(x => x.Id == id);
+            if (orderExist == null)
+            {
+                return RedirectToAction("notfounds", "error");
+            }
+            orderExist.DeliveryStatus = Enums.OrderDeliveryStatus.OnCourier;
+            _context.SaveChanges();
+            return RedirectToAction("view", new { Id = orderExist.Id });
+        }
+        public IActionResult StatusOnDepot(int id)
+        {
+            var orderExist = _context.Orders.FirstOrDefault(x => x.Id == id);
+            if (orderExist == null)
+            {
+                return RedirectToAction("notfounds", "error");
+            }
+            orderExist.DeliveryStatus = Enums.OrderDeliveryStatus.OnDepot;
+            _context.SaveChanges();
+            return RedirectToAction("view", new { Id = orderExist.Id });
+        }
+
+
+        public IActionResult StatusOnWaiting(int id)
+        {
+            var orderExist = _context.Orders.FirstOrDefault(x => x.Id == id);
+            if (orderExist == null)
+            {
+                return RedirectToAction("notfounds", "error");
+            }
+            orderExist.DeliveryStatus = Enums.OrderDeliveryStatus.OnWaiting;
+            _context.SaveChanges();
+            return RedirectToAction("view", new { Id = orderExist.Id });
+        }
+
+
+
+        public IActionResult View(int id)
+        {
+            var order = _context.Orders.Include(x => x.OrderItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.Id == id);
+            if (order == null)
+            {
+                return RedirectToAction("notfounds", "error");
+            }
+            return View(order);
         }
     }
 }
