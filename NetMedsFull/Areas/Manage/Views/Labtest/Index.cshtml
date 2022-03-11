@@ -63,7 +63,7 @@
                                             <td>
                                                 @if (labtest.CancelComment != null)
                                                 {
-                                                    @labtest.CancelComment
+                                                    @Html.Raw(labtest.CancelComment)
                                                 }
                                                 else
                                                 {
@@ -113,8 +113,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     }
                                 </tbody>
                                 <tfoot>

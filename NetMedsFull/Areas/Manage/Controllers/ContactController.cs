@@ -52,7 +52,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
             existContact.Value = contact.Value;
             _context.SaveChanges();
             TempData["Success"] = "Edit is succesfull!";
-            return RedirectToAction("index", "ordersliders");
+            return RedirectToAction("index", "contact");
         }
     }
 }

@@ -28,7 +28,7 @@
                                         <th style="font-weight:700;">City</th>
                                         <th style="font-weight:700;">Zipcode</th>
                                         <th style="font-weight:700;">Note</th>
-                                        <th style="font-weight:700;">CreatedAt</th>
+                                        <th style="font-weight:700;">Purchase Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,30 +46,30 @@
                             </table>
                         </div>
 
-                        <h1 class="text-center" style="font-weight:700">Delivery Status Action</h1>
+                        <h1 class="text-center mb-4 mt-4" style="font-weight:700">Delivery Status Action</h1>
                         <div class="row mb-3">
-                                <div class="col-lg-1">
-                                </div>
-                                <div class="col-lg-2">
-                                    <a asp-action="StatusOnProcessing" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-danger">OnProcessing</a>
-                                </div>
-                                <div class="col-lg-2">
-                                    <a asp-action="StatusOnDepot" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-dark">OnDepot</a>
-                                </div>
-                                <div class="col-lg-2">
-                                    <a asp-action="StatusOnCourier" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-info">OnCourier</a>
-                                </div>
-                                <div class="col-lg-2">
-                                    <a asp-action="StatusDelivered" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-success">Delivered</a>
-                                </div>
-                                <div class="col-lg-2">
-                                    <a asp-action="StatusOnWaiting" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-warning">OnWaiting</a>
-                                </div>
-                                <div class="col-lg-1">
-                                </div>
+                            <div class="col-lg-1">
+                            </div>
+                            <div class="col-lg-2">
+                                <a asp-action="StatusOnProcessing" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-danger">OnProcessing</a>
+                            </div>
+                            <div class="col-lg-2">
+                                <a asp-action="StatusOnDepot" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-dark">OnDepot</a>
+                            </div>
+                            <div class="col-lg-2">
+                                <a asp-action="StatusOnCourier" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-info">OnCourier</a>
+                            </div>
+                            <div class="col-lg-2">
+                                <a asp-action="StatusDelivered" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-success">Delivered</a>
+                            </div>
+                            <div class="col-lg-2">
+                                <a asp-action="StatusOnWaiting" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-warning">OnWaiting</a>
+                            </div>
+                            <div class="col-lg-1">
+                            </div>
                         </div>
 
-                        <h1 style="font-weight:700;" class="text-center"> Order Items </h1>
+                        <h1 style="font-weight:700;" class="text-center mb-3 mt-5"> Order Items </h1>
                         <div class="table-responsive">
                             <table id="example" class="display" style="min-width: 845px">
                                 <thead>
@@ -85,13 +85,14 @@
                                 <tbody>
                                     @foreach (var item in Model.OrderItems)
                                     {
+                                        var total = item.Count * (item.DiscountPercent > 0 ? (item.SalePrice * ((100 - item.DiscountPercent) / 100)) : (item.SalePrice));
                                         <tr>
                                             <td>@item.Product.Name</td>
                                             <td>@(item.DiscountPercent>0?(item.SalePrice*(100-item.DiscountPercent)/100).ToString("0.00") : (item.SalePrice).ToString("0.00"))₼</td>
                                             <td>@item.CostPrice₼</td>
                                             <td>@item.DiscountPercent%</td>
                                             <td>@item.Count</td>
-                                            <td>@(item.Count * (item.DiscountPercent>0?(item.SalePrice*((100-item.DiscountPercent)/100)) : (item.SalePrice)))₼</td>
+                                            <td>@total.ToString("0.00") ₼</td>
                                         </tr>
                                     }
 

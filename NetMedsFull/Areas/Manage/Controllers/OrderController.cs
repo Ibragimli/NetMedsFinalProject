@@ -30,7 +30,6 @@ namespace NetMedsFull.Areas.Manage.Controllers
             }
             return View(orders);
         }
-
         public IActionResult AcceptOrder(int id)
         {
             var orderExist = _context.Orders.FirstOrDefault(x => x.Id == id);
@@ -64,27 +63,6 @@ namespace NetMedsFull.Areas.Manage.Controllers
             _context.SaveChanges();
             return RedirectToAction("index", "order");
         }
-        //public IActionResult DeliveryStatus(OrderDeliveryStatus status, int id)
-        //{
-        //    var existOrder = _context.Orders.FirstOrDefault(x => x.Id == id);
-        //    if (existOrder == null)
-        //    {
-        //        return RedirectToAction("notfounds", "error");
-        //    }
-
-
-
-        //    if (status == Enums.OrderDeliveryStatus.OnProcessing)
-        //    {
-        //        existOrder.DeliveryStatus = Enums.OrderDeliveryStatus.OnProcessing;
-        //    }
-        //    if (status == Enums.OrderDeliveryStatus.OnWaiting)
-        //    {
-        //        existOrder.DeliveryStatus = Enums.OrderDeliveryStatus.OnWaiting;
-        //    }
-        //    return RedirectToAction("view", new { Id = existOrder.Id });
-        //}
-
 
         public IActionResult StatusDelivered(int id)
         {
@@ -97,7 +75,6 @@ namespace NetMedsFull.Areas.Manage.Controllers
             _context.SaveChanges();
             return RedirectToAction("view", new { Id = orderExist.Id });
         }
-
         public IActionResult StatusOnProcessing(int id)
         {
             var orderExist = _context.Orders.FirstOrDefault(x => x.Id == id);
@@ -132,8 +109,6 @@ namespace NetMedsFull.Areas.Manage.Controllers
             _context.SaveChanges();
             return RedirectToAction("view", new { Id = orderExist.Id });
         }
-
-
         public IActionResult StatusOnWaiting(int id)
         {
             var orderExist = _context.Orders.FirstOrDefault(x => x.Id == id);
@@ -145,9 +120,6 @@ namespace NetMedsFull.Areas.Manage.Controllers
             _context.SaveChanges();
             return RedirectToAction("view", new { Id = orderExist.Id });
         }
-
-
-
         public IActionResult View(int id)
         {
             var order = _context.Orders.Include(x => x.OrderItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.Id == id);

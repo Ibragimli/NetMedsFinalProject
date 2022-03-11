@@ -102,7 +102,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ShopSlider shopSlider)
         {
-            var existshopSlider = _context.Sliders.FirstOrDefault(x => x.Id == shopSlider.Id);
+            var existshopSlider = _context.ShopSliders.FirstOrDefault(x => x.Id == shopSlider.Id);
             if (existshopSlider == null)
             {
                 return RedirectToAction("notfounds", "error");
@@ -114,12 +114,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 ModelState.AddModelError("ProductId", "Product not found!");
                 return View(existshopSlider);
             }
-            if (shopSlider.ImageFile == null)
-            {
-                ModelState.AddModelError("ImageFile", "ImageFile is required");
-                return View(existshopSlider);
-            }
-            else
+            if (shopSlider.ImageFile != null)
             {
                 if (shopSlider.ImageFile.ContentType != "image/png" && shopSlider.ImageFile.ContentType != "image/jpeg")
                 {
@@ -141,7 +136,6 @@ namespace NetMedsFull.Areas.Manage.Controllers
             }
 
             existshopSlider.ProductId = shopSlider.ProductId;
-
             _context.SaveChanges();
             TempData["Success"] = "Edit is succesfull!";
             return RedirectToAction("index", "shopslider");

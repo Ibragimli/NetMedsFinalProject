@@ -332,7 +332,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
             }
             comment.CommentStatus = true;
             _context.SaveChanges();
-            return RedirectToAction("comments", new { Id = comment.Id });
+            return RedirectToAction("comments", new { Id = comment.ProductId });
         }
 
         private void _setProductData(Product oldProduct, Product newProduct)

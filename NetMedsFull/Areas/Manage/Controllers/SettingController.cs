@@ -65,7 +65,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
 
             _context.SaveChanges();
             TempData["Success"] = "Edit is succesfull!";
-            return RedirectToAction("index");
+            return RedirectToAction("index","setting");
         }
     }
 }

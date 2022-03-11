@@ -113,13 +113,9 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 ModelState.AddModelError("ProductId", "Product not found!");
                 return View(existSlider);
             }
-            if (orderSlider.ImageFile == null)
+            if (orderSlider.ImageFile != null)
             {
-                ModelState.AddModelError("ImageFile", "ImageFile is required");
-                return View(existSlider);
-            }
-            else
-            {
+
                 if (orderSlider.ImageFile.ContentType != "image/png" && orderSlider.ImageFile.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("ImageFile", "ImageFile is required");
@@ -143,7 +139,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
 
             _context.SaveChanges();
             TempData["Success"] = "Edit is succesfull!";
-            return RedirectToAction("index", "ordersliders");
+            return RedirectToAction("index", "orderslider");
 
         }
 

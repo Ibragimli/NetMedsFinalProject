@@ -114,12 +114,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 ModelState.AddModelError("ProductId", "Product not found!");
                 return View(existTrend);
             }
-            if (trend.ImageFile == null)
-            {
-                ModelState.AddModelError("ImageFile", "ImageFile is required");
-                return View(existTrend);
-            }
-            else
+            if (trend.ImageFile != null)
             {
                 if (trend.ImageFile.ContentType != "image/png" && trend.ImageFile.ContentType != "image/jpeg")
                 {
@@ -135,6 +130,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 FileManager.Delete(_env.WebRootPath, "uploads/trendsliders", existTrend.Name);
                 existTrend.Name = FileManager.Save(_env.WebRootPath, "uploads/trendsliders", trend.ImageFile);
             }
+          
             if (!ModelState.IsValid)
             {
                 return View(existTrend);

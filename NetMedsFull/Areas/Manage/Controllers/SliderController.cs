@@ -114,12 +114,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 ModelState.AddModelError("ProductId", "Product not found!");
                 return View(existSlider);
             }
-            if (slider.ImageFile == null)
-            {
-                ModelState.AddModelError("ImageFile", "ImageFile is required");
-                return View(existSlider);
-            }
-            else
+            if (slider.ImageFile != null)
             {
                 if (slider.ImageFile.ContentType != "image/png" && slider.ImageFile.ContentType != "image/jpeg")
                 {

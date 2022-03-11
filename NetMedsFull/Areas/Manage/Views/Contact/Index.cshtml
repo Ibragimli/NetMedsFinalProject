@@ -36,7 +36,7 @@
 
                                             <td>@count</td>
                                             <td>@contact.Key</td>
-                                            <td>@(contact.Value.Length <= 250?(contact.Value):(contact.Value.Substring(0,250)+" .........."))</td>
+                                            <td>@Html.Raw((contact.Value.Length <= 250 ? (contact.Value) : (contact.Value.Substring(0, 250) + " ..........")))</td>
 
                                             <td class="text-center">
                                                 <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="contact" asp-route-id="@contact.Id">Edit</a>

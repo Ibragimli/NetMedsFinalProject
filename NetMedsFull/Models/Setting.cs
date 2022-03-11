@@ -8,7 +8,6 @@ namespace NetMedsFull.Models
 {
     public class Setting:BaseEntity
     {
-        [Required]
         [StringLength(maximumLength: 25)]
         public string Key { get; set; }
         [StringLength(maximumLength: 500)]
