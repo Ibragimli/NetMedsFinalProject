@@ -274,25 +274,25 @@
                         </li>
 
                         <li>
-                            <a target="_blank" href="https://www.facebook.com/NetMeds/">
-                                <i class="fa-brands fa-facebook-f"></i>
+                            <a target="_blank" href="@settings.FirstOrDefault(x=>x.Key == "socialIconText1")?.Value">
+                                <i class="@settings.FirstOrDefault(x=>x.Key == "socialIcon1")?.Value"></i>
                             </a>
                         </li>
                         <li>
-                            <a target="_blank" href="https://twitter.com/NetMeds">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank"
-                               href="https://in.linkedin.com/company/netmeds-marketplace-limited">
-                                <i class="fa-brands fa-linkedin"></i>
+                            <a target="_blank" href="@settings.FirstOrDefault(x=>x.Key == "socialIconText2")?.Value">
+                                <i class="@settings.FirstOrDefault(x=>x.Key == "socialIcon2")?.Value"></i>
                             </a>
                         </li>
                         <li>
                             <a target="_blank"
-                               href="https://www.youtube.com/channel/UCNuPx810akEPrbwAUpdNPyw">
-                                <i class="fa-brands fa-youtube"></i>
+                               href="@settings.FirstOrDefault(x=>x.Key == "socialIconText3")?.Value">
+                                <i class="@settings.FirstOrDefault(x=>x.Key == "socialIcon3")?.Value"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank"
+                               href="@settings.FirstOrDefault(x=>x.Key == "socialIconText4")?.Value">
+                                <i class="@settings.FirstOrDefault(x=>x.Key == "socialIcon4")?.Value"></i>
                             </a>
                         </li>
 
@@ -325,7 +325,7 @@
 
                 </div>
                 <div class="col-lg-4 copyBox">
-                    <p>Copyright© 2022. All Rights Reserved.</p>
+                    <p>@settings.FirstOrDefault(x => x.Key == "CopyRight")?.Value</p>
                 </div>
 
             </div>

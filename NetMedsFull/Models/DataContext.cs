@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NetMedsFull.Models
 {
-    public class DataContext:IdentityDbContext
+    public class DataContext : IdentityDbContext
     {
-        public DataContext(DbContextOptions options  ):base(options)
+        public DataContext(DbContextOptions options) : base(options)
         {
         }
         public DbSet<AppUser> Users { get; set; }
@@ -32,6 +32,7 @@ namespace NetMedsFull.Models
         public DbSet<OrderSlider> OrderSliders { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
+        public DbSet<WishItem> WishItems { get; set; }
 
     }
 }
