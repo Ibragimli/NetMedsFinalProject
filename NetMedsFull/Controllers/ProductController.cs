@@ -206,18 +206,7 @@ namespace NetMedsFull.Controllers
             }
             return Ok(basketData);
         }
-        public ActionResult ShowBasket()
-        {
-            var productIdStr = HttpContext.Request.Cookies["basketItemList"];
-            List<CookieBasketItemViewModel> basketItem = new List<CookieBasketItemViewModel>();
 
-            if (productIdStr != null)
-            {
-                basketItem = JsonConvert.DeserializeObject<List<CookieBasketItemViewModel>>(productIdStr);
-            }
-
-            return Json(basketItem);
-        }
         public async Task<IActionResult> DeleteBasket(int id)
         {
             if (!_context.Products.Any(x => x.Id == id))
@@ -265,6 +254,175 @@ namespace NetMedsFull.Controllers
             return Ok(productsDetail);
 
         }
+
+        //public ActionResult ShowBasket()
+        //{
+        //    var productIdStr = HttpContext.Request.Cookies["basketItemList"];
+        //    List<CookieBasketItemViewModel> basketItem = new List<CookieBasketItemViewModel>();
+
+        //    if (productIdStr != null)
+        //    {
+        //        basketItem = JsonConvert.DeserializeObject<List<CookieBasketItemViewModel>>(productIdStr);
+        //    }
+
+        //    return Json(basketItem);
+        //}
+
+
+        //public ActionResult ShowWish()
+        //{
+        //    var productIdStr = HttpContext.Request.Cookies["wishItemList"];
+        //    List<CookieWishItemViewModel> wishItem = new List<CookieWishItemViewModel>();
+
+        //    if (productIdStr != null)
+        //    {
+        //        wishItem = JsonConvert.DeserializeObject<List<CookieWishItemViewModel>>(productIdStr);
+        //    }
+
+        //    return Json(wishItem);
+        //}
+
+        public async Task<IActionResult> AddWish(int id)
+        {
+            if (!_context.Products.Any(x => x.Id == id))
+            {
+                return RedirectToAction("error", "error");
+            }
+            WishViewModel wishData = null;
+            AppUser user = null;
+            if (User.Identity.IsAuthenticated)
+            {
+                user = await _userManager.FindByNameAsync(User.Identity.Name);
+            }
+
+            if (user != null && user.IsAdmin == false)
+            {
+
+                WishItem wishItem = _context.WishItems.FirstOrDefault(x => x.AppUserId == user.Id && x.ProductId == id);
+
+                if (wishItem == null)
+                {
+                    wishItem = new WishItem
+                    {
+                        AppUserId = user.Id,
+                        ProductId = id,
+                    };
+                    _context.WishItems.Add(wishItem);
+                }
+
+                _context.SaveChanges();
+
+                wishData = _getWishItems(_context.WishItems.Include(x => x.Product).Where(x => x.AppUserId == user.Id).ToList());
+
+            }
+            else
+            {
+                List<CookieWishItemViewModel> wishItems = new List<CookieWishItemViewModel>();
+                string existWishItem = HttpContext.Request.Cookies["wishItemList"];
+                if (existWishItem != null)
+                {
+                    wishItems = JsonConvert.DeserializeObject<List<CookieWishItemViewModel>>(existWishItem);
+                }
+                CookieWishItemViewModel item = wishItems.FirstOrDefault(x => x.ProductId == id);
+                if (item == null)
+                {
+                    item = new CookieWishItemViewModel
+                    {
+                        ProductId = id,
+                    };
+                    wishItems.Add(item);
+                }
+
+                var productIdStr = JsonConvert.SerializeObject(wishItems);
+                HttpContext.Response.Cookies.Append("wishItemList", productIdStr);
+                wishData = _getWishItems(wishItems);
+            }
+            return Ok(wishData);
+        }
+
+        public async Task<IActionResult> DeleteWish(int id)
+        {
+            if (!_context.Products.Any(x => x.Id == id))
+            {
+                return RedirectToAction("error", "error");
+            }
+            List<WishItemViewModel> wishItems = new List<WishItemViewModel>();
+
+            if (User.Identity.IsAuthenticated)
+            {
+                WishItem wishItem = _context.WishItems.FirstOrDefault(x => x.ProductId == id);
+                if (wishItem == null)
+                {
+                    return RedirectToAction("error", "error");
+                }
+
+                _context.WishItems.Remove(wishItem);
+                _context.SaveChanges();
+            }
+            else
+            {
+                string wish = HttpContext.Request.Cookies["wishItemList"];
+                wishItems = JsonConvert.DeserializeObject<List<WishItemViewModel>>(wish);
+                WishItemViewModel productWish = wishItems.FirstOrDefault(x => x.ProductId == id);
+                if (productWish == null)
+                {
+                    return RedirectToAction("error", "error");
+                }
+
+                wishItems.Remove(productWish);
+
+                HttpContext.Response.Cookies.Append("wishItemList", JsonConvert.SerializeObject(wishItems));
+            }
+            return Ok(wishItems);
+
+        }
+
+        private WishViewModel _getWishItems(List<CookieWishItemViewModel> cookieWishItems)
+        {
+
+            WishViewModel wishItems = new WishViewModel()
+            {
+                WishItems = new List<WishItemViewModel>(),
+            };
+            foreach (var item in cookieWishItems)
+            {
+                Product product = _context.Products.FirstOrDefault(x => x.Id == item.ProductId);
+                WishItemViewModel wishItem = new WishItemViewModel
+                {
+                    Name = product.Name,
+                    Price = (product.DiscountPercent > 0 ? (product.SalePrice * (1 - product.DiscountPercent / 100)) : product.SalePrice),
+                    SalePrice = product.SalePrice,
+                    ProductId = product.Id,
+                    StockStatus = product.StockStatus,
+                    DiscountPercent = product.DiscountPercent,
+                };
+
+            }
+            return wishItems;
+
+        }
+        private WishViewModel _getWishItems(List<WishItem> wishItems)
+        {
+            WishViewModel wish = new WishViewModel
+            {
+                WishItems = new List<WishItemViewModel>(),
+            };
+            foreach (var item in wishItems)
+            {
+                WishItemViewModel wishItem = new WishItemViewModel
+                {
+                    Name = item.Product.Name,
+                    Price = item.Product.DiscountPercent > 0 ? (item.Product.SalePrice * (1 - item.Product.DiscountPercent / 100)) : item.Product.SalePrice,
+                    ProductId = item.Product.Id,
+                    StockStatus = item.Product.StockStatus,
+                };
+                wish.WishItems.Add(wishItem);
+            }
+            return wish;
+        }
+
+
+
         private BasketViewModel _getBasketItems(List<CookieBasketItemViewModel> cookieBasketItems)
         {
             BasketViewModel basket = new BasketViewModel
@@ -340,5 +498,11 @@ namespace NetMedsFull.Controllers
             };
             return productDetailVM;
         }
+
+
+
+
+
+
     }
 }

@@ -45,7 +45,7 @@ namespace NetMedsFull.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(MemberLoginViewModel user)
         {
-            var UserExists = await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName ==  user.Username);
+            var UserExists = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == user.Username);
             if (UserExists == null)
             {
                 ModelState.AddModelError("", "Username or Password is incorrect!");
@@ -62,10 +62,10 @@ namespace NetMedsFull.Controllers
                 }
 
 
-                var CookiesDelete = HttpContext.Request.Cookies["basketItemList"];
-                if (CookiesDelete != null)
+                var BasketCookiesDelete = HttpContext.Request.Cookies["wishItemList"];
+                if (BasketCookiesDelete != null)
                 {
-                    var CookieDeleteJson = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(CookiesDelete);
+                    var CookieDeleteJson = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(BasketCookiesDelete);
                     foreach (var cookieItem in CookieDeleteJson)
                     {
                         BasketItem basketItemAdd = new BasketItem
@@ -88,6 +88,27 @@ namespace NetMedsFull.Controllers
 
                     }
                     HttpContext.Response.Cookies.Delete("basketItemList");
+                    _context.SaveChanges();
+                }
+
+                var WishCookiesDelete = HttpContext.Request.Cookies["wishItemList"];
+                if (WishCookiesDelete != null)
+                {
+                    var CookieDeleteJson = JsonConvert.DeserializeObject<List<WishItemViewModel>>(WishCookiesDelete);
+                    foreach (var cookieItem in CookieDeleteJson)
+                    {
+                        WishItem wishItemAdd = new WishItem
+                        {
+                            AppUserId = UserExists.Id,
+                            ProductId = cookieItem.ProductId
+                        };
+
+                        var productExist = _context.WishItems.Any(x => x.ProductId == wishItemAdd.ProductId);
+
+                        _context.WishItems.Add(wishItemAdd);
+
+                    }
+                    HttpContext.Response.Cookies.Delete("wishItemList");
                     _context.SaveChanges();
                 }
                 return RedirectToAction("index", "home");
@@ -115,12 +136,12 @@ namespace NetMedsFull.Controllers
         public async Task<IActionResult> Register(MemberRegisterViewModel user)
         {
 
-            var userExistEmail = await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName  == user.Email);
+            var userExistEmail = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == user.Email);
             if (userExistEmail != null)
             {
                 ModelState.AddModelError("Email", "Email is Already!");
             }
-            var userExistUsername = await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName == user.Username);
+            var userExistUsername = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == user.Username);
             if (userExistUsername != null)
             {
                 ModelState.AddModelError("Username", "Username is Already!");

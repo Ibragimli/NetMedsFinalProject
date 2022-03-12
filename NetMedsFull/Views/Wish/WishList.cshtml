@@ -1,4 +1,4 @@
-﻿
+﻿@model WishListViewModel
 @{
     ViewData["Title"] = "WishList";
 }
@@ -9,52 +9,39 @@
         <div class="row wishProducts">
             <h1>WISHLIST</h1>
             <h3>What your favourite product.</h3>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="wishProduct">
-                    <div class="cardImage">
-                        <a href="./detail.html">
-                            <img src="~/Images/productDetails/skin_elements_face_pack_turmeric_multani_mitti_100_gm_0_2.jpg">
-                        </a>
-                    </div>
-                    <div class="cardInfo">
-                        <a href="#">
-                            <h2>
-                                Baguette Diamond Half Eternity Band
-                            </h2>
-                        </a>
-                        <div class="wishPrice">
-                            <p> ₼27,00</p>
-                            <del> ₼30,00</del>
-                            <span> 0,00%</span>
+            @foreach (var wish in Model.WishlistItems)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="wishProduct">
+                        <div class="cardImage">
+                            <a asp-action="detail" asp-controller="product" asp-route-id="@wish.Product.Id">
+                                <img src="~/uploads/products/@wish.Product.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image">
+                            </a>
                         </div>
-                        <div class="wishBtn">
-                            <a href="#" class="btn btn-primary addBasket">
-                                Add to basket
+                        <div class="cardInfo">
+                            <a asp-action="detail" asp-controller="product" asp-route-id="@wish.Product.Id">
+                                <h2>
+                                    @wish.Product.Name
+                                </h2>
                             </a>
-                            <a href="#" class="btn  btn-danger">
-                                Remove
-                            </a>
+                            <div class="wishPrice">
+                                <p>₼@((wish.Product.SalePrice*(100- wish.Product.DiscountPercent)/100).ToString("#.00"))</p>
+                                <del> ₼@wish.Product.SalePrice.ToString("#.00")</del>
+                                <span> @wish.Product.DiscountPercent%</span>
+                            </div>
+                            <div class="wishBtn">
+                                <a asp-action="addbasket" asp-controller="product" asp-route-id="@wish.Product.Id" class="btn btn-primary addBasket">
+                                    AddBasket
+                                </a>
+                                <a  asp-action="deleteWish" asp-controller="product" asp-route-id="@wish.Product.Id" class="btn  btn-danger deleteWish">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row wishlistPagination">
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active" aria-current="page">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
+            }
+
         </div>
     </div>
 </section>

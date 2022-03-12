@@ -225,7 +225,7 @@
                                             <div class="notStock ">
                                                 <h1>Not Stock</h1>
                                             </div>
-                                            <a href="#">
+                                            <a class="addWish" asp-action="addwish" asp-controller="product" asp-route-id="@product.Id">
                                                 <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
@@ -234,12 +234,11 @@
                                     {
                                         <div class="shopBtn">
                                             <a class="AddBtn addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@product.Id">ADD TO CART</a>
-                                            <a href="#">
+                                            <a class="addWish" asp-action="addwish" asp-controller="product" asp-route-id="@product.Id">
                                                 <i class="fa-regular fa-heart"></i>
                                             </a>
                                         </div>
                                     }
-
                                 </div>
                             </div>
                         }
