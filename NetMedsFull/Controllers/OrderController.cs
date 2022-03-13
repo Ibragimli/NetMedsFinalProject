@@ -6,6 +6,7 @@ using NetMedsFull.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static NetMedsFull.Services.EmailServices;
@@ -31,7 +32,7 @@ namespace NetMedsFull.Controllers
                 CheckoutItems = await _getCheckoutItems(),
                 Order = new Order(),
                 OrderSliders = _context.OrderSliders.ToList(),
-                MostSellingOwl = _context.Products.Include(x=>x.ProductImages).Where(x=>x.IsTrending).ToList(),
+                MostSellingOwl = _context.Products.Include(x => x.ProductImages).Where(x => x.IsTrending).ToList(),
             };
             return View(checkoutVM);
         }
@@ -82,10 +83,20 @@ namespace NetMedsFull.Controllers
             _context.Orders.Add(order);
             _context.BasketItems.RemoveRange(_context.BasketItems.Where(x => x.AppUserId == user.Id));
             _context.SaveChanges();
-            _emailService.Send(user.Email, "Netmeds.com Order Completed", order.CodePrefix + order.CodeNumber + "-Kodlu şifarişiniz qebul olundu. Zəhmət olmasa şifarişin təsdiqlənməsini gözləyin). Bizi seçdiyiniz üçün `Netmeds` ailəsi olaraq təşəkkürümüzü bildiririk  :)" + user.FullName);
+
+            string body = string.Empty;
+
+            using (StreamReader reader = new StreamReader("wwwroot/templates/order.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{{code}}", order.CodePrefix+order.CodeNumber);
+            body = body.Replace("{{fullname}}", order.Fullname);
+            body = body.Replace("{{totalAmount}}", order.TotalAmount.ToString("0.00") + "₼");
+            _emailService.Send(user.Email, "Order Completed", body);
+            TempData["Success"] = "Sifarisiniz uğurlu oldu!";
             return RedirectToAction("profile", "account");
         }
-
         private async Task<List<CheckoutItemViewModel>> _getCheckoutItems()
         {
             List<CheckoutItemViewModel> checkoutItems = new List<CheckoutItemViewModel>();
@@ -98,7 +109,7 @@ namespace NetMedsFull.Controllers
 
             if (user != null && user.IsAdmin == false)
             {
-                List<BasketItem> basketItems = _context.BasketItems.Include(x => x.Product).ThenInclude(x=>x.ProductImages).Where(x => x.AppUserId == user.Id).ToList();
+                List<BasketItem> basketItems = _context.BasketItems.Include(x => x.Product).ThenInclude(x => x.ProductImages).Where(x => x.AppUserId == user.Id).ToList();
 
                 foreach (var item in basketItems)
                 {
@@ -121,7 +132,7 @@ namespace NetMedsFull.Controllers
                     {
                         CheckoutItemViewModel checkoutItem = new CheckoutItemViewModel
                         {
-                            Product = _context.Products.Include(x=>x.ProductImages).FirstOrDefault(x => x.Id == item.ProductId),
+                            Product = _context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == item.ProductId),
                             Count = item.Count
                         };
                         checkoutItems.Add(checkoutItem);

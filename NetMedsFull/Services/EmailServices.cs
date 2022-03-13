@@ -22,7 +22,7 @@ namespace NetMedsFull.Services
             {
                 // create message
                 var email = new MimeMessage();
-                email.From.Add(MailboxAddress.Parse("tu201903193@code.edu.az"));
+                email.From.Add(MailboxAddress.Parse("desteknetmeds@gmail.com"));
                 email.To.Add(MailboxAddress.Parse(to));
                 email.Subject = subject;
                 email.Body = new TextPart(TextFormat.Html) { Text = html };
@@ -30,7 +30,7 @@ namespace NetMedsFull.Services
                 // send email
                 using var smtp = new SmtpClient();
                 smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                smtp.Authenticate("tu201903193@code.edu.az", "elnur131");
+                smtp.Authenticate("desteknetmeds@gmail.com", "Netmed123");
                 smtp.Send(email);
                 smtp.Disconnect(true);
             }

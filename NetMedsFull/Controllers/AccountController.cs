@@ -7,6 +7,7 @@ using NetMedsFull.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static NetMedsFull.Services.EmailServices;
@@ -190,7 +191,8 @@ namespace NetMedsFull.Controllers
         public async Task<IActionResult> ForgotPassword(ForgotViewModel forgotVM)
         {
 
-            AppUser user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == forgotVM.Email);
+            //AppUser user = await _userManager.Users.FirstOrDefaultAsync(x => x.NormalizedEmail == forgotVM.Email.ToUpper());
+            AppUser user = await _userManager.FindByEmailAsync(forgotVM.Email);
             if (user == null)
             {
                 ModelState.AddModelError("email", "User not found!");
@@ -202,8 +204,15 @@ namespace NetMedsFull.Controllers
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var url = Url.Action("resetpassword", "account", new { email = forgotVM.Email, token = token }, Request.Scheme);
+            string body = string.Empty;
 
-            _emailService.Send(forgotVM.Email, "ChangePassword", url);
+            using (StreamReader reader = new StreamReader("wwwroot/templates/resetpassword.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{{url}}", url);
+            _emailService.Send(forgotVM.Email, "ChangePassword", body);
+            TempData["Success"] = "Email send!";
             return RedirectToAction("login", "account");
         }
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPasswordVM)
@@ -248,6 +257,8 @@ namespace NetMedsFull.Controllers
                 }
                 return View("ResetPassword", resetPasswordVM);
             }
+            TempData["Success"] = "Password change is successfull!";
+
             return RedirectToAction("login", "account");
         }
 
@@ -271,6 +282,7 @@ namespace NetMedsFull.Controllers
                 Orders = _context.Orders.Include(x => x.OrderItems).ThenInclude(x => x.Product).Where(x => x.AppUserId == user.Id).ToList(),
                 LabTests = _context.LabTests.Include(x => x.LabTestPrice).Where(x => x.AppUserId == user.Id).ToList(),
             };
+
             return View(memberProfile);
         }
 

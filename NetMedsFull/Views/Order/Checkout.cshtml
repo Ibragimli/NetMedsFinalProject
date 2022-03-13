@@ -7,6 +7,8 @@
     decimal SalePrice = 0;
     decimal TotalSave = 0;
     decimal MRPTotal = 0;
+    decimal MRPTotalDetail = 0;
+    decimal TotalAmountDetail = 0;
     AppUser user = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
 
 }
@@ -45,8 +47,9 @@
                     SalePrice = item.Product.DiscountPercent > 0 ? (item.Product.SalePrice * (1 - item.Product.DiscountPercent / 100)) : item.Product.SalePrice;
                     TotalPrice = SalePrice * item.Count;
                     MRPTotal = item.Product.SalePrice * item.Count;
+                    MRPTotalDetail += item.Product.SalePrice * item.Count;
                     TotalSave += MRPTotal - TotalPrice;
-
+                    TotalAmountDetail = MRPTotalDetail - TotalSave;
 
                     if (item.Product.StockStatus == true)
                     {
@@ -99,7 +102,7 @@
                             MRP Total
                         </span>
                         <p>
-                            ₼@MRPTotal.ToString("#.00")
+                            ₼@MRPTotalDetail.ToString("#.00")
                         </p>
                     </div>
                     <div class="netmedsDiscount">
@@ -115,7 +118,7 @@
                             Total Amount *
                         </span>
                         <p>
-                            ₼@TotalPrice.ToString("#.00")
+                            ₼@TotalAmountDetail.ToString("#.00")
                         </p>
                     </div>
                     <div class="totalSaving">
@@ -133,7 +136,7 @@
                                 TOTAL AMOUNT
                             </span>
                             <p>
-                                ₼@TotalPrice.ToString("#.00")
+                                ₼@TotalAmountDetail.ToString("#.00")
                             </p>
                         </div>
                         <div class="proceedBtn">
@@ -182,7 +185,7 @@
                                 <div class="disPrice">
                                     <p>₼@((slider.SalePrice*(100- slider.DiscountPercent)/100).ToString("#.00"))</p>
                                     <del> ₼@slider.SalePrice.ToString("#.00")</del>
-                                    <span> @slider.DiscountPercent%</span>
+                                    <span style=" color: #fff; font-weight: 700; text-align: center; line-height: 24px; padding: 0 7px; min-width: 46px; background: #bd0018; font-size: 14px; border-radius: 3px; "> @slider.DiscountPercent%</span>
                                 </div>
                             }
                             else

@@ -5,6 +5,7 @@ using NetMedsFull.Models;
 using NetMedsFull.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static NetMedsFull.Services.EmailServices;
@@ -62,11 +63,25 @@ namespace NetMedsFull.Controllers
             {
                 AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
                 labTest.AppUserId = user.Id;
-                TempData["LabUser"]  = user.Id;
+                TempData["LabUser"] = user.Id;
             }
             _context.LabTests.Add(labTest);
             _context.SaveChanges();
-            _emailService.Send(labTest.Email, "Netmeds.com Lab Tests", labTest.Fullname + "-Sizin test istəyiniz gözləmədədir. Zəhmət olmasa testin təsdiqlənməsini gözləyin). Bizi seçdiyiniz üçün `Netmeds` ailəsi olaraq təşəkkürümüzü bildiririk  :)");
+            var labPrice = _context.LabTests.Include(x => x.LabTestPrice).FirstOrDefault(x => x.LabTestPrice.Id == labTest.Id);
+
+            string body = string.Empty;
+
+            using (StreamReader reader = new StreamReader("wwwroot/templates/labtest.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{{fullname}}", labTest.Fullname);
+            body = body.Replace("{{price}}", labPrice.LabTestPrice.Price.ToString("0.00"));
+            body = body.Replace("{{rendezvous}}", labTest.Rendezvous.ToString("dddd, dd MMMM yyyy"));
+            
+            _emailService.Send(labTest.Email,"Netmeds Labtest",body);
+            TempData["Success"] = "Test sorğunuz uğurlu oldu!";
+
             return RedirectToAction("index", "home");
         }
     }
