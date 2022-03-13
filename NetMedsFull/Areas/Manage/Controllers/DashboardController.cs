@@ -21,14 +21,22 @@ namespace NetMedsFull.Areas.Manage.Controllers
         public IActionResult Index()
         {
             var orders = _context.Orders.ToList();
+            var monthOrders = _context.Orders.Where(x=>x.CreatedAt.Month == DateTime.Now.Month).ToList();
+            var user = _context.Users.Where(x=>x.IsAdmin == false).ToList();
             decimal total = 0;
+            decimal totalMonth = 0;
             foreach (var item in orders)
             {
                 total += item.TotalAmount;
-
             }
-            ViewBag.TotalAmountSell = total;
+            foreach (var item in monthOrders)
+            {
+                totalMonth += item.TotalAmount;
+            }
 
+            ViewBag.TotalAmountSell = total;
+            ViewBag.MonthTotalAmountSell = totalMonth;
+            ViewBag.UserCount = user.Count();
             return View();
         }
     }

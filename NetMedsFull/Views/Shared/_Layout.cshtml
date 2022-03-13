@@ -109,7 +109,7 @@
 
                             <div class="col-lg-12">
                                 <div class="searchBox">
-                                    <ul>
+                                    <ul id="searchUl">
                                         @await Html.PartialAsync("_SearchPartial", products)
                                     </ul>
                                 </div>
@@ -379,6 +379,7 @@
     <script src="~/js/search.js"></script>
     <script src="~/js/BasketDelete.js"></script>
     <script src="~/js/mostOwlAddBasket.js"></script>
+    <script src="~/js/searchFilter.js"></script>
 
     @RenderSection("Scripts", required: false)
     <script src="~/js/slider.js"></script>

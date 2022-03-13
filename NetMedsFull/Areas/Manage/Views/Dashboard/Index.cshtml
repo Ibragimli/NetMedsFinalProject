@@ -53,9 +53,9 @@
                                             <div class="card-body d-flex px-4  justify-content-between">
                                                 <div>
                                                     <div class="">
-                                                        <h2 class="fs-32 font-w700">562</h2>
-                                                        <span class="fs-18 font-w500 d-block">Total Clients</span>
-                                                        <span class="d-block fs-16 font-w400"><small class="text-danger">-2%</small> than last month</span>
+                                                        <h2 class="fs-32 font-w700">@ViewBag.UserCount</h2>
+                                                        <span class="fs-18 font-w500 d-block">Total User</span>
+                                                        <span class="d-block fs-16 font-w400"><small class="text-success">+2%</small> than last month</span>
                                                     </div>
                                                 </div>
                                                 <div id="NewCustomers"></div>
@@ -67,9 +67,9 @@
                                             <div class="card-body d-flex px-4  justify-content-between">
                                                 <div>
                                                     <div class="">
-                                                        <h2 class="fs-32 font-w700">892</h2>
-                                                        <span class="fs-18 font-w500 d-block">New Projects</span>
-                                                        <span class="d-block fs-16 font-w400"><small class="text-success">-2%</small> than last month</span>
+                                                        <h4 class="fs-28 font-w700">@ViewBag.MonthTotalAmountSell₼</h4>
+                                                        <span class="fs-18 font-w500 d-block">Total Sale (Monthly)</span>
+                                                        <span class="d-block fs-16 font-w400"><small class="text-success">+5%</small> than last month</span>
                                                     </div>
                                                 </div>
                                                 <div id="NewCustomers1"></div>
@@ -92,8 +92,19 @@
                                             <h4 class="card-title">Basic Bar Chart</h4>
                                         </div>
                                         <div class="card-body">
-                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                            <canvas id="barChart_1" style="display: block; height: 205px; width: 410px;" width="512" height="256" class="chartjs-render-monitor"></canvas>
+                                            <div class="chartjs-size-monitor">
+                                                <div class="chartjs-size-monitor-expand">
+                                                    <div class=""></div>
+                                                </div>
+                                                <div class="chartjs-size-monitor-shrink">
+                                                    <div class="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <canvas id="barChart_1"
+                                                    style="display: block; height: 205px; width: 410px;"
+                                                    width="512" height="256" class="chartjs-render-monitor">
+                                            </canvas>
                                         </div>
                                     </div>
                                 </div>
