@@ -62,7 +62,7 @@ namespace NetMedsFull.Controllers
                 }
 
 
-                var BasketCookiesDelete = HttpContext.Request.Cookies["wishItemList"];
+                var BasketCookiesDelete = HttpContext.Request.Cookies["basketItemList"];
                 if (BasketCookiesDelete != null)
                 {
                     var CookieDeleteJson = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(BasketCookiesDelete);

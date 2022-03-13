@@ -57,14 +57,10 @@
                 else
                 {
                     <p id="savePrice">
-
-                        ₼@(Model?.TotalSave != null?(Model.TotalSave.ToString("#.00")):("0"))
-
+                        ₼@(Model?.TotalSave != null?(Model.TotalSave.ToString("0.00")):("0"))
                     </p>
                 }
-
             </div>
-
         </div>
         <div class="DownRight">
             <a asp-controller="order" asp-action="checkout">PROCEED TO CART</a>

@@ -31,6 +31,7 @@ namespace NetMedsFull.Controllers
                 CheckoutItems = await _getCheckoutItems(),
                 Order = new Order(),
                 OrderSliders = _context.OrderSliders.ToList(),
+                MostSellingOwl = _context.Products.Include(x=>x.ProductImages).Where(x=>x.IsTrending).ToList(),
             };
             return View(checkoutVM);
         }

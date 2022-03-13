@@ -42,6 +42,8 @@ namespace NetMedsFull.Controllers
                 TempData["error"] = "Email is required";
                 return RedirectToAction("index", "home");
             }
+            _context.Subscribes.Add(subscribe);
+            _context.SaveChanges();
             return Ok();
         }
     }

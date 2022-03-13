@@ -76,7 +76,7 @@
                                 </div>
                                 <form method="post" asp-action="DeleteBasket" asp-controller="product">
                                     <div class="productBtn">
-                                        <a class="btn btn-primary deleteBtn" asp-action="deleteBasket" asp-controller="product" asp-route-id="@item.Product.Id">
+                                        <a class="btn btn-primary removeBasket" asp-action="deleteBasket" asp-controller="product" asp-route-id="@item.Product.Id">
                                             Remove
                                         </a>
                                     </div>
@@ -164,126 +164,59 @@
             <div class="col-lg-7">
                 <div class="owl-carousel owl-theme owl-carousel-mostOwl">
 
-                    <div class="item">
-                        <div class="disImage">
-                            <a href="#">
-                                <img class="img-fluid" src="~/Images/discountsOwls/dr-vaidyas.jpg" alt="">
+                    @foreach (var slider in Model.MostSellingOwl)
+                    {
+                        <div class="item">
+                            <div class="disImage">
+                                <a asp-action="detail" asp-controller="product" asp-route-id="@slider.Id">
+                                    <img class="img-fluid" src="~/uploads/products/@slider.ProductImages.FirstOrDefault(x=>x.PosterStatus == true)?.Image" alt="">
+                                </a>
+                            </div>
+                            <a asp-action="detail" asp-controller="product" asp-route-id="@slider.Id">
+                                <h2>
+                                    @slider.Name
+                                </h2>
                             </a>
+                            @if (slider.DiscountPercent > 0)
+                            {
+                                <div class="disPrice">
+                                    <p>₼@((slider.SalePrice*(100- slider.DiscountPercent)/100).ToString("#.00"))</p>
+                                    <del> ₼@slider.SalePrice.ToString("#.00")</del>
+                                    <span> @slider.DiscountPercent%</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="disPrice">
+                                    <p> ₼@slider.SalePrice.ToString("#.00")</p>
+                                </div>
+                            }
+                            @if (slider.StockStatus == false)
+                            {
+                                <div class="notStock ">
+                                    <h1>Not Stock</h1>
+                                </div>
+                                <div class="wishIcon">
+                                    <a asp-action="addwish" asp-controller="product" asp-route-id="@slider.Id" class="addWish">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="basketIcon">
+                                    <a class="addMostBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@slider.Id">
+                                        <i class="fa-solid fa-basket-shopping"></i>
+                                    </a>
+                                </div>
+                                <div class="wishIcon">
+                                    <a asp-action="addwish" asp-controller="product" asp-route-id="@slider.Id" class="addWish">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </a>
+                                </div>
+                            }
                         </div>
-                        <a href="#">
-                            <h2>
-                                Hashmi
-                            </h2>
-                        </a>
-                        <div class="disPrice">
-                            <p> ₼27,00</p>
-                            <del> ₼30,00</del>
-                        </div>
-                        <div class="notStock ">
-                            <h1>Not Stock</h1>
-                        </div>
-                        <div class="basketIcon">
-                            <a href="#">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                        <div class="wishIcon">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="item">
-                        <div class="disImage">
-                            <a href="#">
-                                <img class="img-fluid" src="~/Images/discountsOwls/dr-vaidyas.jpg" alt="">
-                            </a>
-                        </div>
-                        <a href="#">
-                            <h2>
-                                Hashmi
-                            </h2>
-                        </a>
-                        <div class="disPrice">
-                            <p> ₼27,00</p>
-                            <del> ₼30,00</del>
-                        </div>
-                        <div class="notStock ">
-                            <h1>Not Stock</h1>
-                        </div>
-                        <div class="basketIcon">
-                            <a href="#">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                        <div class="wishIcon">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="item">
-                        <div class="disImage">
-                            <a href="#">
-                                <img class="img-fluid" src="~/Images/discountsOwls/dr-vaidyas.jpg" alt="">
-                            </a>
-                        </div>
-                        <a href="#">
-                            <h2>
-                                Hashmi
-                            </h2>
-                        </a>
-                        <div class="disPrice">
-                            <p> ₼27,00</p>
-                            <del> ₼30,00</del>
-                        </div>
-                        <div class="notStock ">
-                            <h1>Not Stock</h1>
-                        </div>
-                        <div class="basketIcon">
-                            <a href="#">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                        <div class="wishIcon">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="item">
-                        <div class="disImage">
-                            <a href="#">
-                                <img class="img-fluid" src="~/Images/discountsOwls/dr-vaidyas.jpg" alt="">
-                            </a>
-                        </div>
-                        <a href="#">
-                            <h2>
-                                Hashmi
-                            </h2>
-                        </a>
-                        <div class="disPrice">
-                            <p> ₼27,00</p>
-                            <del> ₼30,00</del>
-                        </div>
-                        <div class="notStock ">
-                            <h1>Not Stock</h1>
-                        </div>
-                        <div class="basketIcon">
-                            <a href="#">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                            </a>
-                        </div>
-                        <div class="wishIcon">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </div>
-
-                    </div>
+                    }
                 </div>
             </div>
         </div>

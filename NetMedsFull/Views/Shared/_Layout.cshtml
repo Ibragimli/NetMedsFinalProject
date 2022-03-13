@@ -59,6 +59,7 @@
                 <div class="col-lg-2 p-0 headLogo" style=" display: flex; align-items: center; ">
                     <a asp-controller="home" asp-action="index">
                         <div class="headerLogoImage">
+
                             <img class="img-fluid" src="~/Images/headers/@settings.FirstOrDefault(x=>x.Key == "HeaderLogo")?.Value"
                                  alt="home-logo-netmeds-new">
                         </div>
@@ -275,27 +276,26 @@
 
                         <li>
                             <a target="_blank" href="@settings.FirstOrDefault(x=>x.Key == "socialIconText1")?.Value">
-                                <i class="@settings.FirstOrDefault(x=>x.Key == "socialIcon1")?.Value"></i>
+                                @Html.Raw(settings.FirstOrDefault(x => x.Key == "socialIcon1")?.Value)
                             </a>
                         </li>
                         <li>
                             <a target="_blank" href="@settings.FirstOrDefault(x=>x.Key == "socialIconText2")?.Value">
-                                <i class="@settings.FirstOrDefault(x=>x.Key == "socialIcon2")?.Value"></i>
+                                @Html.Raw(settings.FirstOrDefault(x => x.Key == "socialIcon2")?.Value)
                             </a>
                         </li>
                         <li>
                             <a target="_blank"
                                href="@settings.FirstOrDefault(x=>x.Key == "socialIconText3")?.Value">
-                                <i class="@settings.FirstOrDefault(x=>x.Key == "socialIcon3")?.Value"></i>
+                                @Html.Raw(settings.FirstOrDefault(x => x.Key == "socialIcon3")?.Value)
                             </a>
                         </li>
                         <li>
                             <a target="_blank"
                                href="@settings.FirstOrDefault(x=>x.Key == "socialIconText4")?.Value">
-                                <i class="@settings.FirstOrDefault(x=>x.Key == "socialIcon4")?.Value"></i>
+                                @Html.Raw(settings.FirstOrDefault(x => x.Key == "socialIcon4")?.Value)
                             </a>
                         </li>
-
                     </ul>
                 </div>
                 <div class="col-lg-3 footSubscribe">
@@ -305,11 +305,8 @@
                     <p>
                         Get a free subscription to our health and fitness tip and stay tuned to our latest offers
                     </p>
-                    <form method="post" asp-action="subscribe">
-                        <input asp-for="@subscribe" type="email" class="form-control" placeholder="Enter your email address">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </form>
 
+                    @*@await Html.PartialAsync("_SubscribePartial", subscribe)*@
                 </div>
             </div>
             <hr>
@@ -325,7 +322,7 @@
 
                 </div>
                 <div class="col-lg-4 copyBox">
-                    <p>@settings.FirstOrDefault(x => x.Key == "CopyRight")?.Value</p>
+                    <p>@Html.Raw(settings.FirstOrDefault(x => x.Key == "CopyRight")?.Value)</p>
                 </div>
 
             </div>
@@ -380,6 +377,8 @@
     <script src="~/js/WishDelete.js"></script>
     <script src="~/js/basket.js"></script>
     <script src="~/js/search.js"></script>
+    <script src="~/js/BasketDelete.js"></script>
+    <script src="~/js/mostOwlAddBasket.js"></script>
 
     @RenderSection("Scripts", required: false)
     <script src="~/js/slider.js"></script>

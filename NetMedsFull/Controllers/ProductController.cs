@@ -465,10 +465,11 @@ namespace NetMedsFull.Controllers
                     ProductId = item.Product.Id,
                     Count = item.Count,
                     StockStatus = item.Product.StockStatus,
+                    SalePrice = item.Product.SalePrice,
                 };
                 basketItem.TotalPrice = basketItem.Count * basketItem.Price;
                 basket.TotalAmount += basketItem.TotalPrice;
-                basket.TotalSaveUser += ((basketItem.Count * basketItem.Price) - (basketItem.Count * basketItem.SalePrice));
+                basket.TotalSaveUser += ((basketItem.Count * basketItem.SalePrice) - (basketItem.Count * basketItem.Price));
                 basket.BasketItems.Add(basketItem);
             }
 
