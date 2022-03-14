@@ -33,7 +33,7 @@ header {
                             color: #0b121980;
                             display: flex;
                             align-items: center;
-
+                            position: relative;
                             span {
                                 font-size: 13px;
 
@@ -45,6 +45,102 @@ header {
 
                             i {
                                 font-size: 12px;
+                            }
+
+                            .dropdown-menu {
+                                position: absolute;
+                                top: 50px;
+                                left: 0;
+                                z-index: 2;
+                                border-radius: 5px;
+                                transition: all 0.1s;
+                                .menuBox {
+                                    padding: 18px 21px;
+
+                                    h1 {
+                                        font-size: 16px;
+                                        font-family: 'Lato', sans-serif;
+                                        // line-height: 16px;   
+                                        color: #000;
+                                        width: 100%;
+                                        display: block;
+                                        font-weight: 700;
+                                    }
+
+                                    p {
+                                        font-size: 14px;
+                                        color: rgba(11, 18, 25, .5);
+                                        line-height: 16px;
+                                        padding: 0 0 1px;
+                                    }
+
+                                    a {
+                                        font-size: 14px;
+                                        line-height: 16px;
+                                        letter-spacing: 1px;
+                                        font-weight: 700;
+                                        background: #24aeb1;
+                                        color: #fff;
+                                        border-radius: 4px;
+                                        width: 100%;
+                                        border: 0;
+                                        margin-top: 16px;
+                                        text-align: center;
+                                        padding: 12px 0;
+                                    }
+
+                                    h2 {
+                                        padding: 0 0 8px;
+                                        font-weight: bold;
+                                        font-size: 16px;
+                                        line-height: 20px;
+                                        color: #151b39;
+                                        font-family: 'Lato', sans-serif;
+                                    }
+
+                                    .menuInput {
+                                        padding-top: 10px;
+                                        padding-bottom: 10px;
+
+                                        border-radius: 10px;
+
+                                        img {
+                                            padding: 0px 10px;
+                                            background-color: #F3F7FB;
+                                        }
+
+                                        input {
+                                            height: 40px;
+                                            background-color: #F3F7FB;
+                                            width: 100%;
+                                        }
+                                    }
+
+                                    .menuLocation {
+                                        display: flex;
+                                        align-items: center;
+
+                                        img {
+                                            width: 16px;
+                                        }
+
+                                        span {
+                                            padding-left: 7px;
+                                            font-weight: 700;
+                                            color: #ef4281;
+                                            font-size: 12px;
+                                            letter-spacing: 1px;
+                                            line-height: 16px;
+                                            background-size: 16px;
+                                            cursor: pointer;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        button:hover{
+                            .dropdown-menu{
+                                display: block;
                             }
                         }
 
@@ -59,94 +155,7 @@ header {
                             margin-left: 10px;
                         }
 
-                        .dropdown-menu {
-                            border-radius: 5px;
 
-                            .menuBox {
-                                padding: 18px 21px;
-
-                                h1 {
-                                    padding: 0 0 12px;
-                                    font-size: 16px;
-                                    font-family: 'Lato', sans-serif;
-                                    line-height: 16px;
-                                    color: #000;
-                                    float: left;
-                                    width: 100%;
-                                    display: block;
-                                    font-weight: 700;
-                                }
-
-                                p {
-                                    font-size: 14px;
-                                    color: rgba(11, 18, 25, .5);
-                                    line-height: 16px;
-                                    padding: 0 0 1px;
-                                }
-
-                                a {
-                                    font-size: 14px;
-                                    line-height: 16px;
-                                    letter-spacing: 1px;
-                                    font-weight: 700;
-                                    background: #24aeb1;
-                                    color: #fff;
-                                    border-radius: 4px;
-                                    width: 100%;
-                                    border: 0;
-                                    margin-top: 16px;
-                                    text-align: center;
-                                    padding: 12px 0;
-                                }
-
-                                h2 {
-                                    padding: 0 0 8px;
-                                    font-weight: bold;
-                                    font-size: 16px;
-                                    line-height: 20px;
-                                    color: #151b39;
-                                    font-family: 'Lato', sans-serif;
-                                }
-
-                                .menuInput {
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-
-                                    border-radius: 10px;
-
-                                    img {
-                                        padding: 0px 10px;
-                                        background-color: #F3F7FB;
-                                    }
-
-                                    input {
-                                        height: 40px;
-                                        background-color: #F3F7FB;
-                                        width: 100%;
-                                    }
-                                }
-
-                                .menuLocation {
-                                    display: flex;
-                                    align-items: center;
-
-                                    img {
-                                        width: 16px;
-                                    }
-
-                                    span {
-                                        padding-left: 7px;
-                                        font-weight: 700;
-                                        color: #ef4281;
-                                        font-size: 12px;
-                                        letter-spacing: 1px;
-                                        line-height: 16px;
-                                        background-size: 16px;
-                                        cursor: pointer;
-                                    }
-                                }
-                            }
-                        }
 
                         .closeSearch {
                             i {
@@ -367,7 +376,7 @@ header {
                                         .itemBasket {
                                             display: flex;
                                             margin-bottom: 11px;
-                                          
+
                                             .basketName {
                                                 margin-right: 20px;
                                                 width: 65%;
@@ -405,6 +414,7 @@ header {
                                         display: flex;
                                         flex-direction: column;
                                         margin-right: 12px;
+
                                         h3 {
                                             font-size: 18px;
                                             letter-spacing: .15px;

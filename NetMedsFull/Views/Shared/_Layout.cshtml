@@ -68,6 +68,9 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 p-0 headSearch">
                     <form action="#">
                         <div class="input-group">
+                            
+                            
+                            
                             <button class="btn   dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                 <span>
@@ -75,35 +78,39 @@
                                     <span>110002</span>
                                 </span>
                                 <i class="ms-2 fa-solid fa-angle-down"></i>
+                                <div class="dropdown-menu">
+                                    <div class="menuBox">
+                                        <h1>Where do you want the delivery?</h1>
+                                        <p>
+                                            Get access to your Addresses, Orders, and Wishlist
+                                        </p>
+                                        <a class="btn btn-primary">Sign in to see your location</a>
+                                        <hr>
+                                        <h2>Or Enter Pincode</h2>
+                                        <p>
+                                            Select pincode to see product availability.
+                                        </p>
+
+                                        <div class="menuInput d-flex">
+                                            <img src="~/Images/headers/location-on.svg" alt="">
+                                            <input type="tel" name="rel_pincode" id="rel_pincode"
+                                                   placeholder="Enter Pincode" autocomplete="off" maxlength="6">
+                                        </div>
+                                        <div class="menuLocation">
+                                            <img src="~/Images/headers/location-detect.svg" alt="location">
+                                            <span>Detect my location</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </button>
                             <div class="closeSearch">
                                 <i class="fa-solid fa-xmark"></i>
                             </div>
-                            <div class="dropdown-menu">
-                                <div class="menuBox">
-                                    <h1>Where do you want the delivery?</h1>
-                                    <p>
-                                        Get access to your Addresses, Orders, and Wishlist
-                                    </p>
-                                    <a class="btn btn-primary">Sign in to see your location</a>
-                                    <hr>
-                                    <h2>Or Enter Pincode</h2>
-                                    <p>
-                                        Select pincode to see product availability.
-                                    </p>
-
-                                    <div class="menuInput d-flex">
-                                        <img src="~/Images/headers/location-on.svg" alt="">
-                                        <input type="tel" name="rel_pincode" id="rel_pincode"
-                                               placeholder="Enter Pincode" autocomplete="off" maxlength="6">
-                                    </div>
-                                    <div class="menuLocation">
-                                        <img src="~/Images/headers/location-detect.svg" alt="location">
-                                        <span>Detect my location</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <input autocomplete="off" id="searchBoxInput" type="text" class="form-control"
+                           
+                           
+                            
+                            
+                            <input  autocomplete="off" id="searchBoxInput" type="text" class="form-control"
                                    placeholder="Search for medicine & wellness products…"
                                    style="border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
 
