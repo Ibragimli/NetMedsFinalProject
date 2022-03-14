@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-lg-6 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">DiscountPercent</label>
-                                    <input asp-for="DiscountPercent"   class="form-control input-default " placeholder="DiscountPercent">
+                                    <input asp-for="DiscountPercent" class="form-control input-default " placeholder="DiscountPercent">
                                     <span class="text-danger" asp-validation-for="DiscountPercent"></span>
                                 </div>
 
@@ -59,13 +59,13 @@
                                 <div class="col-lg-3 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">Product Type</label>
                                     <div class="form-check">
-                                        <input asp-for="Type" class="form-check-input" type="radio" value="@ProductType.Liquid" >
+                                        <input asp-for="Type" class="form-check-input" type="radio" value="@ProductType.Liquid">
                                         <label class="form-check-label" asp-for="Type">
                                             Liquid
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input asp-for="Type" class="form-check-input" type="radio" value="@ProductType.Tablet" >
+                                        <input asp-for="Type" class="form-check-input" type="radio" value="@ProductType.Tablet">
                                         <label class="form-check-label" asp-for="Type">
                                             Tablet
                                         </label>
@@ -76,13 +76,13 @@
                                 <div class="col-lg-3 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">IsTrending</label>
                                     <div class="form-check">
-                                        <input asp-for="IsTrending" class="form-check-input" type="radio" value="@true" >
+                                        <input asp-for="IsTrending" class="form-check-input" type="radio" value="@true">
                                         <label class="form-check-label" asp-for="IsTrending">
                                             True
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input asp-for="IsTrending" class="form-check-input" type="radio" value="@false" >
+                                        <input asp-for="IsTrending" class="form-check-input" type="radio" value="@false">
                                         <label class="form-check-label" asp-for="IsTrending">
                                             False
                                         </label>
@@ -93,13 +93,13 @@
                                 <div class="col-lg-3 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">IsNew</label>
                                     <div class="form-check">
-                                        <input asp-for="IsNew" class="form-check-input" type="radio" value="@true" >
+                                        <input asp-for="IsNew" class="form-check-input" type="radio" value="@true">
                                         <label class="form-check-label" asp-for="IsNew">
                                             True
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input asp-for="IsNew" class="form-check-input" type="radio" value="@false" >
+                                        <input asp-for="IsNew" class="form-check-input" type="radio" value="@false">
                                         <label class="form-check-label" asp-for="IsNew">
                                             False
                                         </label>
@@ -110,13 +110,13 @@
                                 <div class="col-lg-3 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">StockStatus</label>
                                     <div class="form-check">
-                                        <input asp-for="StockStatus" class="form-check-input" type="radio" value="@true" >
+                                        <input asp-for="StockStatus" class="form-check-input" type="radio" value="@true">
                                         <label class="form-check-label" asp-for="StockStatus">
                                             True
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input asp-for="StockStatus" class="form-check-input" type="radio" value="@false" >
+                                        <input asp-for="StockStatus" class="form-check-input" type="radio" value="@false">
                                         <label class="form-check-label" asp-for="StockStatus">
                                             False
                                         </label>
@@ -150,15 +150,18 @@
                                         <input id="imageInput" class="form-control" multiple asp-for="ImageFiles">
                                         <span class="text-danger" asp-validation-for="ImageFiles"></span>
 
-                                        @if (Model.ProductImages.FirstOrDefault(x => x.PosterStatus == false) != null)
+                                        @foreach (var image in Model.ProductImages.Where(x => x.PosterStatus == false))
                                         {
-                                            @foreach (var image in Model.ProductImages.Where(x => x.PosterStatus == false))
+
+                                            @if (Model.ProductImages.FirstOrDefault(x => x.PosterStatus == false) != null)
+
                                             {
                                                 <div class="image-box">
                                                     <input type="hidden" name="ProductImagesIds[]" value="@image.Id" />
                                                     <img style="width:200px; height:160px;" src="~/uploads/products/@image.Image" />
                                                     <i style=" cursor: pointer; color: #886cc0; font-size: 20px; " class="fa-solid fa-trash-can deleteImage"></i>
                                                 </div>
+
                                             }
                                         }
                                     </div>

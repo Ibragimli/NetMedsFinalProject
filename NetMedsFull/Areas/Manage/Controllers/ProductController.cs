@@ -148,7 +148,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
             _context.Products.Add(product);
             _context.SaveChanges();
 
-            return RedirectToAction("index", "dashboard");
+            return RedirectToAction("index", "product");
         }
 
 
@@ -226,7 +226,23 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 FileManager.Delete(_env.WebRootPath, "uploads/products", Poster.Image);
                 Poster.Image = filename;
             }
+            if (product.ProductImagesIds != null)
+            {
+                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id)))
+                {
+                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
+                }
+                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id));
 
+            }
+            else
+            {
+                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false))
+                {
+                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
+                }
+                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false);
+            }
             if (product.ImageFiles != null)
             {
                 var images = product.ImageFiles;
@@ -249,28 +265,14 @@ namespace NetMedsFull.Areas.Manage.Controllers
                         Image = FileManager.Save(_env.WebRootPath, "uploads/products", file)
                     };
                     if (productExist.ProductImages == null)
+                    {
                         productExist.ProductImages = new List<ProductImage>();
+                    }
                     productExist.ProductImages.Add(image);
                 }
             }
 
-            if (product.ProductImagesIds != null)
-            {
-                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id)))
-                {
-                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
-                }
-                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false && !product.ProductImagesIds.Contains(x.Id));
-
-            }
-            else
-            {
-                foreach (var item in productExist.ProductImages.Where(x => x.PosterStatus == false))
-                {
-                    FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
-                }
-                productExist.ProductImages.RemoveAll(x => x.PosterStatus == false);
-            }
+           
 
 
             _setProductData(productExist, product);

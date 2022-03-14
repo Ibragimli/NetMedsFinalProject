@@ -210,6 +210,7 @@ namespace NetMedsFull.Controllers
             {
                 body = reader.ReadToEnd();
             }
+
             body = body.Replace("{{url}}", url);
             _emailService.Send(forgotVM.Email, "ChangePassword", body);
             TempData["Success"] = "Email send!";

@@ -87,7 +87,7 @@ namespace NetMedsFull.Controllers
 
 
 
-        public IActionResult Shop(int? brandId = null, int? categoryId = null, int? subcategoryId = null, int? maxPrice = null, int? minPrice = null, ProductType? typeId = null, int page = 1)
+        public IActionResult Shop( int? categoryId = null, int? subcategoryId = null, int? brandId = null, int? maxPrice = null, int? minPrice = null, ProductType? typeId = null, int page = 1)
         {
             var products = _context.Products.Include(x => x.Brand).ThenInclude(x => x.SubCategoryBrands).Include(x => x.ProductImages).Where(x => x.IsDelete == false).AsQueryable();
             ViewBag.BrandId = brandId;
