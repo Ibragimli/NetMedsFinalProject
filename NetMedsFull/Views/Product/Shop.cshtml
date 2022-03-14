@@ -177,7 +177,7 @@
                                 <div class="shopProduct">
                                     <div class="shopProImage">
                                         <a asp-action="detail" asp-controller="product" asp-route-id="@product.Id">
-                                            <img src="~/Images/productImages/@product.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image"
+                                            <img src="~/uploads/products/@product.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image"
                                                  alt="">
                                             @if (product.DiscountPercent > 0)
                                             {
@@ -221,13 +221,16 @@
 
                                     @if (product.StockStatus == false)
                                     {
-                                        <div class="shopBtn">
-                                            <div class="notStock ">
-                                                <h1>Not Stock</h1>
+                                        <div class="shopBtn d-flex justify-content-center">
+                                            <div class="col-9 notStock ">
+                                                <h1 class="ms-2" style="cursor:pointer; background: gray; font-size: 14px; border-radius: 4px; padding: 10px 0px; border: 0; color: #fff; -webkit-transition: all 0.4s; transition: all 0.4s; ">Not Stock</h1>
                                             </div>
-                                            <a class="addWish" asp-action="addwish" asp-controller="product" asp-route-id="@product.Id">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </a>
+                                            <div style=" display: flex; align-items: center;" class="col-3">
+                                                <a class="addWish" asp-action="addwish" asp-controller="product" asp-route-id="@product.Id">
+                                                    <i class="fa-regular fa-heart"></i>
+                                                </a>
+                                            </div>
+                                          
                                         </div>
                                     }
                                     else

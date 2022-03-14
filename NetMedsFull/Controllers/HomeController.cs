@@ -25,7 +25,7 @@ namespace NetMedsFull.Controllers
             {
                 NewProducts = _context.Products.Include(x => x.ProductImages).Where(x => x.IsNew).ToList(),
                 FavouriteProducts = _context.Products.Include(x => x.ProductImages).Where(x => x.IsTrending).ToList(),
-                DiscountProducts = _context.Products.Include(x => x.ProductImages).Where(x => x.DiscountPercent > 0).ToList(),
+                DiscountProducts = _context.Products.Include(x => x.ProductImages).Where(x => x.DiscountPercent > 0).Take(8).ToList(),
                 TrendSliders = _context.TrendSliders.Include(x => x.Product).ToList(),
                 Sliders = _context.Sliders.Include(x => x.Product).ToList(),
                 Categories = _context.Categories.Where(x => x.IsNav == true && x.IsDelete == false).ToList(),

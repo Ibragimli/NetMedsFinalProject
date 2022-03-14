@@ -11,7 +11,7 @@ namespace NetMedsFull.Models
 {
     public class Product : BaseEntity
     {
-        [StringLength(maximumLength: 150)]
+        [StringLength(maximumLength: 80)]
         public string Name { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal CostPrice { get; set; }

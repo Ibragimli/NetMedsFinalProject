@@ -6,7 +6,7 @@
     <div class="item">
         <div class="disImage">
             <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
-                <img class="img-fluid" src="./Images/productImages/@item.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
+                <img class="img-fluid" src="~/uploads/products/@item.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
             </a>
         </div>
         <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">

@@ -4,7 +4,7 @@
     <div class="item">
         <div class="disImage">
             <a asp-action="detail" asp-controller="product" asp-route-id="@newProduct.Id">
-                <img class="img-fluid" src="~/Images/productImages/@newProduct.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
+                <img class="img-fluid" src="~/uploads/products/@newProduct.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
             </a>
         </div>
         <a asp-action="detail" asp-controller="product" asp-route-id="@newProduct.Id">
@@ -33,7 +33,7 @@
                 <h1>Not Stock</h1>
             </div>
             <div class="wishIcon">
-                <a href="#">
+                <a class="addWish" asp-action="addwish" asp-controller="product" asp-route-id="@newProduct.Id">
                     <i class="fa-regular fa-heart"></i>
                 </a>
             </div>

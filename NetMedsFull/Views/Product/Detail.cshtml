@@ -9,10 +9,10 @@
             <div class="col-lg-6 productLeft">
                 <div id="slider" class="flexslider">
                     <ul class="slides">
-                        @foreach (var item in Model.Products.ProductImages)
+                        @foreach (var item in Model.Products.ProductImages.Where(x => x.PosterStatus == false))
                         {
                             <li>
-                                <img src="~/Images/productImages/@item.Image" />
+                                <img src="~/uploads/products/@item.Image" />
                             </li>
                         }
 
@@ -20,10 +20,10 @@
                 </div>
                 <div id="carousel" class="flexslider">
                     <ul class="slides">
-                        @foreach (var item in Model.Products.ProductImages)
+                        @foreach (var item in Model.Products.ProductImages.Where(x => x.PosterStatus == false))
                         {
                             <li>
-                                <img src="~/Images/productImages/@item.Image" />
+                                <img src="~/uploads/products/@item.Image" />
                             </li>
                         }
                     </ul>
@@ -51,7 +51,7 @@
 
                     <li class="ms-3">
                         <span>
-                        @ViewBag.RatePoint
+                            @ViewBag.RatePoint
                         </span>
 
                         <ul>

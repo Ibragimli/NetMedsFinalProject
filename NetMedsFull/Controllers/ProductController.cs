@@ -87,7 +87,7 @@ namespace NetMedsFull.Controllers
 
 
 
-        public IActionResult Shop( int? categoryId = null, int? subcategoryId = null, int? brandId = null, int? maxPrice = null, int? minPrice = null, ProductType? typeId = null, int page = 1)
+        public IActionResult Shop(int? categoryId = null, int? subcategoryId = null, int? brandId = null, int? maxPrice = null, int? minPrice = null, ProductType? typeId = null, int page = 1)
         {
             var products = _context.Products.Include(x => x.Brand).ThenInclude(x => x.SubCategoryBrands).Include(x => x.ProductImages).Where(x => x.IsDelete == false).AsQueryable();
             ViewBag.BrandId = brandId;
@@ -137,7 +137,7 @@ namespace NetMedsFull.Controllers
                 Categories = _context.Categories.Where(x => x.IsDelete == false).ToList(),
                 Brands = _context.Brands.Include(x => x.SubCategoryBrands).ThenInclude(x => x.SubCategory).Where(x => x.IsDelete == false).ToList(),
                 SubCategories = _context.SubCategories.Where(x => x.IsDelete == false).ToList(),
-                PagenatedProducts = PagenetedList<Product>.Create(products, page, 5)
+                PagenatedProducts = PagenetedList<Product>.Create(products, page, 8)
             };
             return View(productDetailVM);
         }
@@ -209,13 +209,14 @@ namespace NetMedsFull.Controllers
 
         public async Task<IActionResult> DeleteBasket(int id)
         {
+            AppUser user = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && x.IsAdmin == false);
             if (!_context.Products.Any(x => x.Id == id))
             {
                 return RedirectToAction("error", "error");
             }
             List<BasketItemViewModel> productsDetail = new List<BasketItemViewModel>();
 
-            if (User.Identity.IsAuthenticated)
+            if (user != null && !user.IsAdmin)
             {
                 BasketItem basketItem = _context.BasketItems.FirstOrDefault(x => x.ProductId == id);
                 if (basketItem == null)
@@ -342,13 +343,13 @@ namespace NetMedsFull.Controllers
 
         public async Task<IActionResult> DeleteWish(int id)
         {
+            AppUser user = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && x.IsAdmin == false);
             if (!_context.Products.Any(x => x.Id == id))
             {
                 return RedirectToAction("error", "error");
             }
             List<WishItemViewModel> wishItems = new List<WishItemViewModel>();
-
-            if (User.Identity.IsAuthenticated)
+            if (user != null && !user.IsAdmin)
             {
                 WishItem wishItem = _context.WishItems.FirstOrDefault(x => x.ProductId == id);
                 if (wishItem == null)
