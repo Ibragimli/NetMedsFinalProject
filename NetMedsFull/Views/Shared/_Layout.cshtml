@@ -9,12 +9,8 @@
 
     List<Setting> settings = await service.GetSettings();
     List<Product> products = await service.GetProductSearch();
-    List<Subscribe> subscribe = await service.GetSubscribe();
     BasketViewModel HeaderVm = await service.GetHeaderBasket();
-
 }
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,9 +64,9 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 p-0 headSearch">
                     <form action="#">
                         <div class="input-group">
-                            
-                            
-                            
+
+
+
                             <button class="btn   dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                 <span>
@@ -106,11 +102,11 @@
                             <div class="closeSearch">
                                 <i class="fa-solid fa-xmark"></i>
                             </div>
-                           
-                           
-                            
-                            
-                            <input  autocomplete="off" id="searchBoxInput" type="text" class="form-control"
+
+
+
+
+                            <input autocomplete="off" id="searchBoxInput" type="text" class="form-control"
                                    placeholder="Search for medicine & wellness products…"
                                    style="border-top-right-radius: 5px;border-bottom-right-radius:2px;">
 
@@ -311,8 +307,12 @@
                     <p>
                         Get a free subscription to our health and fitness tip and stay tuned to our latest offers
                     </p>
-
-                    @*@await Html.PartialAsync("_SubscribePartial", subscribe)*@
+                    <form method="post" asp-action="Subscribe" asp-controller="home">
+                        <input name="email" type="email" class="form-control" placeholder="Enter your email address">
+                        <button style=" border: none; background: transparent;" type="submit" >
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
             <hr>

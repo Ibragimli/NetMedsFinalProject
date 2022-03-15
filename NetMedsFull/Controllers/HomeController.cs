@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NetMedsFull.Controllers
@@ -35,16 +36,37 @@ namespace NetMedsFull.Controllers
         }
 
         [HttpPost]
-        public IActionResult Subscribe(Subscribe subscribe)
+        public IActionResult Subscribe(string email)
         {
-            if (subscribe == null)
+            if (email == null)
             {
                 TempData["error"] = "Email is required";
                 return RedirectToAction("index", "home");
             }
-            _context.Subscribes.Add(subscribe);
-            _context.SaveChanges();
-            return Ok();
+            var subscribes = _context.Subscribes.ToList();
+            if (subscribes.Any(x => x.Email == email))
+            {
+                TempData["error"] = "Email artiq subscribe olunub!";
+                return RedirectToAction("index", "home");
+            }
+            bool result = Validate(email);
+            if (result ==true)
+            {
+                Subscribe subscribe = new Subscribe();
+                subscribe.Email = email;
+                _context.Subscribes.Add(subscribe);
+                _context.SaveChanges();
+                TempData["error"] = "Subscribe olduğunuz üçün təşşəkkürümüzü bildiririk";
+                return RedirectToAction("index", "home");
+            }
+            TempData["error"] = "email yaz";
+            return RedirectToAction("index", "home");
+        }
+        public static bool Validate(string emailAddress)
+        {
+            var regex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            bool isValid = Regex.IsMatch(emailAddress, regex, RegexOptions.IgnoreCase);
+            return isValid;
         }
     }
 }

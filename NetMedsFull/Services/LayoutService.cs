@@ -28,10 +28,7 @@ namespace NetMedsFull.Services
         {
             return await _context.Settings.ToListAsync();
         }
-        public async Task<List<Subscribe>> GetSubscribe()
-        {
-            return await _context.Subscribes.ToListAsync();
-        }
+       
         public async Task<List<Product>> GetProductSearch()
         {
             return await _context.Products.ToListAsync();

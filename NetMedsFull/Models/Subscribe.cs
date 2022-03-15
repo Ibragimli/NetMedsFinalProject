@@ -8,7 +8,6 @@ namespace NetMedsFull.Models
 {
     public class Subscribe : BaseEntity
     {
-        [Required]
         [StringLength(maximumLength: 30, MinimumLength = 5)]
         public string Email { get; set; }
     }
