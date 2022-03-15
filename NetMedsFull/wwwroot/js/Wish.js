@@ -6,6 +6,7 @@
         fetch(Url)
             .then(response => {
                 console.log("addwish")
+                window.location.reload(true);
             })
     })
 })

@@ -59,7 +59,7 @@ namespace NetMedsFull.Services
                     basket = _getBasketItems(cookieItems);
                 }
             }
-            return basket;
+            return basket; 
         }
         private BasketViewModel _getBasketItems(List<CookieBasketItemViewModel> cookieBasketItems)
         {
@@ -101,10 +101,11 @@ namespace NetMedsFull.Services
                     Price = item.Product.DiscountPercent > 0 ? (item.Product.SalePrice * (1 - item.Product.DiscountPercent / 100)) : item.Product.SalePrice,
                     ProductId = item.Product.Id,
                     Count = item.Count,
-
+                    SalePrice = item.Product.SalePrice,
                 };
                 basketItem.TotalPrice = basketItem.Count * basketItem.Price;
                 basket.TotalAmount += basketItem.TotalPrice;
+                basket.TotalSave += (basketItem.Count * basketItem.SalePrice) - (basketItem.Count * basketItem.Price);
                 basket.BasketItems.Add(basketItem);
             }
 

@@ -467,50 +467,58 @@ header {
                     position: absolute;
                     top: 46px;
                     right: 0;
-                    width: 77%;
+                    width: 75%;
                     padding: 15px 0px 20px 0px;
                     background-color: white;
                     border-bottom-right-radius: 3px;
                     border-bottom-left-radius: 3px;
                 }
 
-                    header .container-fluid .row .headSearch form .input-group .searchBox ul li {
-                        margin-bottom: 10px;
-                        margin-left: 10px;
-                        margin-top: 8px;
-                        margin-right: 10px;
-                        padding-bottom: 10px;
-                        border-bottom: 1px solid gray;
-                        -webkit-transition: all 0.4s;
-                        transition: all 0.4s;
+                    header .container-fluid .row .headSearch form .input-group .searchBox ul {
+                        max-height: 398px;
+                        overflow: hidden;
                     }
 
-                        header .container-fluid .row .headSearch form .input-group .searchBox ul li i {
-                            cursor: pointer;
-                            padding: 10px;
-                            font-size: 22px;
-                            color: #6f7284;
+                        header .container-fluid .row .headSearch form .input-group .searchBox ul li {
+                            margin-bottom: 10px;
+                            margin-left: 10px;
+                            margin-top: 8px;
+                            margin-right: 10px;
+                            padding-bottom: 10px;
+                            border-bottom: 1px solid gray;
                             -webkit-transition: all 0.4s;
                             transition: all 0.4s;
+                            font-size: 17px;
                         }
 
-                        header .container-fluid .row .headSearch form .input-group .searchBox ul li a {
-                            -webkit-transition: all 0.4s;
-                            transition: all 0.4s;
-                            color: black;
-                        }
 
-                        header .container-fluid .row .headSearch form .input-group .searchBox ul li:hover {
-                            border-bottom: 1px solid #32AEB1;
-                        }
 
-                            header .container-fluid .row .headSearch form .input-group .searchBox ul li:hover i {
-                                color: #24aeb1;
+                            header .container-fluid .row .headSearch form .input-group .searchBox ul li i {
+                                cursor: pointer;
+                                padding: 10px;
+                                font-size: 22px;
+                                color: #6f7284;
+                                -webkit-transition: all 0.4s;
+                                transition: all 0.4s;
                             }
 
-                            header .container-fluid .row .headSearch form .input-group .searchBox ul li:hover a {
-                                color: #24aeb1;
+                            header .container-fluid .row .headSearch form .input-group .searchBox ul li a {
+                                -webkit-transition: all 0.4s;
+                                transition: all 0.4s;
+                                color: black;
                             }
+
+                            header .container-fluid .row .headSearch form .input-group .searchBox ul li:hover {
+                                border-bottom: 1px solid #32AEB1;
+                            }
+
+                                header .container-fluid .row .headSearch form .input-group .searchBox ul li:hover i {
+                                    color: #24aeb1;
+                                }
+
+                                header .container-fluid .row .headSearch form .input-group .searchBox ul li:hover a {
+                                    color: #24aeb1;
+                                }
 
         header .container-fluid .row .headUser {
             display: -webkit-box;
@@ -4840,8 +4848,9 @@ body {
             justify-content: center;
             padding: 0px 0px 22px 0px !important;
             border-radius: 10px;
-            height: 100% !important;
             background-color: white;
+            height: 435px;
+            max-height: 435px;
         }
 
             #detailSlider .container .detailSliderDown .owl-carousel-detail .owl-stage-outer .owl-stage .owl-item .item,

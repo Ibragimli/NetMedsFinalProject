@@ -51,7 +51,7 @@
                 @if (user != null && user.IsAdmin == false)
                 {
                     <p id="savePrice">
-                        ₼@(Model?.TotalSaveUser != null?(Model.TotalSaveUser.ToString("0.00")):("0"))
+                        ₼@(Model?.TotalSave != null?(Model.TotalSave.ToString("0.00")):("0"))
                     </p>
                 }
                 else

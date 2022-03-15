@@ -204,6 +204,8 @@ namespace NetMedsFull.Controllers
                 HttpContext.Response.Cookies.Append("basketItemList", productIdStr);
                 basketData = _getBasketItems(basketItems);
             }
+            TempData["Success"] = "Product add basket";
+
             return Ok(basketData);
         }
 
@@ -338,6 +340,8 @@ namespace NetMedsFull.Controllers
                 HttpContext.Response.Cookies.Append("wishItemList", productIdStr);
                 wishData = _getWishItems(wishItems);
             }
+            TempData["Success"] = "Product add wishlist";
+
             return Ok(wishData);
         }
 
@@ -445,6 +449,7 @@ namespace NetMedsFull.Controllers
                 basketItem.TotalPrice = basketItem.Count * basketItem.Price;
                 basket.TotalAmount += basketItem.TotalPrice;
                 basket.TotalSave += (basketItem.Count * basketItem.SalePrice) - (basketItem.Count * basketItem.Price);
+                basket.TotalSaveUser += (basketItem.Count * basketItem.SalePrice) - (basketItem.Count * basketItem.Price);
                 basket.BasketItems.Add(basketItem);
 
             }
