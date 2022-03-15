@@ -20,11 +20,13 @@ namespace NetMedsFull.Areas.Manage.Controllers
         }
         public IActionResult Index()
         {
-            var orders = _context.Orders.ToList();
-            var monthOrders = _context.Orders.Where(x=>x.CreatedAt.Month == DateTime.Now.Month).ToList();
-            var user = _context.Users.Where(x=>x.IsAdmin == false).ToList();
+            var products = _context.Products.ToList();
+            var orders = _context.Orders.Where(x=>x.Status == Enums.OrderStatus.Accepted).ToList();
+            var monthOrders = _context.Orders.Where(x => x.Status == Enums.OrderStatus.Accepted).Where(x => x.CreatedAt.Month == DateTime.Now.Month).ToList();
+            var user = _context.Users.Where(x => x.IsAdmin == false).ToList();
             decimal total = 0;
             decimal totalMonth = 0;
+            int productsCount = 0;
             foreach (var item in orders)
             {
                 total += item.TotalAmount;
@@ -33,10 +35,16 @@ namespace NetMedsFull.Areas.Manage.Controllers
             {
                 totalMonth += item.TotalAmount;
             }
+            foreach (var item in products)
+            {
+                productsCount++;
+            }
+
 
             ViewBag.TotalAmountSell = total;
             ViewBag.MonthTotalAmountSell = totalMonth;
             ViewBag.UserCount = user.Count();
+            ViewBag.ProductsCount = productsCount;
             return View();
         }
     }
