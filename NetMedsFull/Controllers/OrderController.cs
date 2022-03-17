@@ -41,7 +41,7 @@ namespace NetMedsFull.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout(Order order)
         {
-
+            
             AppUser user = _userManager.Users.FirstOrDefault(x => x.IsAdmin == false && x.UserName == User.Identity.Name);
             if (user == null)
             {
@@ -55,7 +55,7 @@ namespace NetMedsFull.Controllers
             }
             if (!ModelState.IsValid)
             {
-                return View("Checkout", new CheckoutViewModel { CheckoutItems = checkoutItems, Order = order });
+                return View("Checkout", new CheckoutViewModel { CheckoutItems = checkoutItems, Order = order, OrderSliders = _context.OrderSliders.ToList(), MostSellingOwl = _context.Products.Include(x => x.ProductImages).Where(x => x.IsTrending).ToList()});
             }
 
             var lastOrder = _context.Orders.OrderByDescending(x => x.Id).FirstOrDefault();

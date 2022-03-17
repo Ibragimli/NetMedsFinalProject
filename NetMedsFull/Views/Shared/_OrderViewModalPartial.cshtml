@@ -34,7 +34,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <h1 style="font-weight: 700;color: blue;font-size: 23px;" class="mb-2">Products</h1>
+                <h1 style="font-weight: 700; color: #32AEB1; font-size: 23px;" class="mb-2">Products</h1>
                 @foreach (var item in Model.OrderItems)
                 {
                     Count++;
@@ -52,7 +52,7 @@
                             <tr>
                                 <td>@Count</td>
                                 <td>@item.Product.Name</td>
-                                <td>@item.Product.SalePrice</td>
+                                <td>@item.Product.SalePrice₼</td>
                                 <td>@item.Count</td>
                             </tr>
                         </tbody>

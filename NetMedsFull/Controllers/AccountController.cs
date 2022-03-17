@@ -103,11 +103,11 @@ namespace NetMedsFull.Controllers
                             AppUserId = UserExists.Id,
                             ProductId = cookieItem.ProductId
                         };
-
                         var productExist = _context.WishItems.Any(x => x.ProductId == wishItemAdd.ProductId);
-
-                        _context.WishItems.Add(wishItemAdd);
-
+                        if (!productExist)
+                        {
+                            _context.WishItems.Add(wishItemAdd);
+                        }
                     }
                     HttpContext.Response.Cookies.Delete("wishItemList");
                     _context.SaveChanges();

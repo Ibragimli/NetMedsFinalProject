@@ -1,5 +1,5 @@
 ﻿@model List<Product>
-@foreach (var relatedProduct in Model)
+@foreach (var relatedProduct in Model.Where(x=>x.StockStatus == true))
 {
     <div class="item">
         <div class="disImage">

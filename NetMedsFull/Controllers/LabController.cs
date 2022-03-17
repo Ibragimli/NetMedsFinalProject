@@ -56,12 +56,15 @@ namespace NetMedsFull.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-                labTest.AppUserId = user.Id;
-                TempData["LabUser"] = user.Id;
+                if (user.IsAdmin)
+                {
+                    labTest.AppUserId = user.Id;
+                    TempData["LabUser"] = user.Id;
+                }
             }
             _context.LabTests.Add(labTest);
             _context.SaveChanges();
-            var labPrice = _context.LabTests.Include(x => x.LabTestPrice).FirstOrDefault(x => x.LabTestPrice.Id == labTest.Id);
+            var labPrice = _context.LabTests.Include(x => x.LabTestPrice).FirstOrDefault(x => x.LabTestPrice.Id == labTest.LabTestPriceId);
 
             string body = string.Empty;
 
@@ -70,7 +73,7 @@ namespace NetMedsFull.Controllers
                 body = reader.ReadToEnd();
             }
             body = body.Replace("{{fullname}}", labTest.Fullname);
-            body = body.Replace("{{price}}", labPrice.LabTestPrice.Price.ToString("0.00"));
+            body = body.Replace("{{price}}", labTest.LabTestPrice.Price.ToString("0.00"));
             body = body.Replace("{{rendezvous}}", labTest.Rendezvous.ToString("dddd, dd MMMM yyyy"));
             
             _emailService.Send(labTest.Email,"Netmeds Labtest",body);

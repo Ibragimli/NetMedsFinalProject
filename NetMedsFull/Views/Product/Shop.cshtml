@@ -66,7 +66,7 @@
                                         <a asp-action="shop" asp-controller="product" asp-route-page="@ViewBag.PageIndex" asp-route-categoryId="@ViewBag.CategoryId"
                                            asp-route-subCategoryId="@ViewBag.SubCategoryId" asp-route-brandId="@brand.Id" asp-route-typeId="@ViewBag.TypeId"
                                            asp-route-minPrice="@ViewBag.SelectedMinPrice" asp-route-maxPrice="@ViewBag.SelectedMaxPrice">
-                                            @brand.Name (@brand.SubCategoryBrands.Count())
+                                            @brand.Name 
                                         </a>
                                     </div>
                                 }
@@ -230,7 +230,7 @@
                                                     <i class="fa-regular fa-heart"></i>
                                                 </a>
                                             </div>
-                                          
+
                                         </div>
                                     }
                                     else
