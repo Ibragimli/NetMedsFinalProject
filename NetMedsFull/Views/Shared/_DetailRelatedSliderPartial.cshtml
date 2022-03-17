@@ -1,38 +1,38 @@
 ﻿@model List<Product>
 @foreach (var relatedProduct in Model)
 {
-        <div class="item">
-            <div class="disImage">
+    <div class="item">
+        <div class="disImage">
+            <a asp-action="detail" asp-controller="product" asp-route-id="@relatedProduct.Id">
+                <img class="img-fluid" src="~/uploads/products/@relatedProduct.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
+            </a>
+        </div>
+        <div class="itemDown">
+            <div class="disTitle">
                 <a asp-action="detail" asp-controller="product" asp-route-id="@relatedProduct.Id">
-                    <img class="img-fluid" src="~/uploads/products/@relatedProduct.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
+                    <h2>
+                        @relatedProduct.Name
+                    </h2>
                 </a>
             </div>
-            <div class="itemDown">
-                <div class="disTitle">
-                    <a asp-action="detail" asp-controller="product" asp-route-id="@relatedProduct.Id">
-                        <h2>
-                            @relatedProduct.Name
-                        </h2>
-                    </a>
+            @if (relatedProduct.DiscountPercent > 0)
+            {
+                <div class="disPrice">
+                    <p>₼@((relatedProduct.SalePrice*(100- relatedProduct.DiscountPercent)/100).ToString("#.00"))</p>
+                    <del> ₼@relatedProduct.SalePrice.ToString("#.00")</del>
                 </div>
-                @if (relatedProduct.DiscountPercent > 0)
-                {
-                    <div class="disPrice">
-                        <p>₼@((relatedProduct.SalePrice*(100- relatedProduct.DiscountPercent)/100).ToString("#.00"))</p>
-                        <del> ₼@relatedProduct.SalePrice.ToString("#.00")</del>
-                    </div>
-                }
-                else
-                {
-                    <div class="disPrice">
-                        <p>₼@relatedProduct.SalePrice.ToString("#.00")</p>
-                    </div>
-                }
-                <div class="disBtn">
-                    <a class="addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@relatedProduct.Id">
-                        ADD TO CART
-                    </a>
+            }
+            else
+            {
+                <div class="disPrice">
+                    <p>₼@relatedProduct.SalePrice.ToString("#.00")</p>
                 </div>
+            }
+            <div class="disBtn">
+                <a style=" padding: 12px 39px;" class="addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@relatedProduct.Id">
+                    ADD TO CART
+                </a>
             </div>
         </div>
+    </div>
 }

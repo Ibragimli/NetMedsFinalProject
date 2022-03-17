@@ -37,13 +37,16 @@ namespace NetMedsFull.Controllers
 
             if (product.Comments.Count() > 0)
             {
-                foreach (var comment in product.Comments)
+                foreach (var comment in product.Comments.Where(x => x.CommentStatus == true))
                 {
                     countRate++;
                     ratePoint += comment.Rate;
                 }
-                ratePoint = ratePoint / countRate;
-                ViewBag.RatePoint = ratePoint;
+                if (countRate != 0)
+                {
+                    ratePoint = ratePoint / countRate;
+                    ViewBag.RatePoint = ratePoint;
+                }
             }
 
 

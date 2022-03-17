@@ -9,23 +9,48 @@
             <div class="col-lg-6 productLeft">
                 <div id="slider" class="flexslider">
                     <ul class="slides">
-                        @foreach (var item in Model.Products.ProductImages.Where(x => x.PosterStatus == false))
+                        @if (Model.Products.ProductImages.FirstOrDefault(x => x.PosterStatus == false) != null)
                         {
-                            <li>
-                                <img src="~/uploads/products/@item.Image" />
-                            </li>
+                            @foreach (var item in Model.Products.ProductImages.Where(x => x.PosterStatus == false))
+                            {
+                                <li>
+                                    <img src="~/uploads/products/@item.Image" />
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            @foreach (var item in Model.Products.ProductImages.Where(x => x.PosterStatus == true))
+                            {
+                                <li>
+                                    <img src="~/uploads/products/@item.Image" />
+                                </li>
+                            }
                         }
 
                     </ul>
                 </div>
                 <div id="carousel" class="flexslider">
                     <ul class="slides">
-                        @foreach (var item in Model.Products.ProductImages.Where(x => x.PosterStatus == false))
+                        @if (Model.Products.ProductImages.FirstOrDefault(x => x.PosterStatus == false) != null)
                         {
-                            <li>
-                                <img src="~/uploads/products/@item.Image" />
-                            </li>
+                            @foreach (var item in Model.Products.ProductImages.Where(x => x.PosterStatus == false))
+                            {
+                                <li>
+                                    <img src="~/uploads/products/@item.Image" />
+                                </li>
+                            }
                         }
+                        else
+                        {
+                            @foreach (var item in Model.Products.ProductImages.Where(x => x.PosterStatus == true))
+                            {
+                                <li>
+                                    <img src="~/uploads/products/@item.Image" />
+                                </li>
+                            }
+                        }
+
                     </ul>
                 </div>
             </div>

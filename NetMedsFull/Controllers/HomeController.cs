@@ -50,7 +50,7 @@ namespace NetMedsFull.Controllers
                 return RedirectToAction("index", "home");
             }
             bool result = Validate(email);
-            if (result ==true)
+            if (result == true)
             {
                 Subscribe subscribe = new Subscribe();
                 subscribe.Email = email;
@@ -59,14 +59,18 @@ namespace NetMedsFull.Controllers
                 TempData["error"] = "Subscribe olduğunuz üçün təşşəkkürümüzü bildiririk";
                 return RedirectToAction("index", "home");
             }
-            TempData["error"] = "email yaz";
+            TempData["error"] = "Email doğru deyil!";
             return RedirectToAction("index", "home");
         }
         public static bool Validate(string emailAddress)
         {
-            var regex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
-            bool isValid = Regex.IsMatch(emailAddress, regex, RegexOptions.IgnoreCase);
-            return isValid;
+            string pattern = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            //if email is valid
+            if (Regex.IsMatch(emailAddress, pattern))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

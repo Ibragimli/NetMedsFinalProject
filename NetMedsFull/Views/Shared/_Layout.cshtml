@@ -195,9 +195,10 @@
         <div class="container">
             <div class="row">
                 <div class="col    navBox navMed">
-                    <img src="~/Images/navbars/medicine.svg" alt="medicine">
-                    <a class="me-5 nav-link dropdown-toggle" asp-action="shop" asp-controller="product" id="navbarDropdownMenuLink" role="button"
+                    <a class="me-5 nav-link dropdown-toggle d-flex align-items-center" asp-action="shop" asp-controller="product" id="navbarDropdownMenuLink" role="button"
                        aria-expanded="false">
+                        <img src="~/Images/navbars/medicine.svg" alt="medicine">
+
                         Medicine
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -206,8 +207,10 @@
                     </ul>
                 </div>
                 <div class="col  navBox">
-                    <img src="~/Images/navbars/diagnostics.svg" alt="diagnostics">
-                    <a class=" nav-link" asp-controller="lab" asp-action="labtest">Lab Tests</a>
+                    <a class="d-flex align-items-center nav-link" asp-controller="lab" asp-action="labtest">
+                        <img src="~/Images/navbars/diagnostics.svg" alt="diagnostics">
+                        Lab Tests
+                    </a>
                 </div>
 
             </div>
