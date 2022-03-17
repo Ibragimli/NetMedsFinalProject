@@ -14,7 +14,10 @@ namespace NetMedsFull.Models
         public string Title { get; set; }
         [StringLength(maximumLength: 20)]
         public string Info { get; set; }
-
+        [StringLength(maximumLength: 20)]
+        public string Action { get; set; }
+        [StringLength(maximumLength: 20)]
+        public string Controller { get; set; }
         [StringLength(maximumLength: 100)]
         public string Image { get; set; }
 

@@ -24,7 +24,10 @@
                                     <textarea id="editor" style="height:350px" maxlength="1000" asp-for="Value" class="form-control input-default " placeholder="Value"></textarea>
                                     <span class="text-danger" asp-validation-for="Value"></span>
                                 </div>
-                                <button type="submit" class="mt-4 btn  btn-primary">Edit</button>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="mt-4 btn  btn-primary">Edit</button>
+                                    <a asp-action="index" asp-controller="contact" class="ms-4 mt-4 btn  btn-warning">Back</a>
+                                </div>
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             </div>
                         </form>

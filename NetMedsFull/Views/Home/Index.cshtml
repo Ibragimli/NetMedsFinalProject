@@ -46,7 +46,7 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 sbiLabBox">
                     <ul>
                         <li class="sbliLabLi">
-                            <a href="#">
+                            <a asp-action="@item.Action" asp-controller="@item.Controller">
                                 <ul>
                                     <li>
                                         <div class="sbiLabImage">
@@ -117,7 +117,7 @@
                         <p>
                             Your previously ordered products
                         </p>
-                        <a href="#">
+                        <a class="pDefault" href="#">
                             <span>View Orders</span>
                             <img src="./Images/orderBeautys/arrow_mark.svg" alt="">
                         </a>
@@ -136,7 +136,7 @@
                         <p>
                             Save Upto 40% off
                         </p>
-                        <a href="#">
+                        <a asp-action="shop" asp-controller="product">
                             Explore Beauty
                         </a>
                     </div>

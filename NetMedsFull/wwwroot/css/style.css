@@ -699,7 +699,7 @@ header {
 
                                         header .container-fluid .row .headUser ul .basketA .basketHover .basketAHover .basketHoverMiddle .row .itemBasket .basketName {
                                             margin-right: 20px;
-                                            width: 65%;
+                                            width: 61%;
                                             white-space: nowrap;
                                             overflow: hidden;
                                             text-overflow: ellipsis;
@@ -1567,6 +1567,7 @@ table {
                 padding: 10px 8px;
                 color: cadetblue;
                 font-weight: 700;
+                max-height: 90px;
             }
 
             #discountOwl .container-fluid .disDown .owl-carousel-discount .owl-stage-outer .owl-stage .owl-item .item .disPrice, #discountOwl .container-fluid .disDown .owl-carousel-discount .owl-stage-outer .owl-stage .active .item .disPrice {
@@ -1736,6 +1737,7 @@ table {
                 padding: 10px 8px;
                 color: cadetblue;
                 font-weight: 700;
+                max-height: 94px;
             }
 
             #newProduct .container-fluid .newProDown .owl-carousel-newproduct .owl-stage-outer .owl-stage .owl-item .item .disPrice, #newProduct .container-fluid .newProDown .owl-carousel-newproduct .owl-stage-outer .owl-stage .active .item .disPrice {
@@ -1908,6 +1910,7 @@ table {
                 padding: 10px 8px;
                 color: cadetblue;
                 font-weight: 700;
+                max-height: 96px;
             }
 
             #favProduct .container-fluid .favProDown .owl-carousel-favproduct .owl-stage-outer .owl-stage .owl-item .item .disPrice, #favProduct .container-fluid .favProDown .owl-carousel-favproduct .owl-stage-outer .owl-stage .active .item .disPrice {
@@ -2401,7 +2404,7 @@ table {
         #basket .container .basketSlider .owl-carousel-basket .owl-dots {
             position: absolute;
             bottom: 3px;
-            left: 37%;
+            left: 49%;
         }
 
             #basket .container .basketSlider .owl-carousel-basket .owl-dots .active span {
@@ -4645,10 +4648,12 @@ body {
         line-height: 20px;
     }
 
+   
+
     .mostOwl .owl-carousel-mostOwl .owl-stage-outer .owl-stage .owl-item, .mostOwl .owl-carousel-mostOwl .owl-stage-outer .owl-stage .active {
         padding: 0px 0px 22px 0px !important;
         border-radius: 10px;
-        height: 100% !important;
+        height: 340px;
         background-color: white;
         max-height: 340px !important;
     }

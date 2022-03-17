@@ -26,12 +26,6 @@ namespace NetMedsFull.Controllers
         }
         public IActionResult LabTest()
         {
-
-            //LabTestViewModel labTestVM = new LabTestViewModel
-            //{
-            //    Labtest = _context.LabTests,
-            //   LabTestPrice = _context.LabTests.Where(x=>x.Id ==  )
-            //};
             return View();
         }
         [HttpPost]

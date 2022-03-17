@@ -43,11 +43,11 @@
                 </p>
                 @foreach (var item in Model.CheckoutItems)
                 {
-
-                    SalePrice = item.Product.DiscountPercent > 0 ? (item.Product.SalePrice * (1 - item.Product.DiscountPercent / 100)) : item.Product.SalePrice;
+                    var prd = item.Product;
+                    SalePrice = prd.DiscountPercent > 0 ? (prd.SalePrice * (1 - prd.DiscountPercent / 100)) : prd.SalePrice;
                     TotalPrice = SalePrice * item.Count;
-                    MRPTotal = item.Product.SalePrice * item.Count;
-                    MRPTotalDetail += item.Product.SalePrice * item.Count;
+                    MRPTotal = prd.SalePrice * item.Count;
+                    MRPTotalDetail += prd.SalePrice * item.Count;
                     TotalSave += MRPTotal - TotalPrice;
                     TotalAmountDetail = MRPTotalDetail - TotalSave;
 
@@ -55,21 +55,28 @@
                     {
                         <div class="product">
                             <div class="leftSide">
-                                <img src="~/Images/productImages/@item.Product.ProductImages.FirstOrDefault(x => x.PosterStatus == true)?.Image" alt="">
+                                <img src="~/Images/productImages/@prd.ProductImages.FirstOrDefault(x => x.PosterStatus == true)?.Image" alt="">
                             </div>
                             <div class="rightSide">
                                 <h3>
-                                    <a asp-action="detail" asp-controller="product" asp-route-id="@item.Product.Id">
-                                        @item.Product.Name
+                                    <a asp-action="detail" asp-controller="product" asp-route-id="@prd.Id">
+                                        @prd.Name
                                     </a>
                                 </h3>
                                 <p>
-                                    Mfr: @item.Product.Brand
+                                    Mfr: @prd.Brand
                                 </p>
                                 <div class="priceCount">
                                     <div class="price">
-                                        <p> ₼@TotalPrice.ToString("#.00")</p>
-                                        <del>₼@MRPTotal.ToString("#.00") </del>
+                                        @if (prd.DiscountPercent > 0)
+                                        {
+                                            <p> ₼@TotalPrice.ToString("0.00")</p>
+                                            <del> ₼@MRPTotal.ToString("0.00")</del>
+                                        }
+                                        else
+                                        {
+                                            <p> ₼@TotalPrice.ToString("0.00")</p>
+                                        }
                                     </div>
                                     <div class="count">
                                         <label for="count">Count</label>
@@ -79,7 +86,7 @@
                                 </div>
                                 <form method="post" asp-action="DeleteBasket" asp-controller="product">
                                     <div class="productBtn">
-                                        <a class="btn btn-primary removeBasket" asp-action="deleteBasket" asp-controller="product" asp-route-id="@item.Product.Id">
+                                        <a class="btn btn-primary removeBasket" asp-action="deleteBasket" asp-controller="product" asp-route-id="@prd.Id">
                                             Remove
                                         </a>
                                     </div>
@@ -102,7 +109,7 @@
                             MRP Total
                         </span>
                         <p>
-                            ₼@MRPTotalDetail.ToString("#.00")
+                            ₼@MRPTotalDetail.ToString("0.00")
                         </p>
                     </div>
                     <div class="netmedsDiscount">
@@ -110,7 +117,7 @@
                             Netmeds Discount
                         </span>
                         <p>
-                            - ₼@TotalSave.ToString("#.00")
+                            - ₼@TotalSave.ToString("0.00")
                         </p>
                     </div>
                     <div class="totalAmount">
@@ -118,7 +125,7 @@
                             Total Amount *
                         </span>
                         <p>
-                            ₼@TotalAmountDetail.ToString("#.00")
+                            ₼@TotalAmountDetail.ToString("0.00")
                         </p>
                     </div>
                     <div class="totalSaving">
@@ -126,7 +133,7 @@
                             TOTAL SAVINGS
                         </span>
                         <p>
-                            ₼@TotalSave.ToString("#.00")
+                            ₼@TotalSave.ToString("0.00")
                         </p>
                     </div>
 
@@ -136,7 +143,7 @@
                                 TOTAL AMOUNT
                             </span>
                             <p>
-                                ₼@TotalAmountDetail.ToString("#.00")
+                                ₼@TotalAmountDetail.ToString("0.00")
                             </p>
                         </div>
                         <div class="proceedBtn">
@@ -184,14 +191,14 @@
                             {
                                 <div class="disPrice">
                                     <p>₼@((slider.SalePrice*(100- slider.DiscountPercent)/100).ToString("#.00"))</p>
-                                    <del> ₼@slider.SalePrice.ToString("#.00")</del>
+                                    <del> ₼@slider.SalePrice.ToString("0.00")</del>
                                     <span style=" color: #fff; font-weight: 700; text-align: center; line-height: 24px; padding: 0 7px; min-width: 46px; background: #bd0018; font-size: 14px; border-radius: 3px; "> @slider.DiscountPercent%</span>
                                 </div>
                             }
                             else
                             {
                                 <div class="disPrice">
-                                    <p> ₼@slider.SalePrice.ToString("#.00")</p>
+                                    <p> ₼@slider.SalePrice.ToString("0.00")</p>
                                 </div>
                             }
                             @if (slider.StockStatus == false)

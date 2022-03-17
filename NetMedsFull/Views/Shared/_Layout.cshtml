@@ -66,7 +66,6 @@
                         <div class="input-group">
 
 
-
                             <button class="btn   dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                 <span>
@@ -80,7 +79,14 @@
                                         <p>
                                             Get access to your Addresses, Orders, and Wishlist
                                         </p>
-                                        <a class="btn btn-primary">Sign in to see your location</a>
+                                        @if (user != null && user.IsAdmin == false)
+                                        {
+                                            <a class="btn btn-primary">@user.FullName</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="login" asp-controller="account" class="btn btn-primary">Sign in to see your location</a>
+                                        }
                                         <hr>
                                         <h2>Or Enter Pincode</h2>
                                         <p>
@@ -235,27 +241,27 @@
                             <h2>Company</h2>
                         </li>
                         <li><a asp-action="aboutus" asp-controller="about">About Netmeds</a></li>
-                        <li><a href="#">Customers Speak</a></li>
-                        <li><a href="#">In the News</a></li>
+                        <li><a class="pDefault" href="#">Customers Speak</a></li>
+                        <li><a class="pDefault" href="#">In the News</a></li>
                         <li>
-                            <a href="#">Career</a>
+                            <a class="pDefault" href="#">Career</a>
                         </li>
-                        <li><a href="#">Terms and Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Fees and Payments Policy</a></li>
+                        <li><a class="pDefault" href="#">Terms and Conditions</a></li>
+                        <li><a class="pDefault" href="#">Privacy Policy</a></li>
+                        <li><a class="pDefault" href="#">Fees and Payments Policy</a></li>
                         <li>
-                            <a href="#">
+                            <a class="pDefault" href="#">
                                 Shipping and Delivery
                                 Policy
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a class="pDefault" href="#">
                                 Return, Refund and
                                 Cancellation Policy
                             </a>
                         </li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a class="pDefault" href="#">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 footShopping">
@@ -263,11 +269,11 @@
                         <li>
                             <h2>Shopping</h2>
                         </li>
-                        <li><a href="#">Browse by A-Z</a></li>
-                        <li><a href="#">Browse by Manufacturers</a></li>
-                        <li><a href="#">Health Articles</a></li>
-                        <li><a href="#">Offers / Coupons</a></li>
-                        <li><a href="#">FAQs</a></li>
+                        <li><a class="pDefault" href="#">Browse by A-Z</a></li>
+                        <li><a class="pDefault" href="#">Browse by Manufacturers</a></li>
+                        <li><a class="pDefault" href="#">Health Articles</a></li>
+                        <li><a class="pDefault" href="#">Offers / Coupons</a></li>
+                        <li><a class="pDefault" href="#">FAQs</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 footSocial">
@@ -309,7 +315,7 @@
                     </p>
                     <form method="post" asp-action="Subscribe" asp-controller="home">
                         <input name="email" type="email" class="form-control" placeholder="Enter your email address">
-                        <button style=" border: none; background: transparent;" type="submit" >
+                        <button style=" border: none; background: transparent;" type="submit">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </form>
@@ -319,13 +325,11 @@
 
             <div class="row copyRight">
                 <div class="col-lg-4 copyBox ">
-                    <a href="#">Medicine</a>
+                    <a asp-controller="product" asp-action="shop">Medicine</a>
 
                 </div>
                 <div class="col-lg-4 copyBox">
                     <a asp-controller="lab" asp-action="labtest">Lab Tests</a>
-
-
                 </div>
                 <div class="col-lg-4 copyBox">
                     <p>@Html.Raw(settings.FirstOrDefault(x => x.Key == "CopyRight")?.Value)</p>
@@ -386,12 +390,10 @@
     <script src="~/js/BasketDelete.js"></script>
     <script src="~/js/mostOwlAddBasket.js"></script>
     <script src="~/js/searchFilter.js"></script>
+    <script src="~/js/defualtPrevent.js"></script>
 
     @RenderSection("Scripts", required: false)
     <script src="~/js/slider.js"></script>
-
-
 </body>
-
 </html>
 

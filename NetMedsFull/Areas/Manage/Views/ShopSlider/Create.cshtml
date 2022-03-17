@@ -26,7 +26,10 @@
                                         <span class="text-danger" asp-validation-for="ImageFile"></span>
                                     </div>
                                 </div>
-                                <button type="submit" class="mt-4 btn  btn-primary">Create</button>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="mt-4 btn  btn-primary">Create</button>
+                                    <a asp-action="index" asp-controller="shopslider" class="ms-4 mt-4 btn  btn-warning">Back</a>
+                                </div>
                                 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                             </div>
                         </form>

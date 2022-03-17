@@ -54,7 +54,7 @@
                                             <td>@product.StockStatus</td>
                                             <td>@product.Brand.Name</td>
                                             <td>
-                                                <a class="btn btn-primary mb-1" asp-action="comments" asp-controller="product" asp-route-id="@product.Id">Comments(@product.Comments.Count())</a>
+                                                <a class="btn btn-primary mb-1" asp-action="comments" asp-controller="product" asp-route-id="@product.Id"><i style="font-size:14px;" class="fa-solid fa-comments"></i> (@product.Comments.Count())</a>
                                             </td>
                                             <td class="text-center">
                                                 <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="product" asp-route-id="@product.Id">Edit</a>

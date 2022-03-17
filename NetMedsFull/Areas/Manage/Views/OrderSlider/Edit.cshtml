@@ -29,7 +29,11 @@
                                         <img width="500" height="200" src="~/uploads/ordersliders/@Model.Image" />
                                     </div>
                                 </div>
-                                <button type="submit" class="mt-4 btn  btn-primary">Edit</button>
+
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="mt-4 btn  btn-primary">Edit</button>
+                                    <a asp-action="index" asp-controller="orderslider" class="ms-4 mt-4 btn  btn-warning">Back</a>
+                                </div>
                                 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                             </div>
                         </form>

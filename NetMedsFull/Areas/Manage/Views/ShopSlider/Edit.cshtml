@@ -18,7 +18,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-6 mb-3">
                                     <label style=" color: #886CC0; font-weight: 700; font-size: 20px; ">ProductId</label>
-                                    <input  asp-for="ProductId" class="form-control input-default " placeholder="ProductId">
+                                    <input asp-for="ProductId" class="form-control input-default " placeholder="ProductId">
                                     <span class="text-danger" asp-validation-for="ProductId"></span>
                                 </div>
                                 <div class="form-row">
@@ -29,7 +29,10 @@
                                         <img width="200" height="180" src="~/uploads/shopsliders/@Model.Image" />
                                     </div>
                                 </div>
-                                <button type="submit" class="mt-4 btn  btn-primary">Edit</button>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="mt-4 btn  btn-primary">Edit</button>
+                                    <a asp-action="index" asp-controller="shopslider" class="ms-4 mt-4 btn  btn-warning">Back</a>
+                                </div>
                                 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                             </div>
                         </form>

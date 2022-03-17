@@ -21,7 +21,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
         public IActionResult Index()
         {
             var products = _context.Products.ToList();
-            var orders = _context.Orders.Where(x=>x.Status == Enums.OrderStatus.Accepted).ToList();
+            var orders = _context.Orders.Where(x => x.Status == Enums.OrderStatus.Accepted).ToList();
             var monthOrders = _context.Orders.Where(x => x.Status == Enums.OrderStatus.Accepted).Where(x => x.CreatedAt.Month == DateTime.Now.Month).ToList();
             var user = _context.Users.Where(x => x.IsAdmin == false).ToList();
             decimal total = 0;
