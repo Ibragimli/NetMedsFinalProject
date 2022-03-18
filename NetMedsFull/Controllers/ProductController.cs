@@ -150,6 +150,11 @@ namespace NetMedsFull.Controllers
             {
                 return RedirectToAction("error", "error");
             }
+            var productStatusExist = _context.Products.Where(x => x.Id == id);
+            if (productStatusExist.Any(x => x.StockStatus == false))
+            {
+                return RedirectToAction("error", "error");
+            }
             BasketViewModel basketData = null;
             AppUser user = null;
             if (User.Identity.IsAuthenticated)
