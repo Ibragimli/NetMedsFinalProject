@@ -12,7 +12,7 @@
             @foreach (var wish in Model.WishlistItems)
             {
                 var prd = wish.Product;
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="wishProduct">
                         <div class="cardImage">
                             <a asp-action="detail" asp-controller="product" asp-route-id="@prd.Id">
@@ -39,10 +39,20 @@
 
                             </div>
                             <div class="wishBtn">
-                                <a asp-action="addbasket" asp-controller="product" asp-route-id="@prd.Id" class="btn btn-primary addBasket">
-                                    AddBasket
-                                </a>
-                                <a asp-action="deleteWish" asp-controller="product" asp-route-id="@prd.Id" class="btn  btn-danger deleteWish">
+                                @if (@prd.StockStatus == false)
+                                {
+                                    <h1 style="background-color:gray;color: white;display: inline-block;padding: 7px 12px;border-radius: 4px;cursor: pointer;margin-right: 6px;font-weight: 500 !important;font-size: 22px !important;">
+                                        Not Stock
+                                    </h1>
+                                }
+                                else
+                                {
+                                    <a asp-action="addbasket" asp-controller="product" asp-route-id="@prd.Id" class="btn btn-primary addBasket">
+                                        AddBasket
+                                    </a>
+                                }
+
+                                <a style=" width: 70px !important; " asp-action="deleteWish" asp-controller="product" asp-route-id="@prd.Id" class="btn  btn-danger deleteWish">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </div>

@@ -3544,7 +3544,7 @@ body {
                 display: flex;
                 padding: 30px;
                 background-color: #EAFAFF;
-                border-radius: 4px;
+                border-radius: 2px;
             }
 
                 body #wishlist .container .wishProducts h1 {
@@ -3570,24 +3570,22 @@ body {
                     display: -webkit-box;
                     display: -ms-flexbox;
                     display: flex;
-                    -webkit-box-orient: vertical;
-                    -webkit-box-direction: normal;
-                    -ms-flex-direction: column;
                     flex-direction: column;
                     -webkit-box-align: center;
                     -ms-flex-align: center;
                     align-items: center;
-                    padding: 0px 0px 40px 0px;
-                    border-radius: 20px;
+                    padding: 0px 0px 25px 0px;
+                    border-radius: 10px;
                     background-color: #fff;
                     margin-bottom: 15px;
-                    width: 95%;
-                    height: 98%;
-                    max-height: 590px;
+                    height: 96%;
+                    max-height: 96%;
+                    margin-right: 8px;
                 }
 
                     body #wishlist .container .wishProducts .wishProduct .cardImage a img {
                         width: 100%;
+                        border-radius: 10px;
                     }
 
                     body #wishlist .container .wishProducts .wishProduct .cardInfo {

@@ -162,9 +162,18 @@
                     </div>
                     <p>* Delivery charges if applicable will be applied at checkout</p>
                 </div>
-                <a class="addBtn addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@Model.Products.Id">
-                    ADD TO CART
-                </a>
+                @if (Model.Products.StockStatus == false)
+                {<h1 style="background-color:gray;color: white;display: inline-block;padding: 8px 16px;border-radius: 4px;cursor: pointer;" >
+                        NOT STOCK
+                    </h1>
+                }
+                else
+                {
+                    <a class="addBtn addBasket" asp-action="addbasket" asp-controller="product" asp-route-id="@Model.Products.Id">
+                        ADD TO CART
+                    </a>
+                }
+
             </div>
         </div>
     </div>
