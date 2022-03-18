@@ -62,7 +62,7 @@ namespace NetMedsFull.Controllers
             TempData["error"] = "Email doğru deyil!";
             return RedirectToAction("index", "home");
         }
-        public static bool Validate(string emailAddress)
+        private static bool Validate(string emailAddress)
         {
             string pattern = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
             //if email is valid

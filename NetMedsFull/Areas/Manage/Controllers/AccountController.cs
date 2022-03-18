@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetMedsFull.Areas.Manage.ViewModels;
@@ -59,13 +60,15 @@ namespace NetMedsFull.Areas.Manage.Controllers
             return View();
         }
 
-
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("login", "account");
 
         }
+
+
         //public async Task<IActionResult> CreateRole()
         //{
         //    var role1 = await _roleManager.CreateAsync(new IdentityRole("SuperAdmin"));

@@ -4,19 +4,17 @@
 @model HomeViewModel
 <section id="categoryMed">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12    cateMed ">
+        <div class="text-center  cateMed ">
+            <ul class="row justify-content-center">
                 @foreach (var category in Model.Categories)
                 {
-                    <ul class="row">
-                        <li class="col">
-                            <a asp-action="shop" asp-controller="product" asp-route-categoryId="@category.Id">
-                                @category.Name
-                            </a>
-                        </li>
-                    </ul>
+                    <li class="col-lg-2 col-sm-6 mb-2">
+                        <a style="color: #151b39; line-height: 42px;" asp-action="shop" asp-controller="product" asp-route-categoryId="@category.Id">
+                            @category.Name
+                        </a>
+                    </li>
                 }
-            </div>
+            </ul>
         </div>
     </div>
 </section>

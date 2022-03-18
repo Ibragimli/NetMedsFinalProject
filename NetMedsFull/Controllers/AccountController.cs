@@ -337,7 +337,7 @@ namespace NetMedsFull.Controllers
         }
 
 
-
+        [Authorize(Roles ="Member")]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
