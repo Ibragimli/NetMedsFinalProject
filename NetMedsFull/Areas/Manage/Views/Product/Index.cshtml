@@ -33,7 +33,6 @@
                                         <th>Country</th>
                                         <th>StockStatus</th>
                                         <th>Brand</th>
-                                        <th>Comment</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -53,12 +52,11 @@
                                             <td>@product.Country</td>
                                             <td>@product.StockStatus</td>
                                             <td>@product.Brand.Name</td>
-                                            <td>
-                                                <a class="btn btn-primary mb-1" asp-action="comments" asp-controller="product" asp-route-id="@product.Id"><i style="font-size:14px;" class="fa-solid fa-comments"></i> (@product.Comments.Count())</a>
-                                            </td>
+                                           
                                             <td class="text-center">
                                                 <a class="btn btn-warning mb-1" asp-action="edit" asp-controller="product" asp-route-id="@product.Id">Edit</a>
                                                 <a class="btn btn-danger delete-btn  mb-1" asp-action="delete" asp-controller="product" asp-route-id="@product.Id">Delete</a>
+                                                <a class="btn btn-primary mb-1" asp-action="comments" asp-controller="product" asp-route-id="@product.Id"><i style="font-size:14px;" class="fa-solid fa-comments"></i> (@product.Comments.Count())</a>
                                             </td>
                                         </tr>
 
@@ -72,7 +70,6 @@
                                         <th>CostPrice</th>
                                         <th>StockStatus</th>
                                         <th>Brand</th>
-                                        <th>Comment(0)</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

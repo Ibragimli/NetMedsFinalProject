@@ -47,27 +47,74 @@
                         </div>
 
                         <h1 class="text-center mb-4 mt-4" style="font-weight:700">Delivery Status Action</h1>
-                        <div class="row mb-3">
-                            <div class="col-lg-1">
+                        @if (Model.Status == OrderStatus.Accepted)
+                        {
+
+                            <div class="row mb-3">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusOnProcessing" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-danger">OnProcessing</a>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusOnDepot" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-dark">OnDepot</a>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusOnCourier" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-info">OnCourier</a>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusDelivered" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-success">Delivered</a>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a asp-action="StatusOnWaiting" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-warning">OnWaiting</a>
+                                </div>
+                                <div class="col-lg-1">
+                                </div>
                             </div>
-                            <div class="col-lg-2">
-                                <a asp-action="StatusOnProcessing" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-danger">OnProcessing</a>
+                            <div class="text-center mb-3">
+                                @if (Model.DeliveryStatus == OrderDeliveryStatus.Delivered)
+                                {
+                                    <span style=" font-size: 15px; font-weight:700;">Delivery Status: </span>
+                                    <span style=" font-size: 15px; " class="badge bg-success">  Delivered</span>
+                                }
+                                @if (Model.DeliveryStatus == OrderDeliveryStatus.OnCourier)
+                                {
+                                    <span style="font-size: 15px; font-weight: 700; ">Delivery Status: </span>
+                                    <span style=" font-size: 15px; " class="badge bg-secondary">  OnCourier</span>
+                                }
+
+                                @if (Model.DeliveryStatus == OrderDeliveryStatus.OnDepot)
+                                {
+                                    <span style=" font-size: 15px; font-weight: 700;">Delivery Status: </span>
+                                    <span style=" font-size: 15px; " class="badge bg-info">  OnDepot</span>
+                                }
+                                @if (Model.DeliveryStatus == OrderDeliveryStatus.OnProcessing)
+                                {
+                                    <span style=" font-size: 15px; font-weight: 700;">Delivery Status: </span>
+                                    <span style=" font-size: 15px; " class="badge bg-light">  OnProcessing</span>
+                                }
+                                @if (Model.DeliveryStatus == OrderDeliveryStatus.OnWaiting)
+                                {
+                                    <span style=" font-size: 15px; font-weight: 700;">Delivery Status: </span>
+                                    <span style=" font-size: 15px;" class="badge bg-warning">  OnWaiting</span>
+                                }
                             </div>
-                            <div class="col-lg-2">
-                                <a asp-action="StatusOnDepot" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-dark">OnDepot</a>
+
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <span style=" font-size: 20px; " class="badge bg-@(Model.Status== OrderStatus.Pending ?"warning":"danger")">@(Model.Status== OrderStatus.Pending ? "Pending" : "Rejected")</span>
                             </div>
-                            <div class="col-lg-2">
-                                <a asp-action="StatusOnCourier" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-info">OnCourier</a>
-                            </div>
-                            <div class="col-lg-2">
-                                <a asp-action="StatusDelivered" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-success">Delivered</a>
-                            </div>
-                            <div class="col-lg-2">
-                                <a asp-action="StatusOnWaiting" asp-controller="order" asp-route-id="@Model.Id" class="btn btn-warning">OnWaiting</a>
-                            </div>
-                            <div class="col-lg-1">
-                            </div>
-                        </div>
+                            @if (Model.Status == OrderStatus.Rejected)
+                            {
+                                <div>
+                                    <h1 class="text-center">Reject Comment</h1>
+                                    <input class="form-control" disabled asp-for="RejectComment"></input>
+                                </div>
+                            }
+                        }
+
 
                         <h1 style="font-weight:700;" class="text-center mb-3 mt-5"> Order Items </h1>
                         <div class="table-responsive">

@@ -7,6 +7,8 @@ using NetMedsFull.Areas.Manage.ViewModels;
 using NetMedsFull.Enums;
 using NetMedsFull.Helpers;
 using NetMedsFull.Models;
+using NetMedsFull.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -204,6 +206,16 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 return View(productExist);
             }
 
+            //Stock status "false"-dusa
+            if (product.StockStatus == false)
+            {
+                if (!_deleteBasket(product.Id))
+                {
+                    return RedirectToAction("notfounds", "error");
+                }
+            }
+
+
             if (product.PosterImageFile != null)
             {
                 var posterImage = product.PosterImageFile;
@@ -272,7 +284,6 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 }
             }
 
-           
 
 
             _setProductData(productExist, product);
@@ -288,6 +299,14 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 return RedirectToAction("notfounds", "error");
 
             }
+            if (!_deleteBasket(product.Id))
+            {
+                return RedirectToAction("notfounds", "error");
+            }
+            if (!_deleteWish(product.Id))
+            {
+                return RedirectToAction("notfounds", "error");
+            }
             var PosterImage = product.ProductImages.FirstOrDefault(x => x.PosterStatus == true);
             FileManager.Delete(_env.WebRootPath, "uploads/products", PosterImage.Image);
 
@@ -296,6 +315,8 @@ namespace NetMedsFull.Areas.Manage.Controllers
             {
                 FileManager.Delete(_env.WebRootPath, "uploads/products", item.Image);
             }
+
+
             _context.Products.Remove(product);
             _context.SaveChanges();
             return Ok();
@@ -349,6 +370,83 @@ namespace NetMedsFull.Areas.Manage.Controllers
             oldProduct.IsTrending = newProduct.IsTrending;
             oldProduct.IsNew = newProduct.IsNew;
             oldProduct.StockStatus = newProduct.StockStatus;
+        }
+
+
+        private bool _deleteBasket(int id)
+        {
+            if (!_context.Products.Any(x => x.Id == id))
+            {
+                return false;
+            }
+            //database
+            List<BasketItemViewModel> productsDetail = new List<BasketItemViewModel>();
+            //BasketItem basketItem = _context.BasketItems.FirstOrDefault(x => x.ProductId == id);
+
+            var basketItems = _context.BasketItems.Where(x => x.ProductId == id).ToList();
+
+            foreach (BasketItem basketItem in basketItems)
+            {
+                if (basketItem == null)
+                {
+                    return false;
+                }
+                _context.BasketItems.Remove(basketItem);
+                _context.SaveChanges();
+            }
+
+
+            //cookie
+            string basket = HttpContext.Request.Cookies["basketItemList"];
+            if (basket != null)
+            {
+                productsDetail = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(basket);
+                BasketItemViewModel productBasket = productsDetail.FirstOrDefault(x => x.ProductId == id);
+                if (productBasket == null)
+                {
+                    return false;
+                }
+                productsDetail.Remove(productBasket);
+                HttpContext.Response.Cookies.Append("basketItemList", JsonConvert.SerializeObject(productsDetail));
+
+            }
+
+            return true;
+        }
+
+
+        private bool _deleteWish(int id)
+        {
+            if (!_context.Products.Any(x => x.Id == id))
+            {
+                return false;
+            }
+            List<WishItemViewModel> wishItems = new List<WishItemViewModel>();
+
+            var wishsItems = _context.WishItems.Where(x => x.ProductId == id).ToList();
+            foreach (WishItem wishItem in wishsItems)
+            {
+                if (wishItem == null)
+                {
+                    return false;
+                }
+
+                _context.WishItems.Remove(wishItem);
+                _context.SaveChanges();
+            }
+            string wish = HttpContext.Request.Cookies["wishItemList"];
+            if (wish != null)
+            {
+                wishItems = JsonConvert.DeserializeObject<List<WishItemViewModel>>(wish);
+                WishItemViewModel productWish = wishItems.FirstOrDefault(x => x.ProductId == id);
+                if (productWish == null)
+                {
+                    return false;
+                }
+                wishItems.Remove(productWish);
+                HttpContext.Response.Cookies.Append("wishItemList", JsonConvert.SerializeObject(wishItems));
+            }
+            return true;
         }
     }
 }

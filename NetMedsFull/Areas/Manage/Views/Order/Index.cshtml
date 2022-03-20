@@ -85,7 +85,7 @@
                                             <td class="text-center">
                                                 @if (order.Status != OrderStatus.Accepted)
                                                 {
-                                                    <a class="btn btn-primary mb-1" asp-action="acceptlab" asp-controller="labtest" asp-route-id="@order.Id">Accept</a>
+                                                    <a class="btn btn-primary mb-1" asp-action="AcceptOrder" asp-controller="order" asp-route-id="@order.Id">Accept</a>
 
                                                 }
                                                 @if (order.Status != OrderStatus.Rejected)

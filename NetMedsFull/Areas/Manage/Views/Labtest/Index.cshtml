@@ -42,7 +42,7 @@
                                             <td>@count</td>
                                             <td>@labtest.Fullname</td>
                                             <td>@labtest.Email</td>
-                                            <td>@labtest.Rendezvous</td>
+                                            <td>@labtest.Rendezvous.ToString("MM/dd/yyyy") </td>
                                             <td>@labtest.LabTestPrice.Price₼</td>
                                             <td>
                                                 @if (labtest.LabStatus == LabStatus.Accepted)
@@ -52,9 +52,9 @@
                                                 @if (labtest.LabStatus == LabStatus.Canceled)
                                                 {
                                                     <span class="badge bg-danger">  Canceled</span>
-                                                }
+                                            }
 
-                                                @if (labtest.LabStatus == LabStatus.Waiting)
+                                            @if (labtest.LabStatus == LabStatus.Waiting)
                                                 {
                                                     <span class="badge bg-warning">  Waiting</span>
                                                 }
@@ -63,10 +63,10 @@
                                             <td>
                                                 @if (labtest.CancelComment != null)
                                                 {
-                                                    @Html.Raw(labtest.CancelComment)
+                                                @Html.Raw(labtest.CancelComment)
                                                 }
                                                 else
-                                                {
+                                            {
                                                     <p class="text-center">------</p>
                                                 }
                                             </td>
