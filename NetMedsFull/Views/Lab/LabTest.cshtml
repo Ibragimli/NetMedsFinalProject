@@ -1,7 +1,10 @@
 ﻿@model LabTest
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> userManager;
 @{
     ViewData["Title"] = "LabTest";
     Array values = Enum.GetValues(typeof(LabPackage));
+    AppUser user = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
 
 }
 
@@ -100,10 +103,10 @@
                         <span class="text-danger" asp-validation-for="LabTestPriceId"> </span>
                     </div>
                     @*<div class="mb-3">
-                        <label class="form-label">Price</label>
-                        <input class="form-control" placeholder="Price:" disabled>
+                            <label class="form-label">Price</label>
+                            <input class="form-control" placeholder="Price:" disabled>
 
-                    </div>*@
+                        </div>*@
 
                     <div class="mb-3">
                         <label asp-for="Rendezvous" class="form-label">Rendezvous</label>
@@ -115,6 +118,13 @@
                             Book Now
                         </button>
                     </div>
+                    @if (user != null && user.IsAdmin == false)
+                    {
+                        <div>
+                            <input type="hidden" asp-for="AppUserId" value="@user.Id" />
+                        </div>
+                    }
+
                 </form>
             </div>
         </div>
