@@ -40,7 +40,6 @@ namespace NetMedsFull.Areas.Manage.Controllers
                 productsCount++;
             }
 
-
             ViewBag.TotalAmountSell = total;
             ViewBag.MonthTotalAmountSell = totalMonth;
             ViewBag.UserCount = user.Count();

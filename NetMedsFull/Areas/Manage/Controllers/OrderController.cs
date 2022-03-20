@@ -43,15 +43,15 @@ namespace NetMedsFull.Areas.Manage.Controllers
             return RedirectToAction("index", "order");
         }
         [HttpPost]
-        public IActionResult RejectOrder(Order Order)
+        public IActionResult RejectOrder(Order order)
         {
-            var orderExist = _context.Orders.FirstOrDefault(x => x.Id == Order.Id);
+            var orderExist = _context.Orders.FirstOrDefault(x => x.Id == order.Id);
             if (orderExist == null)
             {
                 return RedirectToAction("notfounds", "error");
             }
 
-            if (Order.RejectComment == null)
+            if (order.RejectComment == null)
             {
                 ModelState.AddModelError("rejectcomment", "Reject comment is required!");
                 TempData["error"] = "Reject Comment is required!";
@@ -59,7 +59,7 @@ namespace NetMedsFull.Areas.Manage.Controllers
             }
 
             orderExist.Status = Enums.OrderStatus.Rejected;
-            orderExist.RejectComment = Order.RejectComment;
+            orderExist.RejectComment = order.RejectComment;
             _context.SaveChanges();
             return RedirectToAction("index", "order");
         }
